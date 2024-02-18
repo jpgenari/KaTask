@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.utils import timezone
 from cloudinary.models import CloudinaryField
 
 # Create your models here.
@@ -22,7 +21,4 @@ class Task(models.Model):
         ordering = ['due_date', 'created_at']
     
     def __str__(self):
-        created_at_with_tz = timezone.localtime(self.created_at)
-        time_zone_info = created_at_with_tz.strftime('%z')
-        formatted_created_at = created_at_with_tz.strftime("%Y-%m-%d %H:%M:%S %Z")
-        return f"{self.title} | added by {self.user}, at {formatted_created_at} {time_zone_info}, due on {self.due_date} and priority is {self.priority}"
+        return f"{self.title} | added by {self.user}"
