@@ -13,6 +13,11 @@ class TaskForm(forms.ModelForm):
             'priority',
             'completed'
             ]
+        widgets = {
+            'due_date': forms.DateInput(
+                attrs={'type': 'date', 'class': 'form-control'}
+            )
+        }
         
 class CategoryForm(forms.ModelForm):
     class Meta:

@@ -6,7 +6,9 @@
     <h2>{{ form.instance.title|default:"New Task" }}</h2>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
+
         {{ form.as_p }}
         <button type="submit">Save</button>
     </form>
+
 {% endblock %}
