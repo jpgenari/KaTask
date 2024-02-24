@@ -4,68 +4,8 @@ from .forms import TaskForm, CategoryForm
 
 # Create your views here.
 
-def category_list(request):
-    '''
-    View function that displays list of categories associated with current logged user.
-    Retrieves all categories associated with logged user from database and renders template
-    to display the categories.
-    '''
-    
-    categories = Category.objects.filter(user=request.user)
-    return render(
-        request,
-        'tasks/category_list.html',
-        {'categories': categories}
-    )
-
-
-def create_category(request):
-    '''
-    
-    '''
-    
-    if request.method == 'POST':
-        form = CategoryForm(request.POST)
-        if form.is_valid():
-            category = form.save(commit=False)
-            category.user = request.user
-            category.save()
-            return redirect('category_list')
-    else:
-        form = CategoryForm()
-    return render(
-        request,
-        'tasks/category_form.html',
-        {'form': form}
-        )
-    
-def edit_category(request, category_id):
-    '''
-    
-    '''
-    
-    category = Category.objects.get(id=category_id, user=request.user)
-    if request.method == 'POST':
-        form = CategoryForm(request.POST, instance=category)
-        if form.is_valid():
-            form.save()
-            return redirect('category_list')
-    else:
-        form = CategoryForm(instance=category)
-    return render(
-        request,
-        'tasks/category_form.html',
-        {'form': form}
-        )
-
-def delete_category(request, category_id):
-    '''
-    '''
-    
-    category = Category.objects.get(id=category_id, user=request.user)
-    
-    category.delete()
-    return redirect('category_list')
+def landing_page(request):
+    return render(request, 'tasks/landing_page.html')
 
 def task_list(request):
     '''
@@ -137,3 +77,62 @@ def delete_task(request, task_id):
     task = Task.objects.get(id=task_id, user=request.user)
     task.delete()
     return redirect('task_list')
+
+def category_list(request):
+    '''
+    '''
+    
+    categories = Category.objects.filter(user=request.user)
+    return render(
+        request,
+        'tasks/category_list.html',
+        {'categories': categories}
+    )
+
+
+def create_category(request):
+    '''
+
+    '''
+    
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            category = form.save(commit=False)
+            category.user = request.user
+            category.save()
+            return redirect('category_list')
+    else:
+        form = CategoryForm()
+    return render(
+        request,
+        'tasks/category_form.html',
+        {'form': form}
+        )
+    
+def edit_category(request, category_id):
+    '''
+    '''
+    
+    category = Category.objects.get(id=category_id, user=request.user)
+    if request.method == 'POST':
+        form = CategoryForm(request.POST, instance=category)
+        if form.is_valid():
+            form.save()
+            return redirect('category_list')
+    else:
+        form = CategoryForm(instance=category)
+    return render(
+        request,
+        'tasks/category_form.html',
+        {'form': form}
+        )
+
+def delete_category(request, category_id):
+    '''
+    '''
+    
+    category = Category.objects.get(id=category_id, user=request.user)
+    
+    category.delete()
+    return redirect('category_list')

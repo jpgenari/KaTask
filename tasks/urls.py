@@ -2,7 +2,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.task_list, name='task_list'),
+    path('', views.landing_page, name='landing_page'),
+    path('tasks', views.task_list, name='task_list'),
     path('category/', views.category_list, name='category_list'),
     path('create/', views.create_task, name='create_task'),
     path('create_category/', views.create_category, name='create_category'),
