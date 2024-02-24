@@ -30,7 +30,7 @@ def create_task(request):
     '''
     
     if request.method == 'POST':
-        form = TaskForm(request.POST)
+        form = TaskForm(request.POST, request.FILES)
         if form.is_valid():
             task = form.save(commit=False)
             task.user = request.user
@@ -54,7 +54,7 @@ def edit_task(request, task_id):
     
     task = Task.objects.get(id=task_id, user=request.user)
     if request.method == 'POST':
-        form = TaskForm(request.POST, instance=task)
+        form = TaskForm(request.POST, request.FILES, instance=task)
         if form.is_valid():
             form.save()
             return redirect('task_list')
