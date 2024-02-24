@@ -1,0 +1,12 @@
+<!-- tasks/templates/tasks/category_form.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{{ form.instance.title|default:"New Category" }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+{% endblock %}

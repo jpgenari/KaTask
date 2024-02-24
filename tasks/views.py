@@ -4,6 +4,11 @@ from .models import Task
 from .forms import TaskForm
 
 # Create your views here.
+
+
+
+
+
 def task_list(request):
     '''
     View function that displays list of tasks associated with current logged user.
