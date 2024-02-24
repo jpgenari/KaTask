@@ -1,13 +1,71 @@
 from django.shortcuts import render, redirect
-from django.views import generic
-from .models import Task
-from .forms import TaskForm
+from .models import Task, Category
+from .forms import TaskForm, CategoryForm
 
 # Create your views here.
 
+def category_list(request):
+    '''
+    View function that displays list of categories associated with current logged user.
+    Retrieves all categories associated with logged user from database and renders template
+    to display the categories.
+    '''
+    
+    categories = Category.objects.filter(user=request.user)
+    return render(
+        request,
+        'tasks/category_list.html',
+        {'categories': categories}
+    )
 
 
+def create_category(request):
+    '''
+    
+    '''
+    
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            category = form.save(commit=False)
+            category.user = request.user
+            category.save()
+            return redirect('category_list')
+    else:
+        form = CategoryForm()
+    return render(
+        request,
+        'tasks/category_list.html',
+        {'form': form}
+        )
+    
+def edit_category(request, category_id):
+    '''
+    
+    '''
+    
+    category = Category.objects.get(id=category_id, user=request.user)
+    if request.method == 'POST':
+        form = CategoryForm(request.POST, instance=category)
+        if form.is_valid():
+            form.save()
+            return redirect('category_list')
+    else:
+        form = CategoryForm(instance=category)
+    return render(
+        request,
+        'tasks/category_list.html',
+        {'form': form}
+        )
 
+def delete_category(request, category_id):
+    '''
+    
+    '''
+    
+    category = Category.objects.get(id=category_id, user=request.user)
+    category.delete()
+    return redirect('category_list')
 
 def task_list(request):
     '''

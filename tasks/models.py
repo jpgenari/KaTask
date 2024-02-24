@@ -5,6 +5,7 @@ from cloudinary.models import CloudinaryField
 # Create your models here.
 class Category(models.Model):
     
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="categories_created")
     category_name = models.CharField(max_length=100)
 
 class Task(models.Model):
