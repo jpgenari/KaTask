@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.views import generic
 from .models import Task
 from .forms import TaskForm
 
@@ -58,7 +59,8 @@ def edit_task(request, task_id):
         form = TaskForm(instance=task)
     return render(
         request,
-        'tasks/task_form.html',{'form': form}
+        'tasks/task_form.html',
+        {'form': form}
         )
 
 def delete_task(request, task_id):
