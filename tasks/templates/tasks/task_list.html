@@ -4,6 +4,7 @@
 
 {% block content %}
     <h2>My Tasks</h2>
+    
     <ul>
         {% for task in tasks %}
             <li>
@@ -13,7 +14,22 @@
                 <p>Due Date: {{ task.due_date }}</p>
                 <p>Priority: {{ task.get_priority_display }}</p>
                 <p>Category: {{ task.category.category_name }}</p>
-                <p>Completed: {{ task.completed }}</p>
+                <!-- <p>Completed: {{ task.completed }}</p> -->
+
+                {% if task.completed %}
+                    <!-- <p>Completed: Yes</p> -->
+                    <form method="post" action="{% url 'undo_complete_task' task.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Undo Complete</button>
+                    </form>
+                {% else %}
+                    <!-- <p>Completed: No</p> -->
+                    <form method="post" action="{% url 'complete_task' task.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Mark as Complete</button>
+                    </form>
+                {% endif %}
+
                 <a href="{% url 'edit_task' task.id %}">Edit</a>
                 <a href="{% url 'delete_task' task.id %}">Delete</a>
             </li>
