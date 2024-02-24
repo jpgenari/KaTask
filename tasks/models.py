@@ -6,7 +6,10 @@ from cloudinary.models import CloudinaryField
 class Category(models.Model):
     
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="categories_created")
-    category_name = models.CharField(max_length=100)
+    category_name = models.CharField(max_length=25)
+    
+    def __str__(self):
+        return self.category_name
 
 class Task(models.Model):
     """
@@ -14,8 +17,8 @@ class Task(models.Model):
     """
     
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="tasks_created")
-    title = models.CharField(max_length=200)
-    description = models.TextField(blank=True, null=True)
+    title = models.CharField(max_length=100)
+    description = models.TextField(max_length=200, blank=True, null=True)
     featured_image = CloudinaryField('image', default='placeholder')
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     due_date = models.DateField(blank=True, null=True)

@@ -60,10 +60,10 @@ def edit_category(request, category_id):
 
 def delete_category(request, category_id):
     '''
-    
     '''
     
     category = Category.objects.get(id=category_id, user=request.user)
+    
     category.delete()
     return redirect('category_list')
 
