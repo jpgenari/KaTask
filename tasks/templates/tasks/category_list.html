@@ -8,8 +8,8 @@
         {% for category in categories %}
             <li>
                 <strong>{{ category.category_name }}</strong>
-                <a href="{% url 'edit_task' task.id %}">Edit</a>
-                <a href="{% url 'delete_task' task.id %}">Delete</a>
+                <a href="{% url 'edit_category' category.id %}">Edit</a>
+                <a href="{% url 'delete_category' category.id %}">Delete</a>
             </li>
         {% empty %}
             <li>No Categories found.</li>

@@ -6,11 +6,15 @@
     <title>KaTask Manager</title>
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    
+
 </head>
 <body>
     <div>
         <h1><a href="{% url 'task_list' %}">KaTask | Manager</a></h1>
+        <nav><ul>
+            <li><a href="{% url 'task_list' %}">My Tasks</a></li>
+            <li><a href="{% url 'category_list' %}">Categories</a></li>
+        </ul></nav>
         {% block content %}
         {% endblock %}
     </div>

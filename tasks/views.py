@@ -35,7 +35,7 @@ def create_category(request):
         form = CategoryForm()
     return render(
         request,
-        'tasks/category_list.html',
+        'tasks/category_form.html',
         {'form': form}
         )
     
@@ -54,7 +54,7 @@ def edit_category(request, category_id):
         form = CategoryForm(instance=category)
     return render(
         request,
-        'tasks/category_list.html',
+        'tasks/category_form.html',
         {'form': form}
         )
 
