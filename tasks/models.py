@@ -3,6 +3,10 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
 # Create your models here.
+class Category(models.Model):
+    
+    category_name = models.CharField(max_length=100)
+
 class Task(models.Model):
     """
     Stores a single task entry related to :model:`auth:User`
@@ -12,7 +16,7 @@ class Task(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True, null=True)
     featured_image = CloudinaryField('image', default='placeholder')
-    category = models.CharField(max_length=100, blank=True, null=True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     due_date = models.DateField(blank=True, null=True)
     priority = models.IntegerField(choices=((1, 'Low'), (2, 'Medium'), (3, 'High')), default=1)
     completed = models.BooleanField(default=False)

@@ -9,8 +9,10 @@
             <li>
                 <strong>{{ task.title }}</strong>
                 <p>{{ task.description }}</p>
+                <p><img src="{{ task.featured_image.url }}" alt=""></p>
                 <p>Due Date: {{ task.due_date }}</p>
                 <p>Priority: {{ task.get_priority_display }}</p>
+                <p>Category: {{ task.category }}</p>
                 <p>Completed: {{ task.completed }}</p>
                 <a href="{% url 'edit_task' task.id %}">Edit</a>
                 <a href="{% url 'delete_task' task.id %}">Delete</a>
