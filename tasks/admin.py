@@ -9,7 +9,7 @@ class TasksAdmin(SummernoteModelAdmin):
     list_display = ('title', 'description', 'priority', 'completed', 'user')
     search_fields = ['title', 'description', 'user']
     list_filter = ('description', 'priority', 'completed', 'user')
-    prepopulated_fields = {'priority': ('title',)}
+    prepopulated_fields = {'title': ()}
     summernote_fields = ('title',)
 
 
