@@ -56,7 +56,9 @@ def edit_task(request, task_id):
     if request.method == 'POST':
         form = TaskForm(request.POST, request.FILES, instance=task)
         if form.is_valid():
-            form.save()
+            task = form.save(commit=False)
+            task.user = request.user
+            task.save()
             return redirect('task_list')
     else:
         form = TaskForm(instance=task)
@@ -118,6 +120,8 @@ def edit_category(request, category_id):
     if request.method == 'POST':
         form = CategoryForm(request.POST, instance=category)
         if form.is_valid():
+            category = form.save(commit=False)
+            category.user = request.user
             form.save()
             return redirect('category_list')
     else:
