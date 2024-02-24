@@ -27,3 +27,12 @@ KaTask is an online task management app, focused in minimalism UI. Its name come
 10. Connect DataBase to Heroku and deploy;
 11. Create model code to handle data;
 12. Create and make migrations;
+13. Build homepage with Django generic views;
+    
+    A. Create **url.py** inside tasks directory;
+    
+    B. Update **katask/urls.py**;
+
+    C. Create a **templates** directory in the **tasks** app with another directory nested inside, named 'tasks';
+
+    D. Create a **tasks_list.htmnl** file and add HTML to it;
