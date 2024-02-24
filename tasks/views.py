@@ -5,6 +5,8 @@ from .forms import TaskForm, CategoryForm
 # Create your views here.
 
 def landing_page(request):
+    if request.user.is_authenticated:
+        return redirect('task_list')
     return render(request, 'tasks/landing_page.html')
 
 def task_list(request):
