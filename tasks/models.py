@@ -27,7 +27,7 @@ class Task(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     
     class Meta:
-        ordering = ['due_date', 'created_at']
+        ordering = ['completed', 'due_date', '-priority', 'created_at']
     
     def __str__(self):
         return f"{self.title} | added by {self.user}"
