@@ -7,7 +7,7 @@
     <ul>
         {% for category in categories %}
             <li>
-                <strong>{{ task.category_name }}</strong>
+                <strong>{{ category.category_name }}</strong>
                 <a href="{% url 'edit_task' task.id %}">Edit</a>
                 <a href="{% url 'delete_task' task.id %}">Delete</a>
             </li>
@@ -15,5 +15,5 @@
             <li>No Categories found.</li>
         {% endfor %}
     </ul>
-    <a href="{% url 'create_task' %}">Add New Task</a>
+    <a href="{% url 'create_category' %}">Add New Category</a>
 {% endblock %}
