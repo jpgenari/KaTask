@@ -30,9 +30,10 @@ def create_task(request):
     and process submitted form data creating a new task (POST requests),
     if form submission is successful, user is redirected to task_list view.
     '''
-    
+
     if request.method == 'POST':
-        form = TaskForm(request.POST, request.FILES)
+        
+        form = TaskForm(request.POST, request.FILES, user=request.user)
         if form.is_valid():
             task = form.save(commit=False)
             task.user = request.user
@@ -104,7 +105,7 @@ def category_list(request):
         'tasks/category_list.html',
         {'categories': categories}
     )
-    
+
 def category_detail(request, category_id):
     category = get_object_or_404(Category, id=category_id)
     tasks = Task.objects.filter(category=category)
@@ -123,11 +124,10 @@ def category_detail(request, category_id):
 
 def create_category(request):
     '''
-
     '''
     
     if request.method == 'POST':
-        form = CategoryForm(request.POST)
+        form = CategoryForm(request.POST, user=request.user)
         if form.is_valid():
             category = form.save(commit=False)
             category.user = request.user
@@ -140,7 +140,7 @@ def create_category(request):
         'tasks/category_form.html',
         {'form': form}
         )
-    
+
 def edit_category(request, category_id):
     '''
     '''

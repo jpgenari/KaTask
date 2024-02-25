@@ -15,7 +15,7 @@ class TasksAdmin(SummernoteModelAdmin):
 @admin.register(Category)
 class CategoriesAdmin(SummernoteModelAdmin):
 
-    list_display = ('category_name',)
+    list_display = ('category_name', 'user')
     search_fields = ['category_name', 'user']
     list_filter = ('user',)
     prepopulated_fields = {'category_name': ()}

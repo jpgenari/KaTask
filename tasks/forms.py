@@ -2,6 +2,7 @@ from django import forms
 from .models import Task, Category
 
 class TaskForm(forms.ModelForm):
+    
     class Meta:
         model = Task
         fields = [
@@ -11,7 +12,6 @@ class TaskForm(forms.ModelForm):
             'category',
             'due_date',
             'priority',
-            # 'completed' 
             ]
         widgets = {
             'due_date': forms.DateInput(
@@ -25,3 +25,4 @@ class CategoryForm(forms.ModelForm):
         fields = [
             'category_name'
             ]
+        
