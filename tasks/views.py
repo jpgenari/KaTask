@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Task, Category
 from .forms import TaskForm, CategoryForm
 
@@ -71,13 +71,13 @@ def edit_task(request, task_id):
         )
 
 def complete_task(request, task_id):
-    task = Task.objects.get(id=task_id)
+    task = Task.objects.get(id=task_id, user=request.user)
     task.completed = True
     task.save()
     return redirect('task_list')
 
 def undo_complete_task(request, task_id):
-    task = Task.objects.get(id=task_id)
+    task = Task.objects.get(id=task_id, user=request.user)
     task.completed = False
     task.save()
     return redirect('task_list')
@@ -104,6 +104,21 @@ def category_list(request):
         'tasks/category_list.html',
         {'categories': categories}
     )
+    
+def category_detail(request, category_id):
+    category = get_object_or_404(Category, id=category_id)
+    tasks = Task.objects.filter(category=category)
+    task_count = tasks.count()
+    
+    return render(
+        request,
+        'tasks/category_detail.html',
+        {
+            'category': category,
+            'tasks': tasks,
+            'task_count': task_count
+            }
+        )
 
 
 def create_category(request):

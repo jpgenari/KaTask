@@ -8,6 +8,7 @@
         {% for category in categories %}
             <li>
                 <strong>{{ category.category_name }}</strong>
+                <a href="{% url 'category_detail' category.id %}">View Tasks</a>
                 <a href="{% url 'edit_category' category.id %}">Edit</a>
                 <a href="{% url 'delete_category' category.id %}">Delete</a>
             </li>

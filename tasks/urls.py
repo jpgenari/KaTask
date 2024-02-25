@@ -6,6 +6,7 @@ urlpatterns = [
     path('', views.landing_page, name='landing_page'),
     path('tasks/', login_required(views.task_list), name='task_list'),
     path('category/', login_required(views.category_list), name='category_list'),
+    path('category/<int:category_id>/', login_required(views.category_detail0, name='category_detail'),
     path('create/', login_required(views.create_task), name='create_task'),
     path('create_category/', login_required(views.create_category), name='create_category'),
     path('edit/<int:task_id>/', login_required(views.edit_task), name='edit_task'),
