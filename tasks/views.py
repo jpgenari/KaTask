@@ -63,7 +63,7 @@ def edit_task(request, task_id):
         return redirect('task_list')
     
     if task.user != request.user:
-        messages.error(request, "What are you trying to do? You don't have permission here")
+        messages.error(request, "The task you are trying to edit does not exist.")
         return redirect('task_list')
     
     elif request.method == 'POST':
@@ -81,19 +81,19 @@ def edit_task(request, task_id):
         {'form': form}
         )
 
-def complete_task(request, task_id):
+def complete_task(task_id):
     task = Task.objects.get(id=task_id)
     task.completed = True
     task.save()
     return redirect('task_list')
 
-def undo_complete_task(request, task_id):
+def undo_complete_task(task_id):
     task = Task.objects.get(id=task_id)
     task.completed = False
     task.save()
     return redirect('task_list')
 
-def delete_task(request, task_id):
+def delete_task(task_id):
     '''
     Handles deletion of existing task.
     Deletes a task based on its ID and current logged-in user,
@@ -117,9 +117,14 @@ def category_list(request):
     )
 
 def category_detail(request, category_id):
-    category = get_object_or_404(Category, id=category_id)
-    tasks = Task.objects.filter(category=category)
-    task_count = tasks.count()
+    
+    try:
+        category = get_object_or_404(Category, id=category_id)
+        tasks = Task.objects.filter(category=category)
+        task_count = tasks.count()
+    except Http404:
+        messages.error(request, "The category you are trying to see details does not exist.")
+        return redirect('category_list')
     
     return render(
         request,
@@ -130,7 +135,6 @@ def category_detail(request, category_id):
             'task_count': task_count
             }
         )
-
 
 def create_category(request):
     '''
@@ -155,8 +159,17 @@ def edit_category(request, category_id):
     '''
     '''
     
-    category = Category.objects.get(id=category_id)
-    if request.method == 'POST':
+    try:
+        category = get_object_or_404(Category, id=category_id)
+    except Http404:
+        messages.error(request, "The category you are trying to edit does not exist.")
+        return redirect('category_list')
+    
+    if category.user != request.user:
+        messages.error(request, "The category you are trying to edit does not exist.")
+        return redirect('category_list')
+    
+    elif request.method == 'POST':
         form = CategoryForm(request.POST, instance=category)
         if form.is_valid():
             category = form.save(commit=False)
@@ -171,7 +184,7 @@ def edit_category(request, category_id):
         {'form': form}
         )
 
-def delete_category(request, category_id):
+def delete_category(category_id):
     '''
     '''
     
