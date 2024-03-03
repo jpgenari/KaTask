@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
+from django.http import Http404
 from .models import Task, Category
 from .forms import TaskForm, CategoryForm
 
@@ -54,8 +56,17 @@ def edit_task(request, task_id):
     submission is successful user is redirected to task_list view.
     '''
     
-    task = Task.objects.get(id=task_id)
-    if request.method == 'POST':
+    try:
+        task = get_object_or_404(Task, id=task_id)
+    except Http404:
+        messages.error(request, "The task you are trying to edit does not exist.")
+        return redirect('task_list')
+    
+    if task.user != request.user:
+        messages.error(request, "What are you trying to do? You don't have permission here")
+        return redirect('task_list')
+    
+    elif request.method == 'POST':
         form = TaskForm(request.POST, request.FILES, instance=task)
         if form.is_valid():
             task = form.save(commit=False)
