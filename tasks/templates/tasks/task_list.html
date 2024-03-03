@@ -11,7 +11,7 @@
                 <strong>{{ task.title }}</strong>
                 <p>{{ task.description }}</p>
                 <p><img src="{{ task.featured_image.url }}" alt=""></p>
-                <p>Due Date: {{ task.due_date }}</p>
+                <p>Due Date: {{ task.due_at }}</p>
                 <p>Priority: {{ task.get_priority_display }}</p>
                 <p>Category: {{ task.category.category_name }}</p>
                 <!-- <p>Completed: {{ task.completed }}</p> -->

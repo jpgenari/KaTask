@@ -12,7 +12,7 @@
             <li>
                 <strong>{{ task.title }}</strong>
                 <p>{{ task.description }}</p>
-                <p>Due Date: {{ task.due_date }}</p>
+                <p>Due Date: {{ task.due_at }}</p>
                 <p>Priority: {{ task.get_priority_display }}</p>
                 <p>Completed: {{ task.completed }}</p>
                 <a href="{% url 'edit_task' task.id %}">Edit</a>
