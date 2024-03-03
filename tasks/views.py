@@ -76,6 +76,12 @@ def edit_task(request, task_id):
     elif request.method == 'POST':
         form = TaskForm(request.user, request.POST, request.FILES, instance=task)
         if form.is_valid():
+            if 'delete_image' in request.POST and request.POST['delete_image'] == 'on':
+                # Delete the existing image
+                task.image.delete()
+                # Set the task's image to None
+                task.image = None
+            
             task = form.save(commit=False)
             task.user = request.user
             task.save()

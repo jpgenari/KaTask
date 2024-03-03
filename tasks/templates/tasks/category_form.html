@@ -3,10 +3,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>{{ form.instance.title|default:"New Category" }}</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
-    </form>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h2>{{ form.instance.title|default:"New Category" }}</h2>
+            <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+                <button class="btn btn-primary" type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

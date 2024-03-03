@@ -7,7 +7,9 @@
                 <strong>{{ task.title }}</strong>
             </a>
             <p>{{ task.description }}</p>
-            <p><img src="{{ task.featured_image.url }}" alt="" class="img-fluid"></p>
+            <div>
+                <img src="{{ task.image.url }}" alt="" class="img-fluid">
+            </div>
             <p>Due Date: {{ task.due_at }}</p>
             <p>Priority: {{ task.get_priority_display }}</p>
             <p>Category: {{ task.category.category_name }}</p>
