@@ -7,15 +7,20 @@ from .forms import TaskForm, CategoryForm
 # Create your views here.
 
 def landing_page(request):
+    '''
+    Loads landing page when user is not logged in and
+    access main url.
+    '''
+
     if request.user.is_authenticated:
         return redirect('task_list')
     return render(request, 'tasks/landing_page.html')
 
 def task_list(request):
     '''
-    View function that displays list of tasks associated with current logged user.
-    Retrieves all tasks associated with logged user from database and renders template
-    to display the tasks.
+    Displays list of tasks associated with logged-in user.
+    Gets all tasks associated with logged-in user and renders 
+    template displaying all tasks.
     '''
 
     tasks = Task.objects.filter(user=request.user)
@@ -27,10 +32,10 @@ def task_list(request):
 
 def create_task(request):
     '''
-    Handles creation of a new task working alongside a form.
-    Works with both rendering form to create a new task (GET requests)
-    and process submitted form data creating a new task (POST requests),
-    if form submission is successful, user is redirected to task_list view.
+    Creates new tasks alongside TaskForm. Renders form to
+    create new task (GET) and process submitted form with
+    data to create task (POST). After submission, redirects
+    to task_list.
     '''
 
     if request.method == 'POST':
@@ -50,22 +55,23 @@ def create_task(request):
 
 def edit_task(request, task_id):
     '''
-    Handles the editing of an existing task.
-    Handles both rendering of form to edit an existing task (GET requests) and
-    process of the submitted form data to update a task (POST requests. If form
-    submission is successful user is redirected to task_list view.
+    Edits current tasks working with TaskForm. Checks if object exists and
+    if logged-in user is owner of task (to prevent error when user enters
+    object ID manually on url) displaying alert messages and redirecting to
+    task_list.
+    Then renders TaskForm (GET) and process submitted form data to update
+    task in DB (POST). After submission, redirects to task_list.
     '''
-    
+
     try:
         task = get_object_or_404(Task, id=task_id)
     except Http404:
-        messages.error(request, "The task you are trying to edit does not exist.")
+        messages.add_message(request, messages.ERROR, "This task does not exist.")
         return redirect('task_list')
-    
+
     if task.user != request.user:
-        messages.error(request, "The task you are trying to edit does not exist.")
+        messages.add_message(request, messages.ERROR, "This task does not exist.")
         return redirect('task_list')
-    
     elif request.method == 'POST':
         form = TaskForm(request.POST, request.FILES, instance=task)
         if form.is_valid():
@@ -82,12 +88,24 @@ def edit_task(request, task_id):
         )
 
 def complete_task(request, task_id):
+    '''
+    Marks task as 'Complete' by user. Gets task ID, changes its
+    complete field to True and saves on DB. Then redirects to 
+    task_list.
+    '''
+    
     task = Task.objects.get(id=task_id)
     task.completed = True
     task.save()
     return redirect('task_list')
 
 def undo_complete_task(request, task_id):
+    '''
+    Marks task as 'Uncomplete' (undo complete) by user. Gets task ID,
+    changes its complete field to False and saves on DB. Then redirects
+    to task_list.
+    '''
+    
     task = Task.objects.get(id=task_id)
     task.completed = False
     task.save()
@@ -95,21 +113,21 @@ def undo_complete_task(request, task_id):
 
 def delete_task(request, task_id):
     '''
-    Handles deletion of existing task.
-    Deletes a task based on its ID and current logged-in user,
-    after deletion it redirects user to task_list views displaying
-    updated list od all tasks.
+    Deletes existing task. Gets task ID, deletes it from DB and redirects
+    to task_list.
     '''
-    
+
     task = Task.objects.get(id=task_id)
     task.delete()
     return redirect('task_list')
 
 def category_list(request):
     '''
-    Displays all categories crated by user
+    Displays list of categories associated with logged-in user.
+    Gets all categories associated with logged-in user and renders
+    template displaying all categories.
     '''
-    
+
     categories = Category.objects.filter(user=request.user)
     return render(
         request,
@@ -119,17 +137,25 @@ def category_list(request):
 
 def category_detail(request, category_id):
     '''
-    Displays number of tasks assigned to the category all tasks
+    Displays details of a category associated with logged-in user.
+    Checks if category ID and associated tasks exists and if they
+    belong to logged-in user (to prevent error when user enters category
+    object ID manually on url) displaying alert message and redirecting to
+    category-list.
+    Then renders category_detail template with associated tasks.
     '''
-    
+
     try:
         category = get_object_or_404(Category, id=category_id)
         tasks = Task.objects.filter(category=category)
         task_count = tasks.count()
     except Http404:
-        messages.error(request, "The category you are trying to see details does not exist.")
+        messages.add_message(request, messages.ERROR, "This category does not exist.")
         return redirect('category_list')
-    
+
+    if category.user != request.user:
+        messages.add_message(request, messages.ERROR, "This category does not exist.")
+        return redirect('category_list')
     return render(
         request,
         'tasks/category_detail.html',
@@ -142,8 +168,12 @@ def category_detail(request, category_id):
 
 def create_category(request):
     '''
+    Creates new categories alongside CategoryForm. Renders form to
+    create new category (GET) and process submitted form with
+    data to create category (POST). After submission, redirects
+    to category_list.
     '''
-    
+
     if request.method == 'POST':
         form = CategoryForm(request.POST)
         if form.is_valid():
@@ -152,7 +182,7 @@ def create_category(request):
             category.save()
             return redirect('category_list')
     else:
-        form = CategoryForm()
+        form = CategoryForm()    
     return render(
         request,
         'tasks/category_form.html',
@@ -161,18 +191,23 @@ def create_category(request):
 
 def edit_category(request, category_id):
     '''
+    Edits current categories working with CategoryForm. Checks if object
+    exists and if logged-in user is owner of category (to prevent error when
+    user enters object ID manually on url) displaying alert messages and
+    redirects to category_list.
+    Then renders CategoryForm (GET) and process submitted form data to update
+    category in DB (POST). After submission, redirects to category_list.
     '''
-    
+
     try:
         category = get_object_or_404(Category, id=category_id)
     except Http404:
-        messages.error(request, "The category you are trying to edit does not exist.")
+        messages.add_message(request, messages.ERROR, "This category does not exist.")
         return redirect('category_list')
-    
+
     if category.user != request.user:
-        messages.error(request, "The category you are trying to edit does not exist.")
+        messages.add_message(request, messages.ERROR, "This category does not exist.")
         return redirect('category_list')
-    
     elif request.method == 'POST':
         form = CategoryForm(request.POST, instance=category)
         if form.is_valid():
@@ -190,9 +225,10 @@ def edit_category(request, category_id):
 
 def delete_category(request, category_id):
     '''
+    Deletes existing category. Gets category ID, deletes it from DB and 
+    redirects to category_list.
     '''
-    
-    category = Category.objects.get(id=category_id)
-    
+
+    category = Category.objects.get(id=category_id) 
     category.delete()
     return redirect('category_list')
