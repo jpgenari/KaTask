@@ -4,11 +4,13 @@
 
 {% block content %}
     <h2>Categories</h2>
+    <a href="{% url 'create_category' %}">New Category</a>
     <ul>
         {% for category in categories %}
             <li>
-                <strong>{{ category.category_name }}</strong>
-                <a href="{% url 'category_detail' category.id %}">View Tasks</a>
+                <a href="{% url 'category_detail' category.id %}">
+                    <strong>{{ category.category_name }}</strong>
+                </a>
                 <a href="{% url 'edit_category' category.id %}">Edit</a>
                 <a href="{% url 'delete_category' category.id %}">Delete</a>
             </li>
@@ -16,5 +18,4 @@
             <li>No Categories found.</li>
         {% endfor %}
     </ul>
-    <a href="{% url 'create_category' %}">Add New Category</a>
 {% endblock %}

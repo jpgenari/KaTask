@@ -17,7 +17,7 @@ def task_list(request):
     Retrieves all tasks associated with logged user from database and renders template
     to display the tasks.
     '''
-    
+
     tasks = Task.objects.filter(user=request.user)
     return render(
         request,
@@ -81,19 +81,19 @@ def edit_task(request, task_id):
         {'form': form}
         )
 
-def complete_task(task_id):
+def complete_task(request, task_id):
     task = Task.objects.get(id=task_id)
     task.completed = True
     task.save()
     return redirect('task_list')
 
-def undo_complete_task(task_id):
+def undo_complete_task(request, task_id):
     task = Task.objects.get(id=task_id)
     task.completed = False
     task.save()
     return redirect('task_list')
 
-def delete_task(task_id):
+def delete_task(request, task_id):
     '''
     Handles deletion of existing task.
     Deletes a task based on its ID and current logged-in user,
@@ -107,6 +107,7 @@ def delete_task(task_id):
 
 def category_list(request):
     '''
+    Displays all categories crated by user
     '''
     
     categories = Category.objects.filter(user=request.user)
@@ -117,6 +118,9 @@ def category_list(request):
     )
 
 def category_detail(request, category_id):
+    '''
+    Displays number of tasks assigned to the category all tasks
+    '''
     
     try:
         category = get_object_or_404(Category, id=category_id)
@@ -184,7 +188,7 @@ def edit_category(request, category_id):
         {'form': form}
         )
 
-def delete_category(category_id):
+def delete_category(request, category_id):
     '''
     '''
     

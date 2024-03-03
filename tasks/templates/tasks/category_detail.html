@@ -6,7 +6,7 @@
     <h2>{{ category.category_name }}</h2>
     
     <p>Total Tasks: {{ task_count }}</p>
-    
+    <a href="{% url 'create_task' %}">New Task</a>
     <ul>
         {% for task in tasks %}
             <li>
@@ -22,5 +22,4 @@
             <li>No tasks found.</li>
         {% endfor %}
     </ul>
-    <a href="{% url 'create_task' %}">Add New Task</a>
 {% endblock %}
