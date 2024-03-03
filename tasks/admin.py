@@ -6,11 +6,17 @@ from django_summernote.admin import SummernoteModelAdmin
 @admin.register(Task)
 class TasksAdmin(SummernoteModelAdmin):
 
-    list_display = ('title', 'description', 'priority', 'completed', 'user')
+    list_display = ('reviewed', 'title', 'description', 'image', 'user', 'created_at')
     search_fields = ['title', 'description', 'user']
-    list_filter = ('description', 'priority', 'completed', 'user')
+    list_filter = ('reviewed', 'user', 'created_at', 'completed', 'priority')
     prepopulated_fields = {'title': ()}
     summernote_fields = ('title',)
+    
+    actions = ['mark_as_reviewed'] # Adds the custom action
+    
+    def mark_as_reviewed(self, request, queryset):
+        queryset.update(reviewed=True)
+    mark_as_reviewed.short_description = "Review selected tasks"
     
 @admin.register(Category)
 class CategoriesAdmin(SummernoteModelAdmin):

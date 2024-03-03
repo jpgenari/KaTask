@@ -25,6 +25,7 @@ class Task(models.Model):
     priority = models.IntegerField(choices=((1, 'Low'), (2, 'Medium'), (3, 'High')), default=1)
     completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
+    reviewed = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['completed', 'due_at', '-priority', 'created_at']
