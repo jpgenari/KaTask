@@ -15,7 +15,7 @@ class Task(models.Model):
     """
     Stores a single task entry related to :model:`auth:User`
     """
-    
+
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="tasks_created")
     title = models.CharField(max_length=100)
     description = models.TextField(max_length=200, blank=True, null=True)
@@ -25,9 +25,11 @@ class Task(models.Model):
     priority = models.IntegerField(choices=((1, 'Low'), (2, 'Medium'), (3, 'High')), default=1)
     completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
-    
+
     class Meta:
         ordering = ['completed', 'due_at', '-priority', 'created_at']
-    
+
     def __str__(self):
         return f"{self.title} | added by {self.user}"
+    
+    

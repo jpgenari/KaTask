@@ -2,7 +2,9 @@ from django import forms
 from .models import Task, Category
 
 class TaskForm(forms.ModelForm):
-    
+
+
+        
     class Meta:
         model = Task
         fields = [
@@ -29,13 +31,6 @@ class TaskForm(forms.ModelForm):
                 raise forms.ValidationError('File type is not supported. Please upload an image.')
 
         return image
-    
-    # def __init__(self, *args, user=None, **kwargs):
-    #     super(TaskForm, self).__init__(*args, **kwargs)
-
-    #     # Filtering categories based on the signed-in user
-    #     if user:
-    #         self.fields['category'].queryset = Category.objects.filter(user=user)
         
 class CategoryForm(forms.ModelForm):
     class Meta:

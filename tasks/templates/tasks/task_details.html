@@ -1,0 +1,28 @@
+<!-- tasks/templates/tasks/task_details.html -->
+
+<li>
+    <a href="{% url 'edit_task' task.id %}">
+        <strong>{{ task.title }}</strong>
+    </a>
+    <p>{{ task.description }}</p>
+    <p><img src="{{ task.featured_image.url }}" alt=""></p>
+    <p>Due Date: {{ task.due_at }}</p>
+    <p>Priority: {{ task.get_priority_display }}</p>
+    <p>Category: {{ task.category.category_name }}</p>
+
+    {% if task.completed %}
+        <!-- <p>Completed: Yes</p> -->
+        <form method="post" action="{% url 'undo_complete_task' task.id %}">
+            {% csrf_token %}
+            <button type="submit">Undo Complete</button>
+        </form>
+    {% else %}
+        <!-- <p>Completed: No</p> -->
+        <form method="post" action="{% url 'complete_task' task.id %}">
+            {% csrf_token %}
+            <button type="submit">Complete</button>
+        </form>
+    {% endif %}
+
+    <a href="{% url 'delete_task' task.id %}">Delete</a>
+</li>

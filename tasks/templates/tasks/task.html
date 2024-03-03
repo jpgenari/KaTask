@@ -1,12 +1,11 @@
-<!-- tasks/templates/tasks/category_detail.html -->
+<!-- tasks/templates/tasks/task.html -->
 
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>{{ category.category_name }}</h2>
-    
-    <p>Total Tasks: {{ task_count }}</p>
+    <h2>My Tasks</h2>
     <a href="{% url 'create_task' %}">New Task</a>
+    
     <ul>
         {% for task in tasks %}
             {% include 'tasks/task_details.html' %}
@@ -14,4 +13,5 @@
             <li>No tasks found.</li>
         {% endfor %}
     </ul>
+    
 {% endblock %}
