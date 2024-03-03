@@ -4,6 +4,9 @@ from django.contrib import messages
 from django.http import Http404
 from .models import Task, Category
 from .forms import TaskForm, CategoryForm
+import cloudinary
+import cloudinary.uploader
+from django.utils import timezone
 
 # Create your views here.
 
@@ -23,13 +26,17 @@ def display_tasks(request):
     Gets all tasks associated with logged-in user and renders 
     template displaying all tasks.
     '''
-
+    
+    now = timezone.now()
     tasks = Task.objects.filter(user=request.user)
     return render(
         request,
         'tasks/task.html',
-        {'tasks': tasks}
-        )
+        {
+            'tasks': tasks,
+            'now': now
+        }
+    )
 
 def create_task(request):
     '''
@@ -77,9 +84,11 @@ def edit_task(request, task_id):
         form = TaskForm(request.user, request.POST, request.FILES, instance=task)
         if form.is_valid():
             if 'delete_image' in request.POST and request.POST['delete_image'] == 'on':
-                # Delete the existing image
-                task.image.delete()
-                # Set the task's image to None
+                # Deletes existing image
+                if task.image:
+                    public_id = task.image.public_id
+                    cloudinary.uploader.destroy(public_id)
+                # Sets the task's image to None
                 task.image = None
             
             task = form.save(commit=False)

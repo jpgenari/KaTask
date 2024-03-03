@@ -1,6 +1,8 @@
 <!-- tasks/templates/tasks/task_details.html -->
 
-<li class="list-group-item">
+{% block content %}
+
+<li class="list-group-item {% if not task.completed and task.due_at < now %}bg-light-red{% endif %}">
     <div class="d-flex justify-content-between align-items-center">
         <div>
             <a href="{% url 'edit_task' task.id %}" class="text-decoration-none">
@@ -8,7 +10,7 @@
             </a>
             <p>{{ task.description }}</p>
             <div>
-                <img src="{{ task.image.url }}" alt="" class="img-fluid">
+                <img src="{{ task.image.url }}" alt="" class="img-fluid" style="max-width: 300px; max-height: 300px;">
             </div>
             <p>Due Date: {{ task.due_at }}</p>
             <p>Priority: {{ task.get_priority_display }}</p>
@@ -32,3 +34,5 @@
         </div>
     </div>
 </li>
+
+{% endblock %}
