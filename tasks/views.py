@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.db.models import Count
 from django.contrib import messages
 from django.http import Http404
 from .models import Task, Category
@@ -128,11 +129,13 @@ def display_categories(request):
     template displaying all categories.
     '''
 
-    categories = Category.objects.filter(user=request.user)
+    categories = Category.objects.filter(user=request.user).annotate(task_count=Count('task'))
     return render(
         request,
         'tasks/category.html',
-        {'categories': categories}
+        {
+            'categories': categories,
+        }
     )
 
 def category_detail(request, category_id):

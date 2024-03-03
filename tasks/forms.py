@@ -1,5 +1,4 @@
 from django import forms
-from django.db import models
 from .models import Task, Category
 
 class TaskForm(forms.ModelForm):
@@ -22,6 +21,10 @@ class TaskForm(forms.ModelForm):
         }
 
     def clean_image(self):
+        '''
+        Checks if file provided is image format, otherwise doesn't allow
+        submission.
+        '''
         image = self.cleaned_data.get('image')
 
         if image:
@@ -31,6 +34,14 @@ class TaskForm(forms.ModelForm):
         return image
 
     def __init__(self, user, *args, **kwargs):
+        '''
+        Ensures that 'Category' field in TaskForm is populated with categories
+        belonging to logged-in user and also allows task without category.
+        Parameters:
+        - user: The user for whom the form is being initialized.
+        - *args, **kwargs: Additional arguments and keyword arguments that can
+        be passed to the form.
+        '''
         super(TaskForm, self).__init__(*args, **kwargs)
         self.fields['category'] = forms.ModelChoiceField(queryset=Category.objects.filter(user=user),  required=False)
 
