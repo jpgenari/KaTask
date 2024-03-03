@@ -3,19 +3,26 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>Categories</h2>
-    <a href="{% url 'create_category' %}">New Category</a>
-    <ul>
-        {% for category in categories %}
-            <li>
-                <a href="{% url 'category_detail' category.id %}">
-                    <strong>{{ category.category_name }} ({{ category.task_count }})</strong>
-                </a>
-                <a href="{% url 'edit_category' category.id %}">Edit</a>
-                <a href="{% url 'delete_category' category.id %}">Delete</a>
-            </li>
-        {% empty %}
-            <li>No Categories found.</li>
-        {% endfor %}
-    </ul>
+    <div class="category-list">
+        <h2 class="mb-4">Categories</h2>
+        <a href="{% url 'create_category' %}" class="btn btn-primary mb-4">New Category</a>
+
+        <ul class="list-group">
+            {% for category in categories %}
+                <li class="list-group-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="{% url 'category_detail' category.id %}">
+                            <strong>{{ category.category_name }} ({{ category.task_count }})</strong>
+                        </a>
+                        <div>
+                            <a href="{% url 'edit_category' category.id %}" class="btn btn-warning btn-sm me-2">Edit</a>
+                            <a href="{% url 'delete_category' category.id %}" class="btn btn-danger btn-sm">Delete</a>
+                        </div>
+                    </div>
+                </li>
+            {% empty %}
+                <li class="list-group-item">No Categories found.</li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}

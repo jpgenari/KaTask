@@ -3,15 +3,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>{{ category.category_name }}</h2>
-    
-    <p>Total Tasks: {{ task_count }}</p>
-    <a href="{% url 'create_task' %}">New Task</a>
-    <ul>
-        {% for task in tasks %}
-            {% include 'tasks/task_details.html' %}
-        {% empty %}
-            <li>No tasks found.</li>
-        {% endfor %}
-    </ul>
+    <div class="category-detail">
+        <h2>{{ category.category_name }}</h2>
+        <p>Total Tasks: {{ task_count }}</p>
+        <a href="{% url 'create_task' %}" class="btn btn-primary mb-4">New Task</a>
+
+        <ul class="list-group">
+            {% for task in tasks %}
+                {% include 'tasks/task_details.html' %}
+            {% empty %}
+                <li class="list-group-item">No tasks found.</li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}
