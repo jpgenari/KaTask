@@ -36,3 +36,6 @@ KaTask is an online task management app, focused in minimalism UI. Its name come
     C. Create a **templates** directory in the **tasks** app with another directory nested inside, named 'tasks';
 
     D. Create a **tasks_list.htmnl** file and add HTML to it;
+
+
+Fixed bug where users were able to view all categories when creating a task: https://copyprogramming.com/howto/django-forms-filter-field-by-user-id-3

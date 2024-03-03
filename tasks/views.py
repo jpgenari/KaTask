@@ -39,14 +39,14 @@ def create_task(request):
     '''
 
     if request.method == 'POST':
-        form = TaskForm(request.POST, request.FILES, user=request.user)
+        form = TaskForm(request.user, request.POST, request.FILES)
         if form.is_valid():
             task = form.save(commit=False)
             task.user = request.user
             task.save()
             return redirect('tasks')
     else:
-        form = TaskForm()
+        form = TaskForm(user=request.user)
     return render(
         request,
         'tasks/task_form.html',
@@ -73,14 +73,14 @@ def edit_task(request, task_id):
         messages.add_message(request, messages.ERROR, "This task does not exist.")
         return redirect('tasks')
     elif request.method == 'POST':
-        form = TaskForm(request.POST, request.FILES, instance=task, user=request.user)
+        form = TaskForm(request.user, request.POST, request.FILES, instance=task)
         if form.is_valid():
             task = form.save(commit=False)
             task.user = request.user
             task.save()
             return redirect('tasks')
     else:
-        form = TaskForm(instance=task)
+        form = TaskForm(user=request.user, instance=task)
     return render(
         request,
         'tasks/task_form.html',
