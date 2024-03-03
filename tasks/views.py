@@ -32,7 +32,6 @@ def create_task(request):
     '''
 
     if request.method == 'POST':
-        
         form = TaskForm(request.POST, request.FILES)
         if form.is_valid():
             task = form.save(commit=False)
@@ -72,13 +71,13 @@ def edit_task(request, task_id):
         )
 
 def complete_task(request, task_id):
-    task = Task.objects.get(id=task_id, user=request.user)
+    task = Task.objects.get(id=task_id)
     task.completed = True
     task.save()
     return redirect('task_list')
 
 def undo_complete_task(request, task_id):
-    task = Task.objects.get(id=task_id, user=request.user)
+    task = Task.objects.get(id=task_id)
     task.completed = False
     task.save()
     return redirect('task_list')
@@ -91,7 +90,7 @@ def delete_task(request, task_id):
     updated list od all tasks.
     '''
     
-    task = Task.objects.get(id=task_id, user=request.user)
+    task = Task.objects.get(id=task_id)
     task.delete()
     return redirect('task_list')
 
@@ -127,7 +126,7 @@ def create_category(request):
     '''
     
     if request.method == 'POST':
-        form = CategoryForm(request.POST, user=request.user)
+        form = CategoryForm(request.POST)
         if form.is_valid():
             category = form.save(commit=False)
             category.user = request.user
@@ -145,7 +144,7 @@ def edit_category(request, category_id):
     '''
     '''
     
-    category = Category.objects.get(id=category_id, user=request.user)
+    category = Category.objects.get(id=category_id)
     if request.method == 'POST':
         form = CategoryForm(request.POST, instance=category)
         if form.is_valid():
@@ -165,7 +164,7 @@ def delete_category(request, category_id):
     '''
     '''
     
-    category = Category.objects.get(id=category_id, user=request.user)
+    category = Category.objects.get(id=category_id)
     
     category.delete()
     return redirect('category_list')

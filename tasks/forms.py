@@ -25,11 +25,17 @@ class TaskForm(forms.ModelForm):
 
         if image:
             # Check if the uploaded file is an image
-            content_type = image.content_type.split('/')[0]
-            if content_type not in ['image']:
+            if hasattr(image, 'content_type') and image.content_type.split('/')[0] not in ['image']:
                 raise forms.ValidationError('File type is not supported. Please upload an image.')
 
         return image
+    
+    # def __init__(self, *args, user=None, **kwargs):
+    #     super(TaskForm, self).__init__(*args, **kwargs)
+
+    #     # Filtering categories based on the signed-in user
+    #     if user:
+    #         self.fields['category'].queryset = Category.objects.filter(user=user)
         
 class CategoryForm(forms.ModelForm):
     class Meta:
