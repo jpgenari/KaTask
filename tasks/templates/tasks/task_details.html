@@ -5,9 +5,9 @@
 
 {% if task.completed is False and task.formatted_due_at < now %}
     <li class="list-group-item task-expired">
-        <div class="container text-center tasks-margin">
+        <div class="container">
             <!-- Stack the columns on mobile by making one full-width and the other half-width -->
-            <div class="tasks-space">
+            <div class="tasks-align">
                 <a href="{% url 'edit_task' task.id %}" class="text-decoration-none">
                     <p class="task-title">{{ task.title }}</p>
                 </a>
@@ -78,9 +78,9 @@
 {% else %}
 
     <li id="taskListItem" class="list-group-item">
-        <div class="container text-center tasks-margin">
+        <div class="container tasks-margin">
             <!-- Stack the columns on mobile by making one full-width and the other half-width -->
-            <div class="tasks-space">
+            <div class="tasks-align">
                 <a href="{% url 'edit_task' task.id %}" class="text-decoration-none">
                     <p class="task-title">{{ task.title }}</p>
                 </a>
@@ -127,21 +127,21 @@
             </div>
 
             <!-- Columns are always 50% wide, on mobile and desktop -->
-            <div class="row justify-content-center tasks-margin">
-                <div class="col-3">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end tasks-margin">
+                <div class="">
                     {% if task.completed %}
                     <form method="post" action="{% url 'undo_complete_task' task.id %}">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-primary btn-warning btn-sm">Undo Complete</button>
+                        <button type="submit" class="btn btn-primary me-md-2 btn-warning btn-sm">Undo Complete</button>
                     </form>
                     {% else %}
                         <form method="post" action="{% url 'complete_task' task.id %}">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-primary btn-success btn-sm">Complete</button>
+                            <button type="submit" class="btn btn-primary me-md-2 btn-success btn-sm">Complete</button>
                         </form>
                     {% endif %}
                 </div>
-                <div class="col-3">
+                <div class="">
                     <a href="{% url 'delete_task' task.id %}" class="btn btn-primary btn-danger btn-sm">Delete</a>
                 </div>
             </div> 
