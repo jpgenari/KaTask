@@ -39,3 +39,5 @@ KaTask is an online task management app, focused in minimalism UI. Its name come
 
 
 Fixed bug where users were able to view all categories when creating a task: https://copyprogramming.com/howto/django-forms-filter-field-by-user-id-3
+
+Reference: https://medium.com/@sarahisdevs/creating-a-task-manager-to-do-list-application-using-python-django-1afe8b33df65
