@@ -111,8 +111,11 @@ def complete_task(request, task_id):
     '''
     
     task = Task.objects.get(id=task_id)
-    task.completed = True
-    task.save()
+    
+    if task.user == request.user:
+        task.completed = True
+        task.save()
+        
     return redirect('tasks')
 
 def undo_complete_task(request, task_id):
@@ -123,8 +126,11 @@ def undo_complete_task(request, task_id):
     '''
     
     task = Task.objects.get(id=task_id)
-    task.completed = False
-    task.save()
+    
+    if task.user == request.user:
+        task.completed = False
+        task.save()
+        
     return redirect('tasks')
 
 def delete_task(request, task_id):
@@ -134,7 +140,10 @@ def delete_task(request, task_id):
     '''
 
     task = Task.objects.get(id=task_id)
-    task.delete()
+    
+    if task.user == request.user:
+        task.delete()
+    
     return redirect('tasks')
 
 def display_categories(request):
@@ -246,7 +255,10 @@ def delete_category(request, category_id):
     Deletes existing category. Gets category ID, deletes it from DB and 
     redirects to display_categories.
     '''
-
-    category = Category.objects.get(id=category_id) 
-    category.delete()
+    
+    category = Category.objects.get(id=category_id)
+    
+    if category.user == request.user: 
+        category.delete()
+    
     return redirect('categories')

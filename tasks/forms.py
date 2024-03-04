@@ -8,7 +8,6 @@ class TaskForm(forms.ModelForm):
         fields = [
             'title',
             'description',
-            'image',
             'category',
             'due_at',
             'priority',
