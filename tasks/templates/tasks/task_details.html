@@ -1,9 +1,11 @@
 <!-- tasks/templates/tasks/task_details.html -->
 
 {% load static %}
+{% load tz %}
+
 {% block content %}
 
-    <li class="list-group-item ">
+    <li class="list-group-item {% if not task.completed and task.due_at < timezone.now|date:'d-m-Y' %}task-expired{% endif %}">
         <div class="container tasks-margin">
             <!-- Stack the columns on mobile by making one full-width and the other half-width -->
             <div class="tasks-align">
@@ -60,10 +62,10 @@
             <div class="d-grid gap-2 d-md-flex justify-content-md-end tasks-margin">
                 <div class="">
                     {% if task.completed %}
-                    <form method="post" action="{% url 'undo_complete_task' task.id %}">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-primary me-md-2 btn-warning btn-sm">Undo Complete</button>
-                    </form>
+                        <form method="post" action="{% url 'undo_complete_task' task.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary me-md-2 btn-warning btn-sm">Undo Complete</button>
+                        </form>
                     {% else %}
                         <form method="post" action="{% url 'complete_task' task.id %}">
                             {% csrf_token %}

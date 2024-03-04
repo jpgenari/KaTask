@@ -19,19 +19,6 @@ class TaskForm(forms.ModelForm):
             'image': forms.FileInput(attrs={'accept': 'image/*'}),
         }
 
-    def clean_image(self):
-        '''
-        Checks if file provided is image format, otherwise doesn't allow
-        submission.
-        '''
-        image = self.cleaned_data.get('image')
-
-        if image:
-            # Check if the uploaded file is an image
-            if hasattr(image, 'content_type') and image.content_type.split('/')[0] not in ['image']:
-                raise forms.ValidationError('File type is not supported. Please upload an image.')
-        return image
-
     def __init__(self, user, *args, **kwargs):
         '''
         Ensures that 'Category' field in TaskForm is populated with categories
@@ -43,7 +30,6 @@ class TaskForm(forms.ModelForm):
         '''
         super(TaskForm, self).__init__(*args, **kwargs)
         self.fields['category'] = forms.ModelChoiceField(queryset=Category.objects.filter(user=user),  required=False)
-
 
 class CategoryForm(forms.ModelForm):
     class Meta:

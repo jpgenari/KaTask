@@ -19,3 +19,11 @@ for (let button of deleteButtons) {
         deleteModal.show();
     });
 }
+
+for (let button of deleteButtons) {
+    button.addEventListener("click", (e) => {
+        let categoryId = e.target.getAttribute("data-category-id"); // Use data attribute to store task ID
+        deleteConfirm.href = `/delete-category/${categoryId}/`; // Update with the correct URL for deleting a task
+        deleteModal.show();
+    });
+}
