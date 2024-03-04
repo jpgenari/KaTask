@@ -3,61 +3,152 @@
 {% load static %}
 {% block content %}
 
-<li class="list-group-item">
-    <div class="container text-center tasks-margin">
-        <!-- Stack the columns on mobile by making one full-width and the other half-width -->
-        <div class="tasks-space">
-            <a href="{% url 'edit_task' task.id %}" class="text-decoration-none">
-                <p class="task-title">{{ task.title }}</p>
-            </a>
-        </div>
-        <div class="row border border-light-subtle">
-            <div class="col-8 col-md-8 border border-light-subtle tasks-align">
-                <p class="tasks-margin label-text">Description:</p>
-                <p>{{ task.description }}</p>
+{% if task.completed is False and task.formatted_due_at < now %}
+    <li class="list-group-item task-expired">
+        <div class="container text-center tasks-margin">
+            <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+            <div class="tasks-space">
+                <a href="{% url 'edit_task' task.id %}" class="text-decoration-none">
+                    <p class="task-title">{{ task.title }}</p>
+                </a>
             </div>
-            <div class="col-4 col-md-4 border border-light-subtle tasks-align">
-                <p class="tasks-margin label-text">Image:</p>
-                <img src="{{ task.image.url }}" alt="" class="rounded mx-auto d-block image-size">
+            <div class="row border border-light-subtle">
+                <div class="col-8 col-md-8 border border-light-subtle tasks-align">
+                    <p class="tasks-margin label-text">Description:</p>
+                    <p class="label-content">{{ task.description }}</p>
+                </div>
+                <div class="col-4 col-md-4 border border-light-subtle tasks-align">
+                    <p class="tasks-margin label-text">Image:</p>
+                    <img src="{{ task.image.url }}" alt="" class="rounded mx-auto d-block image-size">
+                </div>
             </div>
-        </div>
 
-        <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
-        <div class="row border border-light-subtle">
-            <div class="col-6 col-md-4 border border-light-subtle tasks-align">
-                <p class="tasks-margin label-text">Date:</p>
-                <p>{{ task.due_at }}</p>
+            <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+            <div class="row border border-light-subtle">
+                <div class="col-6 col-md-4 border border-light-subtle tasks-align">
+                    <p class="tasks-margin label-text">Date:</p>
+                    {% if task.formatted_due_at is None %}
+                        <p class="label-content">Take your time</p>
+                    {% else %}
+                        <p class="label-content">{{ task.formatted_due_at }}</p>
+                    {% endif %}
+                </div>
+                <div class="col-6 col-md-4 border border-light-subtle tasks-align">
+                    <p class="tasks-margin label-text">Category:</p>
+                    {% if task.category.category_name is Blank %}
+                        <p class="label-content">Need a category?</p>
+                    {% else %}
+                        <p class="label-content">{{ task.category.category_name }}</p>
+                    {% endif %}
+                </div>
+                <div class="col-6 col-md-4 border border-light-subtle tasks-align">
+                    <p class="tasks-margin label-text">Priority:</p>
+                    {% if task.get_priority_display == "Low" %}
+                        <p class="btn btn-outline-success label-priority">{{ task.get_priority_display }}</p>
+                    {% elif task.get_priority_display == "Medium" %}
+                        <p class="btn btn-outline-warning label-priority">{{ task.get_priority_display }}</p>
+                    {% elif task.get_priority_display == "High" %}
+                        <p class="btn btn-outline-danger label-priority">{{ task.get_priority_display }}</p>
+                    {% endif %}
+                </div>
             </div>
-            <div class="col-6 col-md-4 border border-light-subtle tasks-align">
-                <p class="tasks-margin label-text">Category:</p>
-                <p>{{ task.category.category_name }}</p>
-            </div>
-            <div class="col-6 col-md-4 border border-light-subtle tasks-align">
-                <p class="tasks-margin label-text">Priority:</p>
-                <p>{{ task.get_priority_display }}</p>
-            </div>
-        </div>
 
-        <!-- Columns are always 50% wide, on mobile and desktop -->
-        <div class="row justify-content-center tasks-margin">
-            <div class="col-3">
-                {% if task.completed %}
-                <form method="post" action="{% url 'undo_complete_task' task.id %}">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-primary btn-warning btn-sm">Undo Complete</button>
-                </form>
-                {% else %}
-                    <form method="post" action="{% url 'complete_task' task.id %}">
+            <!-- Columns are always 50% wide, on mobile and desktop -->
+            <div class="row justify-content-center tasks-margin">
+                <div class="col-3">
+                    {% if task.completed %}
+                    <form method="post" action="{% url 'undo_complete_task' task.id %}">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-primary btn-success btn-sm">Complete</button>
+                        <button type="submit" class="btn btn-primary btn-warning btn-sm">Undo Complete</button>
                     </form>
-                {% endif %}
+                    {% else %}
+                        <form method="post" action="{% url 'complete_task' task.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary btn-success btn-sm">Complete</button>
+                        </form>
+                    {% endif %}
+                </div>
+                <div class="col-3">
+                    <a href="{% url 'delete_task' task.id %}" class="btn btn-primary btn-danger btn-sm">Delete</a>
+                </div>
+            </div> 
+        </div>
+    </li>
+
+{% else %}
+
+    <li id="taskListItem" class="list-group-item">
+        <div class="container text-center tasks-margin">
+            <!-- Stack the columns on mobile by making one full-width and the other half-width -->
+            <div class="tasks-space">
+                <a href="{% url 'edit_task' task.id %}" class="text-decoration-none">
+                    <p class="task-title">{{ task.title }}</p>
+                </a>
             </div>
-            <div class="col-3">
-                <a href="{% url 'delete_task' task.id %}" class="btn btn-primary btn-danger btn-sm">Delete</a>
+            <div class="row border border-light-subtle">
+                <div class="col-8 col-md-8 border border-light-subtle tasks-align">
+                    <p class="tasks-margin label-text">Description:</p>
+                    <p class="label-content">{{ task.description }}</p>
+                </div>
+                <div class="col-4 col-md-4 border border-light-subtle tasks-align">
+                    <p class="tasks-margin label-text">Image:</p>
+                    <img src="{{ task.image.url }}" alt="" class="rounded mx-auto d-block image-size">
+                </div>
             </div>
-        </div> 
-    </div>
-</li>
+
+            <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+            <div class="row border border-light-subtle">
+                <div class="col-6 col-md-4 border border-light-subtle tasks-align">
+                    <p class="tasks-margin label-text">Date:</p>
+                    {% if task.formatted_due_at is None %}
+                        <p class="label-content">Take your time</p>
+                    {% else %}
+                        <p class="label-content">{{ task.formatted_due_at }}</p>
+                    {% endif %}
+                </div>
+                <div class="col-6 col-md-4 border border-light-subtle tasks-align">
+                    <p class="tasks-margin label-text">Category:</p>
+                    {% if task.category.category_name is Blank %}
+                        <p class="label-content">Need a category?</p>
+                    {% else %}
+                        <p class="label-content">{{ task.category.category_name }}</p>
+                    {% endif %}
+                </div>
+                <div class="col-6 col-md-4 border border-light-subtle tasks-align">
+                    <p class="tasks-margin label-text">Priority:</p>
+                    {% if task.get_priority_display == "Low" %}
+                        <p class="btn btn-outline-success label-priority">{{ task.get_priority_display }}</p>
+                    {% elif task.get_priority_display == "Medium" %}
+                        <p class="btn btn-outline-warning label-priority">{{ task.get_priority_display }}</p>
+                    {% elif task.get_priority_display == "High" %}
+                        <p class="btn btn-outline-danger label-priority">{{ task.get_priority_display }}</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Columns are always 50% wide, on mobile and desktop -->
+            <div class="row justify-content-center tasks-margin">
+                <div class="col-3">
+                    {% if task.completed %}
+                    <form method="post" action="{% url 'undo_complete_task' task.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary btn-warning btn-sm">Undo Complete</button>
+                    </form>
+                    {% else %}
+                        <form method="post" action="{% url 'complete_task' task.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary btn-success btn-sm">Complete</button>
+                        </form>
+                    {% endif %}
+                </div>
+                <div class="col-3">
+                    <a href="{% url 'delete_task' task.id %}" class="btn btn-primary btn-danger btn-sm">Delete</a>
+                </div>
+            </div> 
+        </div>
+    </li>
+
+{% endif %}
+
 
 {% endblock %}

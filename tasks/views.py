@@ -34,7 +34,7 @@ def display_tasks(request):
         'tasks/task.html',
         {
             'tasks': tasks,
-            'now': now
+            'now': now,
         }
     )
 

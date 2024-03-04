@@ -6,29 +6,30 @@
 {% block content %}
 <div class="container mt-5">
     <div class="row">
-        <div class="col-md-8 offset-md-2">
+        <div class="col-md-9 offset-md-1">
             <h2>{{ form.instance.title|default:"New Task" }}</h2>
             <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                 {{ form.as_p }}
-                </div>
-                <div class="col-md-6">
-                {% if form.instance.image %}
-                    <img src="{{ form.instance.image.url }}" alt="Current Image" class="img-fluid">
-                {% endif %}
                 </div>
             </div>
 
-            {% if form.instance.image %}
-                <div class="form-check mt-3">
-                <input class="form-check-input" type="checkbox" name="delete_image" id="deleteImageCheckbox">
-                <label class="form-check-label" for="deleteImageCheckbox">
-                    Delete existing image
-                </label>
+            {% if form.instance.image != 'placeholder' %}
+                <div class="col-md-12">
+                    <img src="{{ form.instance.image.url }}" alt="Current Image" class="img-fluid image-create-size">
                 </div>
+            
+                <div class="form-check mt-12">
+                    <input class="form-check-input" type="checkbox" name="delete_image" id="deleteImageCheckbox">
+                    <label class="form-check-label" for="deleteImageCheckbox">
+                        Remove existing image
+                    </label>
+                </div>
+            {% else %}
+                <div></div>
             {% endif %}
 
             <div class="mt-3">
