@@ -28,13 +28,15 @@ def display_tasks(request):
     '''
     
     now = timezone.now()
+    now_date_only = now.date()
+    
     tasks = Task.objects.filter(user=request.user)
     return render(
         request,
         'tasks/task.html',
         {
             'tasks': tasks,
-            'now': now,
+            'now': now_date_only,
         }
     )
 
@@ -153,7 +155,8 @@ def display_categories(request):
     template displaying all categories.
     '''
 
-    categories = Category.objects.filter(user=request.user).annotate(task_count=Count('task'))
+    categories = Category.objects.filter(user=request.user).annotate(task_count=Count('task')).order_by('category_name')
+    
     return render(
         request,
         'tasks/category.html',

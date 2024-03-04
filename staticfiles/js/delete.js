@@ -14,16 +14,15 @@ const deleteConfirm = document.getElementById("deleteConfirm");
  */
 for (let button of deleteButtons) {
     button.addEventListener("click", (e) => {
-        let taskId = e.target.getAttribute("data-task-id"); // Use data attribute to store task ID
-        deleteConfirm.href = `/delete-task/${taskId}/`; // Update with the correct URL for deleting a task
-        deleteModal.show();
-    });
-}
+        let taskId = e.target.getAttribute("data-task-id");
+        let categoryId = e.target.getAttribute("data-category-id");
 
-for (let button of deleteButtons) {
-    button.addEventListener("click", (e) => {
-        let categoryId = e.target.getAttribute("data-category-id"); // Use data attribute to store task ID
-        deleteConfirm.href = `/delete-category/${categoryId}/`; // Update with the correct URL for deleting a task
+        if (taskId) {
+            deleteConfirm.href = `/delete-task/${taskId}/`;
+        } else if (categoryId) {
+            deleteConfirm.href = `/delete-category/${categoryId}/`;
+        }
+
         deleteModal.show();
     });
 }

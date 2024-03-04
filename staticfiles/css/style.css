@@ -19,7 +19,11 @@ body {
 }
 
 .task-expired {
-    background-color: lightsalmon;
+    background-color: rgba(255, 0, 0, 0.031);
+}
+
+.completed-task {
+    opacity: 0.4;
 }
 
 .task-title {

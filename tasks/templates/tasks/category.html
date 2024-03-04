@@ -24,13 +24,13 @@
                         <div>
                             <a href="{% url 'edit_category' category.id %}" class="btn btn-warning btn-sm me-2">Edit</a>
                             
-                            <button type="submit" class="btn btn-delete btn-primary btn-danger btn-sm" data-category-id="{{ category.id }}">Delete</button>
+                            <button class="btn btn-delete btn-primary btn-danger btn-sm" data-category-id="{{ category.id }}">Delete</button>
                             <!-- <a href="{% url 'delete_category' category.id %}" class="btn btn-danger btn-sm">Delete</a> -->
                         </div>
                     </div>
                 </li>
             {% empty %}
-                <li class="list-group-item">No Categories found.</li>
+                <li class="list-group-item">No Categories found. Add your first Category!</li>
             {% endfor %}
         </ul>
     </div>

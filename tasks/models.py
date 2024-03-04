@@ -9,6 +9,9 @@ class Category(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="categories_created")
     category_name = models.CharField(max_length=25)
     
+    class Meta:
+        ordering = ['category_name']
+    
     def __str__(self):
         return self.category_name
 

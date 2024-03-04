@@ -1,11 +1,10 @@
 <!-- tasks/templates/tasks/task_details.html -->
 
 {% load static %}
-{% load tz %}
 
 {% block content %}
 
-    <li class="list-group-item {% if not task.completed and task.due_at < timezone.now|date:'d-m-Y' %}task-expired{% endif %}">
+    <li class="list-group-item {% if not task.completed and task.due_at < now %}task-expired{% elif task.completed %}completed-task{% endif %}">
         <div class="container tasks-margin">
             <!-- Stack the columns on mobile by making one full-width and the other half-width -->
             <div class="tasks-align">
@@ -74,7 +73,7 @@
                     {% endif %}
                 </div>
                 <div class="">
-                    <button type="submit" class="btn btn-delete btn-primary btn-danger btn-sm" data-task-id="{{ task.id }}">Delete</button>
+                    <button class="btn btn-delete btn-primary btn-danger btn-sm" data-task-id="{{ task.id }}">Delete</button>
                 </div>
             </div> 
         </div>
