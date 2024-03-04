@@ -1,6 +1,7 @@
 {% load static %}
-{% load crispy_forms_tags %}
 
+{% url 'tasks' as tasks_url %}
+{% url 'categories' as category_url %}
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
@@ -13,7 +14,7 @@
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="KaTask | Manager is a taks management app focused on tasks themselves with a minimalist UI.">
+    <meta name="description" content="KaTask | Manager is a tasks management app focused on tasks themselves with a minimalist UI.">
     <meta name="keywords" content="KaTask, task manager, management, time management, to-do-list, GTD">
 
     <!-- Google Fonts CSS -->
@@ -58,27 +59,30 @@
                             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                 {% if user.is_authenticated %}
                                     <li class="nav-item">
-                                        <a class="nav-link {% if request.path == home_url %}active" aria-current="page{% endif %}" 
+                                        <a class="nav-link {% if request.path == tasks_url %}active" aria-current="page{% endif %}" 
                                         href="{% url 'tasks' %}">Tasks</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{% url 'categories' %}">Categories</a>
+                                        <a class="nav-link {% if request.path == category_url %}active" aria-current="page{% endif %}"
+                                        href="{% url 'categories' %}">Categories</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link {% if request.path == logout_url %}active" aria-current="page{% endif %}"
+                                        href="{% url 'account_logout' %}">Logout</a>
                                     </li>
                                     {% if user.is_staff %}
                                         <li class="nav-item">
                                             <a class="nav-link" href="{% url 'admin:tasks_task_changelist' %}">Admin Panel</a>
                                         </li>
                                     {% endif %}
-                                    <li class="nav-item">
-                                        <a class="nav-link {% if request.path == home_url %}active" aria-current="page{% endif %}
-                                        " href="{% url 'account_logout' %}">Logout</a>
-                                    </li>
                                 {% else %}
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
+                                        <a class="nav-link {% if request.path == signup_url %}active" aria-current="page{% endif %}"
+                                        href="{% url 'account_signup' %}">Register</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                                        <a class="nav-link {% if request.path == login_url %}active" aria-current="page{% endif %}"
+                                        href="{% url 'account_login' %}">Login</a>
                                     </li>
                                 {% endif %}
                             </ul>
