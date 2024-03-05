@@ -47,9 +47,15 @@
                     <!-- Header -->
 
                     <h1>
-                        <a href="{% url 'home' %}" class="text-decoration-none">
-                            <span class="brand main-text-color">化 KaTask | Manager</span>
-                        </a>
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'tasks' %}" class="text-decoration-none">
+                                <span class="brand main-text-color">化 KaTask | Manager</span>
+                            </a>
+                        {% else %}
+                            <a href="{% url 'home' %}" class="text-decoration-none">
+                                <span class="brand main-text-color">化 KaTask | Manager</span>
+                            </a>
+                        {% endif %}
                     </h1>
                     
                     <!-- Navigation -->
