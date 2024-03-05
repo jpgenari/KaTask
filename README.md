@@ -1,8 +1,6 @@
-# KaTask
+# KaTask | Manager
 
-KaTask is an online task management app, focused in minimalism UI. Its name comes from Japanese *'Ka' - or '化' -* which means transforming or making something into plus, task. Here, users will only focus on the tasks themselves, with no distractions at all.
-
-The app is an option for those not concerned with multiple features, and instead, just want to have their to do list ready to be checked out.
+KaTask | Manager is an online task management app, featuring a minimalist UI. Its name is inspired by the Japanese word 'Ka' (化), which translates to transforming or making something better—pairing perfectly with 'task.' In this app, users can solely concentrate on their tasks without any distractions.
 
 Link to the live web app: [Ka | Task](https://katask-9e69d33c7144.herokuapp.com/)
 
@@ -11,7 +9,9 @@ View it on [Am I responsive?](https://ui.dev/amiresponsive?url=https://katask-9e
 
 ## Table of contents
 
-+ [FEATURES](#features "Features")
++ [UX](#ux "UX")
+  + [UI](#ui "UI")
+  + [FlowChart](#flowchart "FlowChart")
   + [Landing page](#landing-page "Landing page")
   + [Welcome & view instructions](#welcome--view-instructions "Welcome & view instructions")
   + [Instructions](#instructions "Instructions")
@@ -19,7 +19,6 @@ View it on [Am I responsive?](https://ui.dev/amiresponsive?url=https://katask-9e
   + [Guessing the number](#guessing-the-number "Guessing the number")
   + [Ending the game](#ending-the-game "Ending the game")
   + [Displaying results](#displaying-results "Displaying results")
-  + [UI](#ui "UI")
   + [Features Left to Implement or Future Features](#features-left-to-implement-or-future-features "Features Left to Implement or Future Features")
 + [USER STORIES](#user-stories "USER STORIES")
 + [DATA SCHEMA](#data-schema "DATA SCHEMA")
@@ -43,6 +42,20 @@ View it on [Am I responsive?](https://ui.dev/amiresponsive?url=https://katask-9e
   + [Acknowledgement](#acknowledgement "Acknowledgement")
 
 ## UX
+
+### UI
+
+KaTask | Manager aims to transform your traditional task notebook into a digital format. We won't inundate you with distracting alerts. Instead, we encourage you to check your daily tasks in our minimalist user interface and then get them done—keeping it simple and focused.
+
+### FlowChart
+
+The flowchart has proven to be an invaluable tool for strategic planning, providing insightful guidance into the construction of the application by mapping out every step taken by users. This detailed chart was crafted using [Draw.io](https://www.drawio.com/).
+
+  ![FlowChart](/docs/readme_images/katask.drawio.png)
+
+### Landing page
+
+
 
 
 

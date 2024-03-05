@@ -5,7 +5,7 @@
 
 {% block content %}
     <!-- Hero Section -->
-    <section class="hero-section">
+    <div class="hero-div">
         <div class="container text-center">
             {% if user.is_authenticated %}
             {% else %}
@@ -15,9 +15,9 @@
             {% endif %}
             <p class="lead">Your minimalist task manager for distraction-free productivity.</p>
         </div>
-    </section>
+    </div>
 
-    <section class="features-section mt-5">
+    <div class="features-div mt-5">
         <div class="container">
             <h2 class="text-center mb-4">Key Features</h2>
             <div class="row">
@@ -45,9 +45,9 @@
                 {% endfor %}
             </div>
         </div>
-    </section>
+    </div>
 
-    <section class="testimonials-section mt-5">
+    <div class="testimonials-div mt-5">
         <div class="container">
             <h2 class="text-center mb-4">What Our Users Say</h2>
             <div class="row">
@@ -61,6 +61,6 @@
                 {% endfor %}
             </div>
         </div>
-    </section>
+    </div>
 {% endblock %}
 
