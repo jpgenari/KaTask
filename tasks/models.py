@@ -37,7 +37,6 @@ class Task(models.Model):
     def __str__(self):
         return f"{self.title} | added by {self.user}"
     
-    
     def formatted_due_at(self):
         """
         Returns the formatted due date as 'DD, Month YYYY'.

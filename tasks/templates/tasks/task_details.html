@@ -9,11 +9,11 @@
             <!-- Stack the columns on mobile by making one full-width and the other half-width -->
             <div class="tasks-align">
                 <a href="{% url 'edit_task' task.id %}" class="text-decoration-none">
-                    <p class="task-title">{{ task.title }}</p>
+                    <p class="task-title main-text-color">{{ task.title }}</p>
                 </a>
             </div>
-            <div class="row border border-light-subtle">
-                <div class="col-12 col-md-12 border border-light-subtle tasks-align">
+            <div class="row border border-success">
+                <div class="col-12 col-md-12 border border-success tasks-align">
                     <a href="{% url 'edit_task' task.id %}" class="text-decoration-none">
                         <p class="tasks-margin label-text">Description:</p>
                         <p class="label-content">{{ task.description }}</p>
@@ -22,8 +22,8 @@
             </div>
 
             <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
-            <div class="row border border-light-subtle ">
-                <div class="col-12 col-md-4 border border-light-subtle tasks-align">
+            <div class="row border border-success ">
+                <div class="col-12 col-md-4 border border-success tasks-align">
                     <a href="{% url 'edit_task' task.id %}" class="text-decoration-none">
                         <p class="tasks-margin label-text">Due:</p>
                         {% if task.formatted_due_at is None %}
@@ -33,7 +33,7 @@
                         {% endif %}
                     </a>
                 </div>
-                <div class="col-12 col-md-4 border border-light-subtle tasks-align">
+                <div class="col-12 col-md-4 border border-success tasks-align">
                     <a href="{% url 'edit_task' task.id %}" class="text-decoration-none">
                         <p class="tasks-margin label-text">Category:</p>
                         {% if task.category.category_name is Blank %}
@@ -43,7 +43,7 @@
                         {% endif %}
                     </a>
                 </div>
-                <div class="col-12 col-md-4 border border-light-subtle tasks-align">
+                <div class="col-12 col-md-4 border border-success tasks-align">
                     <a href="{% url 'edit_task' task.id %}" class="text-decoration-none">
                         <p class="tasks-margin label-text">Priority:</p>
                         {% if task.get_priority_display == "Low" %}
@@ -58,17 +58,17 @@
             </div>
 
             <!-- Columns are always 50% wide, on mobile and desktop -->
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end tasks-margin">
-                <div class="">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start tasks-margin">
+                <div class="tasks-align">
                     {% if task.completed %}
                         <form method="post" action="{% url 'undo_complete_task' task.id %}">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-primary me-md-2 btn-warning btn-sm">Undo Complete</button>
+                            <button type="submit" class="btn btn-primary btn-warning btn-sm">Undo Complete</button>
                         </form>
                     {% else %}
                         <form method="post" action="{% url 'complete_task' task.id %}">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-primary me-md-2 btn-success btn-sm">Complete</button>
+                            <button type="submit" class="btn btn-primary btn-primary btn-sm">Complete</button>
                         </form>
                     {% endif %}
                 </div>

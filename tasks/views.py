@@ -10,7 +10,7 @@ from django.utils import timezone
 
 # Create your views here.
 
-def landing_page(request):
+def home(request):
     '''
     Loads landing page when user is not logged in and
     access main url.
@@ -18,7 +18,7 @@ def landing_page(request):
 
     if request.user.is_authenticated:
         return redirect('tasks')
-    return render(request, 'tasks/landing_page.html')
+    return render(request, 'tasks/home.html')
 
 def display_tasks(request):
     '''

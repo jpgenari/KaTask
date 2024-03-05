@@ -1,5 +1,6 @@
 {% load static %}
 
+{% url 'home' as home_url %}
 {% url 'tasks' as tasks_url %}
 {% url 'categories' as category_url %}
 {% url 'account_login' as login_url %}
@@ -33,7 +34,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
 
 </head>
 
@@ -42,13 +43,12 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-8 offset-md-2 bg-white p-4 rounded">
-                
-                <!-- Header -->
-                
                 <div class="text-center">
+                    <!-- Header -->
+
                     <div>
-                        <a href="{% url 'landing_page' %}">
-                            <span class="brand">KaTask | Manager</span>
+                        <a href="{% url 'home' %}" class="text-decoration-none">
+                            <span class="brand main-text-color">化 KaTask | Manager</span>
                         </a>
                     </div>
                     
@@ -56,43 +56,42 @@
 
                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
                         <div class="container-fluid">
-                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                                {% if user.is_authenticated %}
-                                    <li class="nav-item">
-                                        <a class="nav-link {% if request.path == tasks_url %}active" aria-current="page{% endif %}" 
-                                        href="{% url 'tasks' %}">Tasks</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link {% if request.path == category_url %}active" aria-current="page{% endif %}"
-                                        href="{% url 'categories' %}">Categories</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link {% if request.path == logout_url %}active" aria-current="page{% endif %}"
-                                        href="{% url 'account_logout' %}">Logout</a>
-                                    </li>
-                                    {% if user.is_staff %}
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                            <div class="collapse navbar-collapse" id="navbarText">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                    {% if user.is_authenticated %}
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{% url 'admin:tasks_task_changelist' %}">Admin Panel</a>
+                                            <a class="nav-link {% if request.path == tasks_url %}active" aria-current="page{% endif %}" 
+                                            href="{% url 'tasks' %}">Tasks</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link {% if request.path == category_url %}active" aria-current="page{% endif %}"
+                                            href="{% url 'categories' %}">Categories</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link {% if request.path == logout_url %}active" aria-current="page{% endif %}"
+                                            href="{% url 'account_logout' %}">Logout</a>
+                                        </li>
+                                        {% if user.is_staff %}
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="{% url 'admin:tasks_task_changelist' %}">Admin Panel</a>
+                                            </li>
+                                        {% endif %}
+                                    {% else %}
+                                        <li class="nav-item">
+                                            <a class="nav-link {% if request.path == signup_url %}active" aria-current="page{% endif %}"
+                                            href="{% url 'account_signup' %}">Register</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link {% if request.path == login_url %}active" aria-current="page{% endif %}"
+                                            href="{% url 'account_login' %}">Login</a>
                                         </li>
                                     {% endif %}
-                                {% else %}
-                                    <li class="nav-item">
-                                        <a class="nav-link {% if request.path == signup_url %}active" aria-current="page{% endif %}"
-                                        href="{% url 'account_signup' %}">Register</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link {% if request.path == login_url %}active" aria-current="page{% endif %}"
-                                        href="{% url 'account_login' %}">Login</a>
-                                    </li>
-                                {% endif %}
-                            </ul>
-                            {% if user.is_authenticated %}
-                            <p class="text-end m-3">You are logged in as {{ user }}</p>
-                            {% else %}
-                            <p class="text-end m-3">You are not logged in</p>
-                            {% endif %}
+                                </ul>
+                            </div>
                         </div>
                     </nav>
+                </div>
 
                     <!-- Displaying Django messages -->
 
@@ -108,7 +107,13 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="d-flex justify-content-end align-items-center label-text">
+                        {% if user.is_authenticated %}
+                            <p class="text-end m-2">You are logged in as {{ user }}</p>
+                        {% else %}
+                            <p class="text-end m-2">You are not logged in</p>
+                        {% endif %}
+                    </div>
                     <!-- Content -->
 
                     <div class="container mt-5">
@@ -121,20 +126,24 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer mt-auto py-3 dark-bg">
-        <div class="container">
+    <footer class="footer mt-auto py-3 dark-bg main-text-color">
+        <div class="container footer-size">
             <p class="m-0 text-center">
                 {% block copyright %}
                     Made by Code Student
                 {% endblock copyright %}
             </p>
-            <p class="m-0 text-center">
+            <p class="m-0 text-center main-text-color">
                 Follow us:
-                <i class="fa-brands fa-square-facebook"></i>
-                <i class="fa-brands fa-x-twitter"></i>
-                <i class="fa-brands fa-square-instagram"></i>
-                <i class="fa-brands fa-square-youtube"></i>
-                <i class="fa-brands fa-square-github"></i>
+                <a href="https://facebook.com" target="_blank" rel="noopener"
+                    aria-label="Visit our Facebook page (opens in a new tab)"><i class="fa-brands fa-square-facebook main-text-color"></i></a>
+                <a href="https://twitter.com" target="_blank" rel="noopener"
+                    aria-label="Visit our X page (opens in a new tab)"><i class="fa-brands fa-x-twitter main-text-color"></i></a>
+                <a href="https://instagram.com" target="_blank" rel="noopener"
+                    aria-label="Visit our Instagram page (opens in a new tab)"><i class="fa-brands fa-square-instagram main-text-color"></i></a>
+                <a href="https://youtube.com" target="_blank" rel="noopener"
+                    aria-label="Visit our YouTube channel (opens in a new tab)"><i class="fa-brands fa-square-youtube main-text-color"></i></a>
+                <a href="https://github.com/jpgenari" target="_blank" rel="noopener" aria-label="Visit student's GitHub profile (opens in a new tab)"><i class="fa-brands fa-square-github main-text-color"></i></a>
             </p>
         </div>
     </footer>

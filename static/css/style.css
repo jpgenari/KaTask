@@ -2,11 +2,25 @@ body {
     font-family: Montserrat, sans-serif;
 }
 
+.mt-5 {
+    margin-top: 1rem !important;
+}
+
+.main-text-color {
+    color: #2F4858;
+}
+
+.add-task-color {
+    background-color: #2F4858;
+    border: #2F4858;
+    font-size: 1.3rem;
+    font-weight: 900;
+}
+
 .brand {
     font-family: Lato, sans-serif;
     font-size: 2.5rem;
     font-weight: 900;
-    color: #4A4A4F;
     text-decoration: none
 }
 
@@ -14,12 +28,11 @@ body {
     font-family: Lato, sans-serif;
     font-size: 1.9rem;
     font-weight: 800;
-    color: #4A4A4F;
     text-decoration: none
 }
 
 .task-expired {
-    background-color: rgba(255, 0, 0, 0.031);
+    background-color: #ff666633;
 }
 
 .completed-task {
@@ -29,7 +42,6 @@ body {
 .task-title {
     font-size: 1.5rem;
     font-weight: 700;
-    color: green;
     font-weight: bold;
 }
 
@@ -38,52 +50,45 @@ body {
 }
 
 .tasks-margin {
-    margin-top: 5px;
+    margin-top: 3px;
+    margin-bottom: 3px;
 }
 
 .label-text {
-    font-size: 12px;
-    color: grey;
+    font-size: 14px;
+    color: #5D955A;
     font-weight: bold;
 }
 
 .label-content {
     font-size: 18px;
-    color: black;
+    color: #1E5C6A;
     font-weight: bold;
 }
 
-.image-size {
-    max-width: 300px; 
-    max-height: 200px;
-    margin-bottom: 5px;
-}
-
-.image-create-size {
-    max-width: 400px; 
-    max-height: 300px;
-    margin-bottom: 5px;
-}
-
 .label-low {
-    color: white;
-    border: 2px solid green;
-    background-color: green;
+    border: 2px solid #F9FBEB;
+    background-color: #F9FBEB;
     border-radius: 10px;
     padding: 2px 2px 2px 8px;
 }
 
 .label-medium {
-    border: 2px solid yellow;
-    background-color: yellow;
+    color: white;
+    border: 2px solid #92A14A;
+    background-color: #92A14A;
     border-radius: 10px;
     padding: 2px 2px 2px 8px;
 }
 
 .label-high {
     color: white;
-    border: 2px solid red;
-    background-color: red;
+    border: 2px solid #1E5C6A;
+    background-color: #1E5C6A;
     border-radius: 10px;
     padding: 2px 2px 2px 8px;
+}
+
+.footer-size {
+    font-size: 1.3rem;
 }

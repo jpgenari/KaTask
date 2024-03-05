@@ -5,12 +5,12 @@
 
 {% block content %}
     <div class="category-list">
-        <div class="row">
+        <div class="row text-center">
             <div class="col-6">
                 <h2 class="mb-4">My Categories</h2>
             </div>
-            <div  class="col-6">
-                <a href="{% url 'create_category' %}" class="btn btn-primary mb-4">New Category</a>
+            <div class="col-6">
+                <a href="{% url 'create_category' %}" class="btn btn-primary mb-4 add-task-color">New Category</a>
             </div>
         </div>
 
@@ -19,7 +19,7 @@
                 <li class="list-group-item">
                     <div class="d-flex justify-content-between align-items-center">
                         <a href="{% url 'category_detail' category.id %}" class="text-decoration-none">
-                            <p class="task-title">{{ category.category_name }} ({{ category.task_count }})</p>
+                            <p class="task-title main-text-color">{{ category.category_name }} ({{ category.task_count }})</p>
                         </a>
                         <div>
                             <a href="{% url 'edit_category' category.id %}" class="btn btn-warning btn-sm me-2">Edit</a>

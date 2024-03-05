@@ -4,12 +4,12 @@
 {% load static %}
 
 {% block content %}
-    <div class="task-list row">
+    <div class="task-list row text-center">
         <div class="col-6">
-            <h2 class="mb-4 task-category">My Tasks</h2>
+            <h2 class="mb-4 task-category main-text-color">My Tasks</h2>
         </div>
         <div  class="col-6">
-            <a href="{% url 'create_task' %}" class="btn btn-primary mb-4">New Task</a>
+            <a href="{% url 'create_task' %}" class="btn btn-primary mb-4 add-task-color">New Task</a>
         </div>
         
         <ul class="list-group">
@@ -20,4 +20,4 @@
             {% endfor %}
         </ul>
     </div>
-{% endblock %}
+{% endblock content %}
