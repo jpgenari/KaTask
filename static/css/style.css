@@ -3,7 +3,7 @@ body {
 }
 
 .mt-5 {
-    margin-top: 1rem !important;
+    margin-top: 1.2rem !important;
 }
 
 .main-text-color {
@@ -50,7 +50,7 @@ body {
 }
 
 .tasks-margin {
-    margin-top: 3px;
+    margin-top: 5px;
     margin-bottom: 3px;
 }
 

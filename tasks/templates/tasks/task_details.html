@@ -58,7 +58,7 @@
             </div>
 
             <!-- Columns are always 50% wide, on mobile and desktop -->
-            <div class="d-grid gap-2 d-md-flex justify-content-md-start tasks-margin">
+            <div class="d-grid gap-2 d-md-flex d-flex justify-content-md-start justify-content-center tasks-margin">
                 <div class="tasks-align">
                     {% if task.completed %}
                         <form method="post" action="{% url 'undo_complete_task' task.id %}">
