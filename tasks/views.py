@@ -15,9 +15,7 @@ def home(request):
     Loads landing page when user is not logged in and
     access main url.
     '''
-
-    if request.user.is_authenticated:
-        return redirect('tasks')
+    
     return render(request, 'tasks/home.html')
 
 def display_tasks(request):
