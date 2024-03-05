@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_summernote',
     'cloudinary',
-    'tasks'
+    'tasks',
+    'home'
 ]
 
 SITE_ID = 1

@@ -2,9 +2,49 @@
 
 KaTask is an online task management app, focused in minimalism UI. Its name comes from Japanese *'Ka' - or '化' -* which means transforming or making something into plus, task. Here, users will only focus on the tasks themselves, with no distractions at all.
 
+The app is an option for those not concerned with multiple features, and instead, just want to have their to do list ready to be checked out.
+
+Link to the live web app: [Ka | Task](https://katask-9e69d33c7144.herokuapp.com/)
+
+![Responsive Mockup]()
+View it on [Am I responsive?](https://ui.dev/amiresponsive?url=https://katask-9e69d33c7144.herokuapp.com/)
+
 ## Table of contents
 
++ [FEATURES](#features "Features")
+  + [Landing page](#landing-page "Landing page")
+  + [Welcome & view instructions](#welcome--view-instructions "Welcome & view instructions")
+  + [Instructions](#instructions "Instructions")
+  + [Game level](#game-level "Game level")
+  + [Guessing the number](#guessing-the-number "Guessing the number")
+  + [Ending the game](#ending-the-game "Ending the game")
+  + [Displaying results](#displaying-results "Displaying results")
+  + [UI](#ui "UI")
+  + [Features Left to Implement or Future Features](#features-left-to-implement-or-future-features "Features Left to Implement or Future Features")
++ [USER STORIES](#user-stories "USER STORIES")
++ [DATA SCHEMA](#data-schema "DATA SCHEMA")
++ [VALIDATING AND TESTING](#validating-and-testing "VALIDATING AND TESTING")
+  + [Validator](#validator "Validator")
+  + [Testing as a Table](#testing-as-a-table "Testing as a Table")
++ [BUGS](#bugs "BUGS")
+  + [Solved bugs](#solved-bugs "Solved bugs")
+  + [Unfixed Bugs](#unfixed-bugs "Unfixed Bugs")
++ [TOOLS AND TECHNOLOGIES](#tools-and-technologies "TOOLS AND TECHNOLOGIES")
+  + [Languages](#languages "Languages")
+  + [Python Libraries and Modules](#python-libraries-and-modules "Python Libraries and Modules")
+  + [Tools](#tools "Tools")
+  + [Database](#database "Database")
++ [DEVELOPMENT AND DEPLOYMENT](#development-and-deployment "DEVELOPMENT AND DEPLOYMENT")
+  + [Local](#local "Local")
+  + [Google Sheets with Python](#google-sheets-with-python "Google Sheets with Python")
+  + [Heroku](#heroku "Heroku")
++ [CREDITS](#credits "CREDITS")
+  + [Content](#content "Content")
+  + [Acknowledgement](#acknowledgement "Acknowledgement")
+
 ## UX
+
+
 
 ## Steps taken
 

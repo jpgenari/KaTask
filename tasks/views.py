@@ -10,13 +10,13 @@ from django.utils import timezone
 
 # Create your views here.
 
-def home(request):
-    '''
-    Loads landing page when user is not logged in and
-    access main url.
-    '''
+# def home(request):
+#     '''
+#     Loads landing page when user is not logged in and
+#     access main url.
+#     '''
     
-    return render(request, 'tasks/home.html')
+#     return render(request, 'tasks/home.html')
 
 def display_tasks(request):
     '''
