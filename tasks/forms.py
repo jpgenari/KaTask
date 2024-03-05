@@ -16,7 +16,7 @@ class TaskForm(forms.ModelForm):
             'due_at': forms.DateInput(
                 attrs={'type': 'date', 'class': 'form-control'}
             ),
-            'image': forms.FileInput(attrs={'accept': 'image/*'}),
+            'description': forms.Textarea(attrs={'cols': 30, 'rows': 10}),
         }
 
     def __init__(self, user, *args, **kwargs):

@@ -22,7 +22,7 @@ class Task(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="tasks_created")
     title = models.CharField(max_length=100)
-    description = models.TextField(max_length=200, blank=True, null=True)
+    description = models.TextField(max_length=300, blank=True, null=True)
     image = CloudinaryField('image', default='placeholder')
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     due_at = models.DateField(blank=True, null=True)

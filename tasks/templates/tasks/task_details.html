@@ -1,7 +1,6 @@
 <!-- tasks/templates/tasks/task_details.html -->
 
 {% load static %}
-
 {% block content %}
 
     <li class="list-group-item {% if not task.completed and task.due_at < now %}task-expired{% elif task.completed %}completed-task{% endif %}">
