@@ -22,6 +22,7 @@ for (let button of deleteButtons) {
         } else if (categoryId) {
             deleteConfirm.href = `/delete-category/${categoryId}/`;
         }
+        console.log(deleteConfirm.href);
 
         deleteModal.show();
     });

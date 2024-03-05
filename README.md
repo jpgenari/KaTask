@@ -14,7 +14,7 @@ View it on [Am I responsive?](https://ui.dev/amiresponsive?url=https://katask-9e
   + [FlowChart](#flowchart "FlowChart")
   + [Landing page](#landing-page "Landing page")
   + [Login & Register](#login-and-register "Login & Register")
-  + [Instructions](#instructions "Instructions")
+  + [Tasks](#tasks "Tasks")
   + [Game level](#game-level "Game level")
   + [Guessing the number](#guessing-the-number "Guessing the number")
   + [Ending the game](#ending-the-game "Ending the game")
@@ -86,6 +86,8 @@ These two versions cater to different stages of user interaction, offering a sea
 After successful registration, users are directed to the Version 2 Home Page. A modal message accompanies this, confirming their successful sign-in.
 
   ![Login](/docs/readme_images/sign-in-success.png)
+
+### Tasks
 
 
 

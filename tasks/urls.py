@@ -3,8 +3,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    # path('', views.home, name='home'),
-    path('tasks/', login_required(views.display_tasks), name='tasks'),
+    path('', login_required(views.display_tasks), name='tasks'),
     path('category/', login_required(views.display_categories), name='categories'),
     path('category/<int:category_id>/', login_required(views.category_detail), name='category_detail'),
     path('create-task/', login_required(views.create_task), name='create_task'),
