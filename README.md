@@ -13,7 +13,7 @@ View it on [Am I responsive?](https://ui.dev/amiresponsive?url=https://katask-9e
   + [UI](#ui "UI")
   + [FlowChart](#flowchart "FlowChart")
   + [Landing page](#landing-page "Landing page")
-  + [Welcome & view instructions](#welcome--view-instructions "Welcome & view instructions")
+  + [Login & Register](#login-and-register "Login & Register")
   + [Instructions](#instructions "Instructions")
   + [Game level](#game-level "Game level")
   + [Guessing the number](#guessing-the-number "Guessing the number")
@@ -55,7 +55,37 @@ The flowchart has proven to be an invaluable tool for strategic planning, provid
 
 ### Landing page
 
+#### Landing Page: Version 1 - Welcome and Registration
 
+  Upon your initial visit or when not logged in, Version 1 of our landing page welcomes you with a dynamic interface. The app's name takes center stage at the top, accompanied by a menu presenting options such as 'Register' and 'Login.' To encourage interaction, a prominent 'Get Started' button directs users seamlessly to the login process. The page then unfolds with key features, a user-friendly guide, feedback from users, and a persistent footer offering insights into the app's nature and links to our social media presence. The header, menu, and footer remain visible at all times, ensuring a seamless user experience.
+  
+  ![Landingv1](/docs/readme_images/landing-page-v1.png)
+
+#### Landing Page: Version 2 - Personalized and Task-Centric
+
+  For users already logged in, Version 2 of our landing page provides a tailored experience. The app's name and a menu featuring 'Home,' 'Tasks,' 'Categories,' and 'Logout' greet users. A personalized message beneath the menu confirms their logged-in status, displaying the username. Clicking on the header takes users directly to their tasks—the heart of the app—while the 'Home' option stays accessible for checking instructions or navigating back to the main page. This version ensures efficiency for users immersed in the app's functionalities. As always, the header, menu, and footer remain fixed for easy navigation.
+  
+  ![Landingv1](/docs/readme_images/landing-page-v2.png)
+
+These two versions cater to different stages of user interaction, offering a seamless transition from exploration to engagement based on the user's status within the app.
+
+### Login & Register
+
+#### Login Page: Swift Access to Your Tasks
+
+  The Login Page invites users, prompting them to log in for task access. New users are encouraged to sign up first. Login requires a username and password, ensuring a secure and simple entry.
+  
+  ![Login](/docs/readme_images/sign-in.png)
+
+#### Register Page: Effortless KaTask Onboarding
+
+  The Register Page also welcomes new users, suggesting login for existing accounts. For registration, users provide a username, optional email, and a secure password, guided by clear instructions.
+
+  ![Login](/docs/readme_images/sign-up.png)
+
+After successful registration, users are directed to the Version 2 Home Page. A modal message accompanies this, confirming their successful sign-in.
+
+  ![Login](/docs/readme_images/sign-in-success.png)
 
 
 
