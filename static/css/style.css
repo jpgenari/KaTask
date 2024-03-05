@@ -56,13 +56,13 @@ body {
 
 .label-text {
     font-size: 14px;
-    color: #5D955A;
-    font-weight: bold;
+    color: #010900;
+    font-weight: 600;
 }
 
 .label-content {
     font-size: 18px;
-    color: #1E5C6A;
+    color: #2F4858;
     font-weight: bold;
 }
 
