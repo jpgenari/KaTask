@@ -7,6 +7,12 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container text-center">
+            {% if user.is_authenticated %}
+            {% else %}
+                <a href="{% url 'account_login' %}" class="btn btn-primary add-task-color">Get Started</a>
+                    <br>
+                    <br>
+            {% endif %}
             <p class="lead">Your minimalist task manager for distraction-free productivity.</p>
         </div>
     </section>

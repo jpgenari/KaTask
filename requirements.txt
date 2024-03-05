@@ -11,12 +11,15 @@ dj3-cloudinary-storage==0.0.6
 Django==4.2.10
 django-allauth==0.57.2
 django-crispy-forms==2.1
+django-extensions==3.2.3
 django-summernote==0.8.20.0
+graphviz==0.20.1
 gunicorn==20.1.0
 idna==3.6
 oauthlib==3.2.2
 psycopg2==2.9.9
 pycparser==2.21
+pygraphviz==1.12
 PyJWT==2.8.0
 python3-openid==3.2.0
 requests==2.31.0
