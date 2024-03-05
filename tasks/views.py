@@ -172,7 +172,10 @@ def category_detail(request, category_id):
     category-list.
     Then renders category_detail template with associated tasks.
     '''
-
+    
+    now = timezone.now()
+    now_date_only = now.date()
+    
     try:
         category = get_object_or_404(Category, id=category_id)
         tasks = Task.objects.filter(category=category)
@@ -190,7 +193,8 @@ def category_detail(request, category_id):
         {
             'category': category,
             'tasks': tasks,
-            'task_count': task_count
+            'task_count': task_count,
+            'now': now_date_only,
             }
         )
 
