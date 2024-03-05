@@ -19,7 +19,6 @@ idna==3.6
 oauthlib==3.2.2
 psycopg2==2.9.9
 pycparser==2.21
-pygraphviz==1.12
 PyJWT==2.8.0
 python3-openid==3.2.0
 requests==2.31.0
