@@ -82,11 +82,6 @@
                                             <a class="nav-link {% if request.path == logout_url %}active" aria-current="page{% endif %}"
                                             href="{% url 'account_logout' %}">Logout</a>
                                         </li>
-                                        {% if user.is_staff %}
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="{% url 'admin:tasks_task_changelist' %}">Admin</a>
-                                            </li>
-                                        {% endif %}
                                     {% else %}
                                         <li class="nav-item">
                                             <a class="nav-link {% if request.path == signup_url %}active" aria-current="page{% endif %}"
