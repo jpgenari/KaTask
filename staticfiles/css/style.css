@@ -6,6 +6,10 @@ body {
     margin-top: 1.2rem !important;
 }
 
+.main-label-color {
+    color: #FF6766 !important;
+}
+
 .main-text-color {
     color: #2F4858;
 }

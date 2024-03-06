@@ -19,27 +19,35 @@
 
     <div class="features-div mt-5">
         <div class="container">
-            <h2 class="text-center mb-4">Key Features</h2>
-            <div class="row">
+            <h1 class="text-center mb-4 main-label-color">Key Features</h1>
+            <div class="row align-items-start">
                 {% for feature in features %}
-                    <div class="col-md-4">
-                        <div class="feature-item">
-                            <i class="{{ feature.icon }}"></i>
-                            <h3>{{ feature.title }}</h3>
-                            <p>{{ feature.content }}</p>
+                    <div class="col-xl-4 text-center">
+                        <div class="feature-item d-grid">
+                            <i class="{{ feature.icon }} mb-4"></i>
+                            <div class="mb-4">
+                                <h3>{{ feature.title }}</h3>
+                            </div>
+                            <div class="flex-grow-1">
+                                <p>{{ feature.content }}</p>
+                            </div>
                         </div>
                     </div>
                 {% endfor %}
             </div>
             <br>
-            <h2 class="text-center mb-4">How to Use</h2>
+            <h1 class="text-center mb-4 main-label-color">How to Use</h1>
             <div class="row">
                 {% for instruction in instructions %}
-                    <div class="col-md-4">
+                    <div class="col-xl-4 text-center">
                         <div class="feature-item">
-                            <i class="{{ instruction.icon }}"></i>
-                            <h3>{{ instruction.title }}</h3>
-                            <p>{{ instruction.content }}</p>
+                            <div class="mb-4">
+                                <i class="{{ instruction.icon }}"></i>
+                                <h3>{{ instruction.title }}</h3>
+                            </div>
+                            <div class="flex-grow-1">
+                                <p>{{ instruction.content }}</p>
+                            </div>
                         </div>
                     </div>
                 {% endfor %}
@@ -49,7 +57,7 @@
 
     <div class="testimonials-div mt-5">
         <div class="container">
-            <h2 class="text-center mb-4">What Our Users Say</h2>
+            <h2 class="text-center mb-4 main-label-color">What Our Users Say</h2>
             <div class="row">
                 {% for feedback in feedbacks %}
                 <div class="col-md-6 offset-md-3">
