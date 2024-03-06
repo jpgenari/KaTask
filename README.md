@@ -12,14 +12,16 @@ View it on [Am I responsive?](https://ui.dev/amiresponsive?url=https://katask-9e
 + [UX](#ux "UX")
   + [UI](#ui "UI")
   + [FlowChart](#flowchart "FlowChart")
-  + [Landing page](#landing-page "Landing page")
-  + [Login & Register](#login-and-register "Login & Register")
-  + [Tasks](#tasks "Tasks")
-  + [Game level](#game-level "Game level")
-  + [Guessing the number](#guessing-the-number "Guessing the number")
-  + [Ending the game](#ending-the-game "Ending the game")
-  + [Displaying results](#displaying-results "Displaying results")
-  + [Features Left to Implement or Future Features](#features-left-to-implement-or-future-features "Features Left to Implement or Future Features")
+  + [Features](#features "Features")
+    - [Landing page](#landing-page "Landing page")
+    - [Login & Register](#login-and-register "Login & Register")
+    - [Tasks](#tasks "Tasks")
+    - [New Task](#new-task "New Task")
+    - [Categories](#categories "Categories")
+    - [Category Details](#category-details "Category Details")
+    - [Logout](#logout "Logout")
+    - [Admin](#admin "Admin")
+    - [Features Left to Implement or Future Features](#features-left-to-implement-or-future-features "Features Left to Implement or Future Features")
 + [USER STORIES](#user-stories "USER STORIES")
 + [DATA SCHEMA](#data-schema "DATA SCHEMA")
 + [VALIDATING AND TESTING](#validating-and-testing "VALIDATING AND TESTING")
@@ -53,41 +55,145 @@ The flowchart has proven to be an invaluable tool for strategic planning, provid
 
   ![FlowChart](/docs/readme_images/katask.drawio.png)
 
-### Landing page
+### Features
 
-#### Landing Page: Version 1 - Welcome and Registration
+#### Landing page
 
-  Upon your initial visit or when not logged in, Version 1 of our landing page welcomes you with a dynamic interface. The app's name takes center stage at the top, accompanied by a menu presenting options such as 'Register' and 'Login.' To encourage interaction, a prominent 'Get Started' button directs users seamlessly to the login process. The page then unfolds with key features, a user-friendly guide, feedback from users, and a persistent footer offering insights into the app's nature and links to our social media presence. The header, menu, and footer remain visible at all times, ensuring a seamless user experience.
+##### Landing Page: Version 1
+
+Upon your initial visit or when not logged in, Version 1 of our landing page welcomes you with a dynamic interface. The app's name takes center stage at the top, accompanied by a menu presenting options such as 'Register' and 'Login.' To encourage interaction, a prominent 'Get Started' button directs users seamlessly to the login process. The page then unfolds with key features, a user-friendly guide, feedback from users, and a persistent footer offering insights into the app's nature and links to our social media presence. The header, menu, and footer remain visible at all times, ensuring a seamless user experience.
   
-  ![Landingv1](/docs/readme_images/landing-page-v1.png)
+  ![Landing-v1](/docs/readme_images/landing-page-v1.png)
 
-#### Landing Page: Version 2 - Personalized and Task-Centric
+##### Landing Page: Version 2
 
-  For users already logged in, Version 2 of our landing page provides a tailored experience. The app's name and a menu featuring 'Home,' 'Tasks,' 'Categories,' and 'Logout' greet users. A personalized message beneath the menu confirms their logged-in status, displaying the username. Clicking on the header takes users directly to their tasks—the heart of the app—while the 'Home' option stays accessible for checking instructions or navigating back to the main page. This version ensures efficiency for users immersed in the app's functionalities. As always, the header, menu, and footer remain fixed for easy navigation.
-  
-  ![Landingv1](/docs/readme_images/landing-page-v2.png)
+For users already logged in, Version 2 of our landing page provides a tailored experience. The app's name and a menu featuring 'Home,' 'Tasks,' 'Categories,' and 'Logout' greet users. A personalized message beneath the menu confirms their logged-in status, displaying the username. Clicking on the header takes users directly to their tasks—the heart of the app—while the 'Home' option stays accessible for checking instructions or navigating back to the main page. This version ensures efficiency for users immersed in the app's functionalities. As always, the header, menu, and footer remain fixed for easy navigation.
+
+  ![Landing-v2](/docs/readme_images/landing-page-v2.png)
 
 These two versions cater to different stages of user interaction, offering a seamless transition from exploration to engagement based on the user's status within the app.
 
-### Login & Register
+#### Login & Register
 
-#### Login Page: Swift Access to Your Tasks
+##### Login Page
 
-  The Login Page invites users, prompting them to log in for task access. New users are encouraged to sign up first. Login requires a username and password, ensuring a secure and simple entry.
+The Login Page invites users, prompting them to log in for task access. New users are encouraged to sign up first. Login requires a username and password, ensuring a secure and simple entry.
   
   ![Login](/docs/readme_images/sign-in.png)
 
-#### Register Page: Effortless KaTask Onboarding
+##### Register Page
 
-  The Register Page also welcomes new users, suggesting login for existing accounts. For registration, users provide a username, optional email, and a secure password, guided by clear instructions.
+The Register Page also welcomes new users, suggesting login for existing accounts. For registration, users provide a username, optional email, and a secure password, guided by clear instructions.
 
-  ![Login](/docs/readme_images/sign-up.png)
+  ![Register](/docs/readme_images/sign-up.png)
 
 After successful registration, users are directed to the Version 2 Home Page. A modal message accompanies this, confirming their successful sign-in.
 
-  ![Login](/docs/readme_images/sign-in-success.png)
+  ![Logged-in](/docs/readme_images/sign-in-success.png)
 
-### Tasks
+#### Tasks
+
+The Tasks Page offers a clean layout for easy task tracking. If no tasks are present, a prompt encourages users to kickstart by adding their first task via the "Add Task" button.
+
+  ![Tasks-1](/docs/readme_images/tasks-1.png)
+
+For existing tasks, each card displays the task name prominently, followed by a concise block with details like description, due date, category, and priority. Tasks are intelligently ordered:
+
+**1. Completion Status**: Uncompleted tasks take precedence, followed by completed tasks (greyed out at the bottom).
+  
+**2. Due Date:** Tasks are sorted by proximity to their expiry date.
+  
+**3. Priority:** Higher-priority tasks are highlighted for quick identification.
+  
+**4. Creation Date:** Older tasks appear first, encouraging the completion of older items before newer ones.
+
+  ![Tasks-2](/docs/readme_images/tasks-2.png)
+  
+Task cards also feature two buttons:
+
+* **Complete/Undo Complete:** Dynamically adjusts based on task completion status.
+* **Delete:** Confirms deletion with a modal prompt, ensuring intentional actions.
+
+Effortless task management with a focus on simplicity and user control, ensuring users can prioritize and organize their tasks efficiently.
+
+  ![Tasks-Delete](/docs/readme_images/task-delete.png)
+
+#### New Task
+
+When clicking on "The New", users are directed to new task form to input task details, including title and description, select a category (with the option to add a new one via the Categories Page), specify a due date, set priority, and save. After saving, users are redirected to the main Tasks Page, ensuring a quick and straightforward task entry process.
+
+  ![New-Task](/docs/readme_images/new-task.png)
+
+#### Categories
+
+The Categories Page mirrors the user-friendly design of the Tasks Page, featuring a "New Category" button to add fresh categories. In the absence of categories, a motivating message prompts users to begin categorizing their tasks.
+
+  ![Categories-1](/docs/readme_images/categories-1.png)
+
+With existing categories, users encounter a neatly organized list in alphabetical order, each displaying the number of tasks assigned. Clicking on a category name directs users to detailed category information (covered in the next section).
+
+  ![Categories-2](/docs/readme_images/categories-2.png)
+
+For added convenience, an "Edit" button allows users to modify category details, while a "Delete" button triggers a modal confirmation message. This ensures intentional actions and informs users that deleting a category does not remove associated tasks; instead, they become uncategorized. This thoughtful design promotes efficient category management while maintaining task integrity.
+
+  ![Category-Delete](/docs/readme_images/category-delete.png)
+
+#### Category Details
+
+Selecting a category opens the Category Details Page, showcasing the number of assigned tasks. Users can swiftly add a new task with the "New Task" button and view the task list for that category. If no tasks are assigned, a message encourages users to add a task, ensuring a proactive approach to task management within the selected category.
+
+  ![Category-Detail-1](/docs/readme_images/category-detail-1.png)
+
+  ![Category-Detail-2](/docs/readme_images/category-detail-2.png)
+
+#### Logout
+
+Clicking logout confirms sign-out and redirects to the home page.
+
+  ![Logout](/docs/readme_images/sign-out.png)
+
+#### Features Left to Implement or Future Features
+
+* **Left to Implement** the option to upload images to tasks. The groundwork has been laid with Cloudinary integration, and the feature is on the horizon for enhanced task customization.
+
+* **Future Future** options for users to reset and change passwords. This additional functionality enhances user account security and provides a more comprehensive set of account management features.
+
+* **Future Future** the ability to create categories while adding tasks. This user-friendly feature enhances the task creation process, providing a seamless and efficient experience.
+
+* **Future Future** grant secure task review access through templates, ensuring a smoother user interface and reducing the risk of disruptions. This also facilitates easier access for additional users if needed. At the moment, this is restricted superusers, a shortcut has been added to menu for superusers.
+
+* **Future Future** integrate a user-friendly filtering option into the UI, enabling efficient task searches as more tasks accumulate. This enhancement aims to streamline user navigation and improve the overall user experience.
+
+### USER STORIES AND AGILE
+
+#### Admin Management
+
+* As a **Site Admin** I can **create new superusers** so that **other superusers can help managing task manager app**.
+
+* As a **Site Admin** I can **create, read and delete any task from any user** so that **I can guarantee no abuse is made in the task manager**.
+
+* As a **Site Adm** I can **update content on home page with (features, instructions and feedback) though database** so that **I can keep home page updated**.
+
+#### User account
+
+* As a **Site User** I can **register an account** so that **view and manage my tasks**.
+
+#### Tasks management
+
+* As a **Site User** I can **see instructions and info about the app** so that **I can know how to use the task manager**.
+
+* As a **Site User** I can **view a list of all my tasks** so that **I can see tasks I need to get done**.
+
+* As a **Site User** I can **add, edit, delete or mark as completed task** so that **manage my tasks**.
+
+* As a **Site User** I can **create, edit or remove categories** so that **assign categories to tasks for easier handling**.
+
+#### Agile Development
+
+Project launched on GitHub Projects to systematically organize tasks, categorizing them into epics and breaking them into manageable parts. Initially focusing on the backend, I addressed each feature to get the app running on bare minimum. Once the backend was in place, I transitioned to applying and setting up the frontend components. This structured approach aimed to ensure efficient progress. Following the identified needs, I followed the steps from the mock project to implement each feature.
+
+Kanban board available [here](https://github.com/users/jpgenari/projects/6/views/1?layout=board).
+
 
 
 
