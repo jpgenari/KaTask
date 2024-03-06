@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from .models import Features, HowToUse, UserFeedback
 
@@ -11,6 +11,9 @@ class DisplayHomeView(View):
         features = Features.objects.all()
         instructions = HowToUse.objects.all()
         feedbacks = UserFeedback.objects.all()
+        
+        # if request.user.is_authenticated:
+        #     return redirect('tasks')
         
         return render(
             request,

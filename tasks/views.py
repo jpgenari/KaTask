@@ -10,14 +10,6 @@ from django.utils import timezone
 
 # Create your views here.
 
-# def home(request):
-#     '''
-#     Loads landing page when user is not logged in and
-#     access main url.
-#     '''
-    
-#     return render(request, 'tasks/home.html')
-
 def display_tasks(request):
     '''
     Displays list of tasks associated with logged-in user.
@@ -28,6 +20,9 @@ def display_tasks(request):
     now = timezone.now()
     now_date_only = now.date()
     
+    if not request.user.is_authenticated:
+        return redirect('home')
+        
     tasks = Task.objects.filter(user=request.user)
     return render(
         request,
@@ -52,6 +47,7 @@ def create_task(request):
             task = form.save(commit=False)
             task.user = request.user
             task.save()
+            messages.add_message(request, messages.SUCCESS, 'Task Created!')
             return redirect('tasks')
     else:
         form = TaskForm(user=request.user)
@@ -83,17 +79,10 @@ def edit_task(request, task_id):
     elif request.method == 'POST':
         form = TaskForm(request.user, request.POST, request.FILES, instance=task)
         if form.is_valid():
-            if 'delete_image' in request.POST and request.POST['delete_image'] == 'on':
-                # Deletes existing image
-                if task.image:
-                    public_id = task.image.public_id
-                    cloudinary.uploader.destroy(public_id)
-                # Sets the task's image to None
-                task.image = None
-            
             task = form.save(commit=False)
             task.user = request.user
             task.save()
+            messages.add_message(request, messages.SUCCESS, 'Task Updated!')
             return redirect('tasks')
     else:
         form = TaskForm(user=request.user, instance=task)
@@ -115,6 +104,7 @@ def complete_task(request, task_id):
     if task.user == request.user:
         task.completed = True
         task.save()
+        messages.add_message(request, messages.SUCCESS, 'Task completed, moved down!')
         
     return redirect('tasks')
 
@@ -130,6 +120,7 @@ def undo_complete_task(request, task_id):
     if task.user == request.user:
         task.completed = False
         task.save()
+        messages.add_message(request, messages.SUCCESS, 'Task back to your list!')
         
     return redirect('tasks')
 
@@ -143,6 +134,7 @@ def delete_task(request, task_id):
     
     if task.user == request.user:
         task.delete()
+        messages.add_message(request, messages.SUCCESS, 'Task Deleted!')
     
     return redirect('tasks')
 
@@ -212,6 +204,7 @@ def create_category(request):
             category = form.save(commit=False)
             category.user = request.user
             category.save()
+            messages.add_message(request, messages.SUCCESS, 'Category Created!')
             return redirect('categories')
     else:
         form = CategoryForm()    
@@ -246,6 +239,7 @@ def edit_category(request, category_id):
             category = form.save(commit=False)
             category.user = request.user
             form.save()
+            messages.add_message(request, messages.SUCCESS, 'Category Updated!')
             return redirect('categories')
     else:
         form = CategoryForm(instance=category)
@@ -265,5 +259,6 @@ def delete_category(request, category_id):
     
     if category.user == request.user: 
         category.delete()
+        messages.add_message(request, messages.SUCCESS, 'Category Deleted!')
     
     return redirect('categories')

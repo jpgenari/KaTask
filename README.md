@@ -23,13 +23,14 @@ View it on [Am I responsive?](https://ui.dev/amiresponsive?url=https://katask-9e
     - [Admin](#admin "Admin")
     - [Features Left to Implement or Future Features](#features-left-to-implement-or-future-features "Features Left to Implement or Future Features")
 + [USER STORIES](#user-stories "USER STORIES")
-+ [DATA SCHEMA](#data-schema "DATA SCHEMA")
++ [ENTITY RELATIONSHIP DIAGRAM](#entity-relationship-diagram "ENTITY RELATIONSHIP DIAGRAM")
 + [VALIDATING AND TESTING](#validating-and-testing "VALIDATING AND TESTING")
   + [Validator](#validator "Validator")
-  + [Testing as a Table](#testing-as-a-table "Testing as a Table")
+  + [Manual Testing](#manual-testing "Manual Testing")
 + [BUGS](#bugs "BUGS")
-  + [Solved bugs](#solved-bugs "Solved bugs")
+  + [Solved Bugs](#solved-bugs "Solved Bugs")
   + [Unfixed Bugs](#unfixed-bugs "Unfixed Bugs")
+
 + [TOOLS AND TECHNOLOGIES](#tools-and-technologies "TOOLS AND TECHNOLOGIES")
   + [Languages](#languages "Languages")
   + [Python Libraries and Modules](#python-libraries-and-modules "Python Libraries and Modules")
@@ -154,7 +155,7 @@ Clicking logout confirms sign-out and redirects to the home page.
 
 #### Features Left to Implement or Future Features
 
-* **Left to Implement** the option to upload images to tasks. The groundwork has been laid with Cloudinary integration, and the feature is on the horizon for enhanced task customization.
+* **Left to Implement** the option to upload images to tasks. The groundwork has been laid with Cloudinary integration and added to database (models.py), and the feature is on the horizon for enhanced task customization.
 
 * **Future Future** options for users to reset and change passwords. This additional functionality enhances user account security and provides a more comprehensive set of account management features.
 
@@ -164,9 +165,9 @@ Clicking logout confirms sign-out and redirects to the home page.
 
 * **Future Future** integrate a user-friendly filtering option into the UI, enabling efficient task searches as more tasks accumulate. This enhancement aims to streamline user navigation and improve the overall user experience.
 
-### USER STORIES AND AGILE
+## USER STORIES AND AGILE
 
-#### Admin Management
+### Admin Management
 
 * As a **Site Admin** I can **create new superusers** so that **other superusers can help managing task manager app**.
 
@@ -174,11 +175,11 @@ Clicking logout confirms sign-out and redirects to the home page.
 
 * As a **Site Adm** I can **update content on home page with (features, instructions and feedback) though database** so that **I can keep home page updated**.
 
-#### User account
+### User account
 
 * As a **Site User** I can **register an account** so that **view and manage my tasks**.
 
-#### Tasks management
+### Tasks management
 
 * As a **Site User** I can **see instructions and info about the app** so that **I can know how to use the task manager**.
 
@@ -188,11 +189,84 @@ Clicking logout confirms sign-out and redirects to the home page.
 
 * As a **Site User** I can **create, edit or remove categories** so that **assign categories to tasks for easier handling**.
 
-#### Agile Development
+### Agile Development
 
 Project launched on GitHub Projects to systematically organize tasks, categorizing them into epics and breaking them into manageable parts. Initially focusing on the backend, I addressed each feature to get the app running on bare minimum. Once the backend was in place, I transitioned to applying and setting up the frontend components. This structured approach aimed to ensure efficient progress. Following the identified needs, I followed the steps from the mock project to implement each feature.
 
 Kanban board available [here](https://github.com/users/jpgenari/projects/6/views/1?layout=board).
+
+## ENTITY RELATIONSHIP DIAGRAM
+
+The Entity Relationship Diagram (ERD) for the Django project's created apps was generated using Graphviz. This visualization specifically represents the relationships and entities within the defined apps, providing a comprehensive overview of the data structure in the project.
+
+  ![ERD](/docs/readme_images/my_project_erd.png)
+
+## VALIDATING AND TESTING
+
+### Validator
+
+
+### Manual Testing
+
+
+## BUGS
+
+### Solved Bugs
+
+* Fixed a bug where users could view all categories added by all users when creating a task. The issue has been successfully addressed with the assistance of the information from this [CopyProgramming](https://copyprogramming.com/howto/django-forms-filter-field-by-user-id-3) post.
+
+  Below, code applied in the **tasks/forms.py** inside class **TaskForm()** to fix bug:
+
+  ```python
+      def __init__(self, user, *args, **kwargs):
+          '''
+          Ensures that 'Category' field in TaskForm is populated with categories
+          belonging to logged-in user and also allows task without category.
+          Parameters:
+          - user: The user for whom the form is being initialized.
+          - *args, **kwargs: Additional arguments and keyword arguments that can
+          be passed to the form.
+          '''
+          super(TaskForm, self).__init__(*args, **kwargs)
+          self.fields['category'] = forms.ModelChoiceField(queryset=Category.objects.filter(user=user),  required=False)
+    ```
+
+* Successfully addressed a bug in the tasks.html template where a conditional statement wasn't functioning as intended. This resulted in the CSS class not being applied, affecting the background color display for tasks beyond their due date. The issue has been resolved with insights from a mentor, including a fix for a bug that occurred when comparing task due dates in DD/MM/YYYY format with the current date, which includes HH:MM. This was fixed by applying string manipulation in views to strip the hour and minute before passing the date to the conditional. The solution now utilizes the **now.date()** method to ensure accurate task date comparisons.
+
+  Below, code applied in the **task_details.html** and to function **display_tasks()** to fix bug:
+
+    ```python
+        def display_tasks(request):
+            '''
+            Displays list of tasks associated with logged-in user.
+            Gets all tasks associated with logged-in user and renders 
+            template displaying all tasks.
+            now.date() removes HH:MM before passing 'now' to conditional.
+            '''
+            
+            now = timezone.now()
+            now_date_only = now.date()
+            
+            tasks = Task.objects.filter(user=request.user)
+            return render(
+                request,
+                'tasks/task.html',
+                {
+                    'tasks': tasks,
+                    'now': now_date_only,
+                }
+            )
+    ```
+
+    ```
+      <li class="list-group-item {% if not task.completed and task.due_at < now %}task-expired{% elif task.completed %}completed-task{% endif %}">
+    ```
+
+### Unfixed Bugs
+
+There are no unfixed bugs.
+
+
 
 
 
@@ -227,6 +301,7 @@ Kanban board available [here](https://github.com/users/jpgenari/projects/6/views
     C. Create a **templates** directory in the **tasks** app with another directory nested inside, named 'tasks';
 
     D. Create a **tasks_list.htmnl** file and add HTML to it;
+
 
 
 Fixed bug where users were able to view all categories when creating a task: https://copyprogramming.com/howto/django-forms-filter-field-by-user-id-3

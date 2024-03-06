@@ -1,28 +1,49 @@
-const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
-const deleteButtons = document.getElementsByClassName("btn-delete");
-const deleteConfirm = document.getElementById("deleteConfirm");
+// Task deletion constants
+const taskDeleteButtons = document.getElementsByClassName("btn-task-delete");
+const taskDeleteModal = new bootstrap.Modal(document.getElementById("taskDeleteModal"));
+const taskDeleteConfirm = document.getElementById("taskDeleteConfirm");
 
-/**
- * Initializes deletion functionality for the provided delete buttons.
- *
- * For each button in the `deleteButtons` collection:
- * - Retrieves the associated task's ID upon click.
- * - Updates the `deleteConfirm` link's href to point to the
- * deletion endpoint for the specific task.
- * - Displays a confirmation modal (`deleteModal`) to prompt
- * the user for confirmation before deletion.
- */
-for (let button of deleteButtons) {
+// Category deletion constants
+const categoryDeleteButtons = document.getElementsByClassName("btn-category-delete");
+const categoryDeleteModal = new bootstrap.Modal(document.getElementById("categoryDeleteModal"));
+const categoryDeleteConfirm = document.getElementById("categoryDeleteConfirm");
+
+// // Function to handle task deletion
+// function handleTaskDeletion(taskId) {
+//     taskDeleteConfirm.href = `/delete-task/${taskId}/`;
+//     taskDeleteModal.show();
+// }
+
+// // Function to handle category deletion
+// function handleCategoryDeletion(categoryId) {
+//     categoryDeleteConfirm.href = `/delete-category/${categoryId}/`;
+//     categoryDeleteModal.show();
+// }
+
+// // Attach event listeners for task delete buttons
+// for (let button of taskDeleteButtons) {
+//     button.addEventListener("click", (e) => {
+//         let taskId = e.target.getAttribute("data-task-id");
+//         if (taskId) {
+//             handleTaskDeletion(taskId);
+//         }
+//     });
+// }
+
+// // Attach event listeners for category delete buttons
+// for (let button of categoryDeleteButtons) {
+//     button.addEventListener("click", (e) => {
+//         let categoryId = e.target.getAttribute("data-category-id");
+//         if (categoryId) {
+//             handleCategoryDeletion(categoryId);
+//         }
+//     });
+// }
+
+for (let button of taskDeleteButtons) {
     button.addEventListener("click", (e) => {
-        let taskId = e.target.getAttribute("data-task-id");
-        let categoryId = e.target.getAttribute("data-category-id");
-
-        if (taskId) {
-            deleteConfirm.href = `/delete-task/${taskId}/`;
-        } else if (categoryId) {
-            deleteConfirm.href = `/delete-category/${categoryId}/`;
-        }
-
-        deleteModal.show();
+        let taskId = e.target.getElementById("data-task-id");
+        taskDeleteConfirm.href = `/delete-task/${taskId}/`,
+        taskDeleteModal.show();
     });
 }
