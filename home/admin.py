@@ -2,6 +2,7 @@ from django.contrib import admin
 from django_summernote.admin import SummernoteModelAdmin
 from .models import Features, HowToUse, UserFeedback
 
+
 @admin.register(Features)
 class FeaturesAdmin(SummernoteModelAdmin):
     '''
@@ -14,7 +15,8 @@ class FeaturesAdmin(SummernoteModelAdmin):
     list_filter = ('updated_on', 'display_order')
     prepopulated_fields = {'title': ()}
     summernote_fields = ('title',)
-    
+
+
 @admin.register(HowToUse)
 class HowToUseAdmin(SummernoteModelAdmin):
     '''
@@ -27,7 +29,8 @@ class HowToUseAdmin(SummernoteModelAdmin):
     list_filter = ('updated_on', 'display_order')
     prepopulated_fields = {'title': ()}
     summernote_fields = ('title',)
-    
+
+
 @admin.register(UserFeedback)
 class UserFeedbackAdmin(SummernoteModelAdmin):
     '''
