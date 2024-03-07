@@ -1,11 +1,12 @@
-<!-- tasks/templates/tasks/task_form.html -->
-
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
+
+<!-- task_form.html content starts here -->
 <div class="container mt-5">
     <div class="row">
+
+        <!-- Add new task form seen by user -->
         <div class="col-md-9 offset-md-1 ">
             <h2 class="main-format-text main-text-red">{{ form.instance.title|default:"New Task" }}</h2>
             <form method="post" enctype="multipart/form-data">
@@ -23,4 +24,6 @@
         </div>
     </div>
 </div>
+
+<!-- task_form.html content ends here -->
 {% endblock %}

@@ -1,105 +1,109 @@
-<!-- tasks/templates/tasks/task_details.html -->
-
 {% load static %}
 {% block content %}
 
-    <li class="list-group-item border-5 border-white {% if not task.completed and task.due_at < now %}task-expired{% elif task.completed %}completed-task{% else %}bg-light{% endif %}">
-        <div class="container tasks-margin">
-            <!-- Stack the columns on mobile by making one full-width and the other half-width -->
-            <div class="tasks-align">
+<!-- task_details.html content starts here -->
+
+<!-- Tasks are displayed here -->
+<li class="list-group-item border-5 border-white {% if not task.completed and task.due_at < now %}
+task-expired{% elif task.completed %}completed-task{% else %}bg-light{% endif %}">
+    <div class="container tasks-margin">
+        <div class="tasks-align">
+            <a href="{% url 'edit_task' task.id %}" class="text-decoration-none">
+                <p class="task-title main-text-green">{{ task.title }}</p>
+            </a>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-12 tasks-align">
                 <a href="{% url 'edit_task' task.id %}" class="text-decoration-none">
-                    <p class="task-title main-text-green">{{ task.title }}</p>
+                    <p class="tasks-margin label-text">DESCRIPTION</p>
+                        <p class="label-content">{{ task.description }}</p>
                 </a>
             </div>
-            <div class="row">
-                <div class="col-12 col-md-12 tasks-align">
-                    <a href="{% url 'edit_task' task.id %}" class="text-decoration-none">
-                        <p class="tasks-margin label-text">DESCRIPTION</p>
-                        <p class="label-content">{{ task.description }}</p>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
-            <div class="row">
-                <div class="col-12 col-md-4 tasks-align">
-                    <a href="{% url 'edit_task' task.id %}" class="text-decoration-none">
-                        <p class="tasks-margin label-text">DUE</p>
-                        {% if task.formatted_due_at is None %}
-                            <p class="label-content">No due date</p>
-                        {% else %}
-                            <p class="label-content">{{ task.formatted_due_at }}</p>
-                        {% endif %}
-                    </a>
-                </div>
-                <div class="col-12 col-md-4 tasks-align">
-                    <a href="{% url 'edit_task' task.id %}" class="text-decoration-none">
-                        <p class="tasks-margin label-text">CATEGORY</p>
-                        {% if task.category.category_name is Blank %}
-                            <p class="label-content">No category assigned</p>
-                        {% else %}
-                            <p class="label-content">{{ task.category.category_name }}</p>
-                        {% endif %}
-                    </a>
-                </div>
-                <div class="col-12 col-md-4 tasks-align">
-                    <a href="{% url 'edit_task' task.id %}" class="text-decoration-none">
-                        <p class="tasks-margin label-text">PRIORITY</p>
-                        {% if task.get_priority_display == "Low" %}
-                            <p class="label-content label-low">{{ task.get_priority_display }}</p>
-                        {% elif task.get_priority_display == "Medium" %}
-                            <p class="label-content label-medium">{{ task.get_priority_display }}</p>
-                        {% elif task.get_priority_display == "High" %}
-                            <p class="label-content label-high">{{ task.get_priority_display }}</p>
-                        {% endif %}
-                    </a>
-                </div>
-            </div>
-
-            <!-- Columns are always 50% wide, on mobile and desktop -->
-            <div class="d-grid gap-2 d-md-flex d-flex justify-content-md-start justify-content-center tasks-margin">
-                <div class="tasks-align">
-                    {% if task.completed %}
-                        <form method="post" action="{% url 'undo_complete_task' task.id %}">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-primary btn-warning btn-sm button-yellow">Undo Complete</button>
-                        </form>
-                    {% else %}
-                        <form method="post" action="{% url 'complete_task' task.id %}">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-success btn-sm button-green">Complete</button>
-                        </form>
-                    {% endif %}
-                </div>
-                <div class="">
-                    <button class="btn btn-delete btn-primary btn-danger btn-sm button-red" data-task-id="{{ task.id }}">Delete</button>
-                </div>
-            </div> 
         </div>
-    </li>
+        <div class="row">
+            <div class="col-12 col-md-4 tasks-align">
+                <a href="{% url 'edit_task' task.id %}" class="text-decoration-none">
+                    <p class="tasks-margin label-text">DUE</p>
+                    {% if task.formatted_due_at is None %}
+                        <p class="label-content">No due date</p>
+                    {% else %}
+                        <p class="label-content">{{ task.formatted_due_at }}</p>
+                    {% endif %}
+                    </a>
+            </div>
+            <div class="col-12 col-md-4 tasks-align">
+                <a href="{% url 'edit_task' task.id %}" class="text-decoration-none">
+                    <p class="tasks-margin label-text">CATEGORY</p>
+                    {% if task.category.category_name is Blank %}
+                        <p class="label-content">No category assigned</p>
+                    {% else %}
+                        <p class="label-content">{{ task.category.category_name }}</p>
+                    {% endif %}
+                </a>
+            </div>
+            <div class="col-12 col-md-4 tasks-align">
+                <a href="{% url 'edit_task' task.id %}" class="text-decoration-none">
+                    <p class="tasks-margin label-text">PRIORITY</p>
+                    {% if task.get_priority_display == "Low" %}
+                        <p class="label-content label-low">{{ task.get_priority_display }}</p>
+                    {% elif task.get_priority_display == "Medium" %}
+                        <p class="label-content label-medium">{{ task.get_priority_display }}</p>
+                    {% elif task.get_priority_display == "High" %}
+                        <p class="label-content label-high">{{ task.get_priority_display }}</p>
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+        
+        <!-- Action buttons complete and delete -->
+        <div class="d-grid gap-2 d-md-flex d-flex justify-content-md-start justify-content-center 
+        tasks-margin">
+            <div class="tasks-align">
+                {% if task.completed %}
+                    <form method="post" action="{% url 'undo_complete_task' task.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary btn-warning btn-sm 
+                        button-yellow">Undo Complete</button>
+                    </form>
+                {% else %}
+                    <form method="post" action="{% url 'complete_task' task.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-success btn-sm button-green">
+                            Complete</button>
+                    </form>
+                {% endif %}
+            </div>
+            <div class="">
+                <button class="btn btn-delete btn-primary btn-danger btn-sm button-red" 
+                data-task-id="{{ task.id }}">Delete</button>
+            </div>
+        </div> 
+    </div>
+</li>
 
-    <!-- Delete confirmation modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title"
-                    id="deleteModalLabel">Delete task?</h5>
-                    <button type="button" class="btn-close"
-                    data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Are you sure you want to delete this task?
-                    This action cannot be undone.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary"
-                    data-bs-dismiss="modal">Close</button>
-                    <a id="deleteConfirm" href="#" class="btn
-                    btn-danger">Delete</a>
-                </div>
+<!-- Delete confirmation modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" 
+aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"
+                id="deleteModalLabel">Delete task?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" 
+                aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete this task?
+                This action cannot be undone.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Close</button>
+                <a id="deleteConfirm" href="#" class="btn btn-danger">Delete</a>
             </div>
         </div>
     </div>
+</div>
 
+<!-- task_details.html content ends here -->
 {% endblock content %}

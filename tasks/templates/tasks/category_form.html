@@ -1,11 +1,12 @@
-<!-- tasks/templates/tasks/category_form.html -->
-
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
+
+<!-- category_form.html content starts here -->
 <div class="container mt-5">
     <div class="row">
+        
+        <!-- Add new category form seen by user -->
         <div class="col-md-9 offset-md-1">
             <h2 class="main-format-text main-text-red">{{ form.instance.title|default:"New Category" }}</h2>
             <form method="post">
@@ -16,4 +17,6 @@
         </div>
     </div>
 </div>
+
+<!-- category_form.html content ends here -->
 {% endblock %}

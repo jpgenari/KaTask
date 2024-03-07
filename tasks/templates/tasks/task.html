@@ -1,23 +1,25 @@
-<!-- tasks/templates/tasks/task.html -->
-
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
-    <div class="task-list row text-center">
-        <div class="col-6">
-            <h2 class="mb-4 main-format-text main-text-red">My Tasks</h2>
-        </div>
-        <div  class="col-6">
-            <a href="{% url 'create_task' %}" class="btn btn-success mb-4 main-button-green">New Task</a>
-        </div>
-        
-        <ul class="list-group">
-            {% for task in tasks %}
-                {% include 'tasks/task_details.html' %}
-            {% empty %}
-                <li class="list-group-item">No tasks found. Add your first task!</li>
-            {% endfor %}
-        </ul>
+
+<!-- task.html content starts here -->
+<div class="task-list row text-center">
+    <div class="col-6">
+        <h2 class="mb-4 main-format-text main-text-red">My Tasks</h2>
     </div>
+    <div  class="col-6">
+        <a href="{% url 'create_task' %}" class="btn btn-success mb-4 main-button-green">New Task</a>
+    </div>
+    
+    <!-- Tasks content starts here -->
+    <ul class="list-group">
+        {% for task in tasks %}
+            {% include 'tasks/task_details.html' %}
+        {% empty %}
+            <li class="list-group-item">No tasks found. Add your first task!</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<!-- task.html content ends here -->
 {% endblock content %}

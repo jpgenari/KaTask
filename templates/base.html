@@ -21,7 +21,8 @@
     <!-- Google Fonts CSS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&
+    family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
     <!-- Font Awesome CSS -->
     <script src="https://kit.fontawesome.com/de0f72e78e.js" crossorigin="anonymous"></script>
@@ -44,8 +45,8 @@
         <div class="row">
             <div class="col-md-8 offset-md-2 bg-white p-4 rounded">
                 <header class="text-center">
+                    
                     <!-- Header -->
-
                     <h1>
                         {% if user.is_authenticated %}
                             <a href="{% url 'tasks' %}" class="text-decoration-none">
@@ -59,10 +60,11 @@
                     </h1>
                     
                     <!-- Navigation -->
-
                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
                         <div class="container-fluid">
-                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" 
+                            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon">
+                            </span></button>
                             <div class="collapse navbar-collapse" id="navbarText">
                                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                                     {% if user.is_authenticated %}
@@ -99,7 +101,6 @@
                 </header>
 
                     <!-- Displaying Django messages -->
-
                     <div class="container">
                         <div class="row">
                             <div class="col-md-8 offset-md-2">
@@ -119,8 +120,8 @@
                             <p class="text-end m-2">You are not logged in</p>
                         {% endif %}
                     </div>
-                    <!-- Content -->
 
+                    <!-- Content -->
                     <div class="container mt-5">
                         {% block content %}
                         {% endblock %}
@@ -148,7 +149,8 @@
                     aria-label="Visit our Instagram page (opens in a new tab)"><i class="fa-brands fa-square-instagram main-text-green"></i></a>
                 <a href="https://youtube.com" target="_blank" rel="noopener"
                     aria-label="Visit our YouTube channel (opens in a new tab)"><i class="fa-brands fa-square-youtube main-text-green"></i></a>
-                <a href="https://github.com/jpgenari" target="_blank" rel="noopener" aria-label="Visit student's GitHub profile (opens in a new tab)"><i class="fa-brands fa-square-github main-text-green"></i></a>
+                <a href="https://github.com/jpgenari" target="_blank" rel="noopener" aria-label="Visit student's GitHub profile (opens in a new tab)">
+                    <i class="fa-brands fa-square-github main-text-green"></i></a>
             </p>
         </div>
     </footer>

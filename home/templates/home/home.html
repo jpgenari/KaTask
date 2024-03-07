@@ -1,74 +1,79 @@
-<!-- tasks/templates/tasks/home.html -->
-
 {% extends 'base.html' %}
 {% load static %}
-
 {% block content %}
-    <!-- Hero Section -->
-    <div class="hero-div">
-        <div class="container text-center">
-            {% if user.is_authenticated %}
-            {% else %}
-                <a href="{% url 'account_login' %}" class="btn btn-success main-button-green">Get Started</a>
-                    <br>
-                    <br>
-            {% endif %}
-            <p class="lead">Your minimalist task manager for distraction-free productivity.</p>
-        </div>
-    </div>
 
-    <div class="features-div mt-5">
-        <div class="container">
-            <h1 class="text-center mb-4 main-format-text main-text-red">Key Features</h1>
-            <div class="row align-items-start">
-                {% for feature in features %}
-                    <div class="col-xl-4 text-center">
-                        <div class="feature-item d-grid">
-                            <i class="{{ feature.icon }} mb-4"></i>
-                            <div class="mb-4">
-                                <h3>{{ feature.title }}</h3>
-                            </div>
-                            <div class="flex-grow-1">
-                                <p>{{ feature.content }}</p>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
+<!-- home.html content starts here -->
+
+<!-- Hero Section -->
+<div class="hero-div">
+    <div class="container text-center">
+        {% if user.is_authenticated %}
+        {% else %}
+            <a href="{% url 'account_login' %}" class="btn btn-success main-button-green">
+                Get Started</a>
             <br>
-            <h1 class="text-center mb-4 main-format-text main-text-red">How to Use</h1>
-            <div class="row">
-                {% for instruction in instructions %}
-                    <div class="col-xl-4 text-center">
-                        <div class="feature-item">
-                            <div class="mb-4">
-                                <i class="{{ instruction.icon }}"></i>
-                                <h3>{{ instruction.title }}</h3>
-                            </div>
-                            <div class="flex-grow-1">
-                                <p>{{ instruction.content }}</p>
-                            </div>
+            <br>
+        {% endif %}
+        <p class="lead">Your minimalist task manager for distraction-free productivity.</p>
+    </div>
+</div>
+
+<div class="features-div mt-5">
+    <div class="container">
+        <!-- Features Section -->
+        <h1 class="text-center mb-4 main-format-text main-text-red">Key Features</h1>
+        <div class="row align-items-start">
+            {% for feature in features %}
+                <div class="col-xl-4 text-center">
+                    <div class="feature-item d-grid">
+                        <i class="{{ feature.icon }} mb-4"></i>
+                        <div class="mb-4">
+                            <h3>{{ feature.title }}</h3>
+                        </div>
+                        <div class="flex-grow-1">
+                            <p>{{ feature.content }}</p>
                         </div>
                     </div>
-                {% endfor %}
-            </div>
+                </div>
+            {% endfor %}
+        </div>
+        <br>
+        
+        <!-- Instructions Section -->
+        <h1 class="text-center mb-4 main-format-text main-text-red">How to Use</h1>
+        <div class="row">
+            {% for instruction in instructions %}
+                <div class="col-xl-4 text-center">
+                    <div class="feature-item">
+                        <div class="mb-4">
+                            <i class="{{ instruction.icon }}"></i>
+                            <h3>{{ instruction.title }}</h3>
+                        </div>
+                        <div class="flex-grow-1">
+                            <p>{{ instruction.content }}</p>
+                        </div>
+                    </div>                    </div>
+            {% endfor %}
         </div>
     </div>
+</div>
 
-    <div class="testimonials-div mt-5">
-        <div class="container">
-            <h2 class="text-center mb-4 main-format-text main-text-red">What Our Users Say</h2>
-            <div class="row">
-                {% for feedback in feedbacks %}
+<!-- User Feedback Section -->
+<div class="testimonials-div mt-5">
+    <div class="container">
+        <h2 class="text-center mb-4 main-format-text main-text-red">What Our Users Say</h2>
+        <div class="row">
+            {% for feedback in feedbacks %}
                 <div class="col-md-6 offset-md-3">
                     <div class="testimonial">
                         <p>{{ feedback.content }}</p>
                         <p class="author">{{ feedback.author }}</p>
                     </div>
                 </div>
-                {% endfor %}
-            </div>
+            {% endfor %}
         </div>
     </div>
-{% endblock %}
+</div>
 
+<!-- home.html content ends here -->
+{% endblock %}
