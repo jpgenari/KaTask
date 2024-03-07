@@ -7,13 +7,13 @@
 <li class="list-group-item border-5 border-white {% if not task.completed and task.due_at < now %}
 task-expired{% elif task.completed %}completed-task{% else %}bg-light{% endif %}">
     <div class="container tasks-margin">
-        <div class="tasks-align">
+        <div class="text-start">
             <a href="{% url 'edit_task' task.id %}" class="text-decoration-none">
                 <p class="task-title main-text-green">{{ task.title }}</p>
             </a>
         </div>
         <div class="row">
-            <div class="col-12 col-md-12 tasks-align">
+            <div class="col-12 col-md-12 text-start">
                 <a href="{% url 'edit_task' task.id %}" class="text-decoration-none">
                     <p class="tasks-margin label-text">DESCRIPTION</p>
                         <p class="label-content">{{ task.description }}</p>
@@ -21,7 +21,7 @@ task-expired{% elif task.completed %}completed-task{% else %}bg-light{% endif %}
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-md-4 tasks-align">
+            <div class="col-12 col-md-4 text-start">
                 <a href="{% url 'edit_task' task.id %}" class="text-decoration-none">
                     <p class="tasks-margin label-text">DUE</p>
                     {% if task.formatted_due_at is None %}
@@ -31,7 +31,7 @@ task-expired{% elif task.completed %}completed-task{% else %}bg-light{% endif %}
                     {% endif %}
                     </a>
             </div>
-            <div class="col-12 col-md-4 tasks-align">
+            <div class="col-12 col-md-4 text-start">
                 <a href="{% url 'edit_task' task.id %}" class="text-decoration-none">
                     <p class="tasks-margin label-text">CATEGORY</p>
                     {% if task.category.category_name is Blank %}
@@ -41,7 +41,7 @@ task-expired{% elif task.completed %}completed-task{% else %}bg-light{% endif %}
                     {% endif %}
                 </a>
             </div>
-            <div class="col-12 col-md-4 tasks-align">
+            <div class="col-12 col-md-4 text-start">
                 <a href="{% url 'edit_task' task.id %}" class="text-decoration-none">
                     <p class="tasks-margin label-text">PRIORITY</p>
                     {% if task.get_priority_display == "Low" %}
@@ -58,7 +58,7 @@ task-expired{% elif task.completed %}completed-task{% else %}bg-light{% endif %}
         <!-- Action buttons complete and delete -->
         <div class="d-grid gap-2 d-md-flex d-flex justify-content-md-start justify-content-center 
         tasks-margin">
-            <div class="tasks-align">
+            <div class="text-start">
                 {% if task.completed %}
                     <form method="post" action="{% url 'undo_complete_task' task.id %}">
                         {% csrf_token %}
