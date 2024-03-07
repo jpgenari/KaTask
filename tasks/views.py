@@ -162,6 +162,11 @@ def display_categories(request):
     template displaying all categories.
     '''
 
+    if not request.user.is_authenticated:
+        messages.add_message(
+            request, messages.ERROR, 'Login first to view your Categories')
+        return redirect('home')
+
     categories = Category.objects.filter(user=request.user).annotate(
         task_count=Count('task')).order_by('category_name')
 
@@ -194,8 +199,6 @@ def category_detail(request, category_id):
         tasks = Task.objects.filter(category=category)
         task_count = tasks.count()
     except Http404:
-        messages.add_message(
-            request, messages.ERROR, "This category does not exist.")
         return redirect('categories')
 
     if category.user != request.user:
