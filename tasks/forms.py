@@ -1,9 +1,14 @@
 from django import forms
 from .models import Task, Category
 
+
 class TaskForm(forms.ModelForm):
-    
+
     class Meta:
+        '''
+        Widget added to this class displays a small calendar when
+        user is creating task instead of typing only.
+        '''
         model = Task
         fields = [
             'title',
@@ -29,7 +34,9 @@ class TaskForm(forms.ModelForm):
         be passed to the form.
         '''
         super(TaskForm, self).__init__(*args, **kwargs)
-        self.fields['category'] = forms.ModelChoiceField(queryset=Category.objects.filter(user=user),  required=False)
+        self.fields['category'] = forms.ModelChoiceField(
+            queryset=Category.objects.filter(user=user),  required=False)
+
 
 class CategoryForm(forms.ModelForm):
     class Meta:
@@ -37,4 +44,3 @@ class CategoryForm(forms.ModelForm):
         fields = [
             'category_name'
             ]
-        

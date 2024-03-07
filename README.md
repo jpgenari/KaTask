@@ -4,7 +4,7 @@ KaTask | Manager is an online task management app, featuring a minimalist UI. It
 
 Link to the live web app: [Ka | Task](https://katask-9e69d33c7144.herokuapp.com/)
 
-![Responsive Mockup]()
+![Responsive Mockup](/docs/readme_images/am-i-responsive.png)
 View it on [Am I responsive?](https://ui.dev/amiresponsive?url=https://katask-9e69d33c7144.herokuapp.com/)
 
 ## Table of contents
