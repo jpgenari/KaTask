@@ -6,10 +6,10 @@
 {% block content %}
     <div class="task-list row text-center">
         <div class="col-6">
-            <h2 class="mb-4 task-category main-text-color">My Tasks</h2>
+            <h2 class="mb-4 main-format-text main-text-red">My Tasks</h2>
         </div>
         <div  class="col-6">
-            <a href="{% url 'create_task' %}" class="btn btn-primary mb-4 add-task-color">New Task</a>
+            <a href="{% url 'create_task' %}" class="btn btn-success mb-4 main-button-green">New Task</a>
         </div>
         
         <ul class="list-group">

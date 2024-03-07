@@ -9,7 +9,7 @@
         <div class="container text-center">
             {% if user.is_authenticated %}
             {% else %}
-                <a href="{% url 'account_login' %}" class="btn btn-primary add-task-color">Get Started</a>
+                <a href="{% url 'account_login' %}" class="btn btn-success main-button-green">Get Started</a>
                     <br>
                     <br>
             {% endif %}
@@ -19,7 +19,7 @@
 
     <div class="features-div mt-5">
         <div class="container">
-            <h1 class="text-center mb-4 main-label-color">Key Features</h1>
+            <h1 class="text-center mb-4 main-format-text main-text-red">Key Features</h1>
             <div class="row align-items-start">
                 {% for feature in features %}
                     <div class="col-xl-4 text-center">
@@ -36,7 +36,7 @@
                 {% endfor %}
             </div>
             <br>
-            <h1 class="text-center mb-4 main-label-color">How to Use</h1>
+            <h1 class="text-center mb-4 main-format-text main-text-red">How to Use</h1>
             <div class="row">
                 {% for instruction in instructions %}
                     <div class="col-xl-4 text-center">
@@ -57,7 +57,7 @@
 
     <div class="testimonials-div mt-5">
         <div class="container">
-            <h2 class="text-center mb-4 main-label-color">What Our Users Say</h2>
+            <h2 class="text-center mb-4 main-format-text main-text-red">What Our Users Say</h2>
             <div class="row">
                 {% for feedback in feedbacks %}
                 <div class="col-md-6 offset-md-3">

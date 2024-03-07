@@ -1,24 +1,10 @@
 body {
     font-family: Montserrat, sans-serif;
+    /* color: #2F4858; */
 }
 
 .mt-5 {
     margin-top: 1.2rem !important;
-}
-
-.main-text-color {
-    color: #2F4858;
-}
-
-/* .main-label-color {
-    color: #8D4846 !important;
-} */
-
-.add-task-color {
-    background-color: #2F4858;
-    border: #2F4858;
-    font-size: 1.3rem;
-    font-weight: 600;
 }
 
 .brand {
@@ -28,11 +14,26 @@ body {
     text-decoration: none
 }
 
-.task-category {
+.main-format-text {
     font-family: Lato, sans-serif;
     font-size: 1.9rem;
-    font-weight: 800;
-    text-decoration: none
+    font-weight: 900;
+    /* text-decoration: none; */
+}
+
+.main-text-red {
+    color: #743600 !important;
+}
+
+.main-text-green {
+    color: #2F4858;
+}
+
+.main-button-green {
+    background-color: #2F4858;
+    border: #2F4858;
+    font-size: 1.3rem;
+    font-weight: 600;
 }
 
 .task-expired {
@@ -59,35 +60,51 @@ body {
 }
 
 .label-text {
-    font-size: 14px;
     color: #010900;
+    font-size: 14px;
     font-weight: 600;
 }
 
 .label-content {
-    font-size: 18px;
     color: #2F4858;
+    font-size: 18px;
     font-weight: bold;
 }
 
+.button-green {
+    background-color: #2F4858;
+    border: #2F4858;
+}
+
+.button-red {
+    background-color: #743600;
+    border: #743600;
+}
+
+.button-yellow {
+    background-color: #FFF7D6;
+    border: #FFF7D6;
+}
+
 .label-low {
-    border: 2px solid #F9FBEB;
-    background-color: #F9FBEB;
+    color: white;
+    border: 2px solid #2F4858;
+    background-color: #2F4858;
     border-radius: 10px;
     padding: 2px 2px 2px 8px;
 }
 
 .label-medium {
-    border: 2px solid #92a14a81;
-    background-color: #92a14a81;
+    border: 2px solid #FFF7D6;
+    background-color: #FFF7D6;
     border-radius: 10px;
     padding: 2px 2px 2px 8px;
 }
 
 .label-high {
     color: white;
-    border: 2px solid #1E5C6A;
-    background-color: #1E5C6A;
+    border: 2px solid #743600;
+    background-color: #743600;
     border-radius: 10px;
     padding: 2px 2px 2px 8px;
 }

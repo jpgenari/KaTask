@@ -49,11 +49,11 @@
                     <h1>
                         {% if user.is_authenticated %}
                             <a href="{% url 'tasks' %}" class="text-decoration-none">
-                                <span class="brand main-text-color">化 KaTask | Manager</span>
+                                <span class="brand main-text-red">化 KaTask | Manager</span>
                             </a>
                         {% else %}
                             <a href="{% url 'home' %}" class="text-decoration-none">
-                                <span class="brand main-text-color">化 KaTask | Manager</span>
+                                <span class="brand main-text-red">化 KaTask | Manager</span>
                             </a>
                         {% endif %}
                     </h1>
@@ -131,24 +131,24 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer mt-auto py-3 dark-bg main-text-color">
+    <footer class="footer mt-auto py-3 dark-bg main-text-green">
         <div class="container footer-size">
             <p class="m-0 text-center">
                 {% block copyright %}
                     Made by Code Student
                 {% endblock copyright %}
             </p>
-            <p class="m-0 text-center main-text-color">
+            <p class="m-0 text-center main-text-green">
                 Follow us:
                 <a href="https://facebook.com" target="_blank" rel="noopener"
-                    aria-label="Visit our Facebook page (opens in a new tab)"><i class="fa-brands fa-square-facebook main-text-color"></i></a>
+                    aria-label="Visit our Facebook page (opens in a new tab)"><i class="fa-brands fa-square-facebook main-text-green"></i></a>
                 <a href="https://twitter.com" target="_blank" rel="noopener"
-                    aria-label="Visit our X page (opens in a new tab)"><i class="fa-brands fa-x-twitter main-text-color"></i></a>
+                    aria-label="Visit our X page (opens in a new tab)"><i class="fa-brands fa-x-twitter main-text-green"></i></a>
                 <a href="https://instagram.com" target="_blank" rel="noopener"
-                    aria-label="Visit our Instagram page (opens in a new tab)"><i class="fa-brands fa-square-instagram main-text-color"></i></a>
+                    aria-label="Visit our Instagram page (opens in a new tab)"><i class="fa-brands fa-square-instagram main-text-green"></i></a>
                 <a href="https://youtube.com" target="_blank" rel="noopener"
-                    aria-label="Visit our YouTube channel (opens in a new tab)"><i class="fa-brands fa-square-youtube main-text-color"></i></a>
-                <a href="https://github.com/jpgenari" target="_blank" rel="noopener" aria-label="Visit student's GitHub profile (opens in a new tab)"><i class="fa-brands fa-square-github main-text-color"></i></a>
+                    aria-label="Visit our YouTube channel (opens in a new tab)"><i class="fa-brands fa-square-youtube main-text-green"></i></a>
+                <a href="https://github.com/jpgenari" target="_blank" rel="noopener" aria-label="Visit student's GitHub profile (opens in a new tab)"><i class="fa-brands fa-square-github main-text-green"></i></a>
             </p>
         </div>
     </footer>
