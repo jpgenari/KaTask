@@ -205,6 +205,9 @@ The Entity Relationship Diagram (ERD) for the Django project's created apps was 
 
 ### Validator
 
+#### W3C Validator
+
+https://validator.w3.org/nu/?doc=https%3A%2F%2Fkatask-9e69d33c7144.herokuapp.com%2Fhome
 
 ### Manual Testing
 
