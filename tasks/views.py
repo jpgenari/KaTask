@@ -11,12 +11,18 @@ from .forms import TaskForm, CategoryForm
 
 def display_tasks(request):
     '''
-    Uses method .date() to pass date without HH:MM to run
-    taks expired feature on front end.
-    Displays list of tasks associated with logged-in user.
-    Gets all tasks associated with logged-in user and renders
-    template displaying all tasks.
-    If user not logged-in, redirects user to home.html.
+    Displays a list of tasks associated with the logged-in user.
+    Retrieves tasks for the logged-in user and renders the template
+    displaying all tasks.
+    **Context:**
+    ``tasks``
+        A queryset of tasks associated with the logged-in user. Each task is an
+        instance of :model:`tasks.Task`.
+    ``now``
+        The current date without the time component (HH:MM), used for front-end
+        tasks expired feature.
+    **Template:**
+    :template:`tasks/task.html`
     '''
 
     now = timezone.now()
@@ -39,10 +45,15 @@ def display_tasks(request):
 
 def create_task(request):
     '''
-    Creates new tasks alongside TaskForm. Renders form to
-    create new task (GET) and process submitted form with
-    data to create task (POST). After submission, redirects
-    to task.
+    Creates a new task using the TaskForm. Renders the form to
+    create a new task (GET) and processes the submitted form data
+    to create the task (POST). After submission, redirects to the
+    tasks page.
+    **Context:**
+    ``form``
+        An instance of :class:`tasks.forms.TaskForm` for creating a new task.
+    **Template:**
+    :template:`tasks/task_form.html`
     '''
 
     if request.method == 'POST':
@@ -65,12 +76,22 @@ def create_task(request):
 
 def edit_task(request, task_id):
     '''
-    Edits current tasks working with TaskForm. Checks if object exists and
-    if logged-in user is owner of task (to prevent error when user enters
-    object ID manually on url) displaying alert messages and redirecting to
-    task.
-    Then renders TaskForm (GET) and process submitted form data to update
-    task in DB (POST). After submission, redirects to tasks.html.
+    Edits an existing task using the TaskForm. Checks if the task exists
+    and if the logged-in user is the owner of the task (to prevent errors
+    when the user manually enters the object ID in the URL).
+    If the task does not exist or the user is not the owner, displays an
+    alert message and redirects to the tasks page.
+    Then renders the TaskForm (GET) and processes submitted form data to
+    update the task in the database (POST). After submission, redirects to
+    the tasks page.
+    **Parameters:**
+    ``task_id``
+        The ID of the task to be edited.
+    **Context:**
+    ``form``
+        An instance of :class:`tasks.forms.TaskForm` for editing the task.
+    **Template:**
+    :template:`tasks/task_form.html`
     '''
 
     try:
@@ -106,9 +127,17 @@ def edit_task(request, task_id):
 
 def complete_task(request, task_id):
     '''
-    Marks task as 'Complete' by user. Gets task ID, confirm user,
-    changes its complete field to True and saves on DB. Then
-    redirects to tasks.html.
+    Marks a task as 'Complete' by the user. Retrieves the task with the given
+    ID, confirms that the user is the owner of the task, sets its `completed`
+    field to True, and saves it in the database.
+    **Parameters:**
+    ``task_id``
+        The ID of the task to be marked as complete.
+    **Context:**
+    ``task``
+        The task instance with the given ID, marked as complete.
+    **Template:**
+    :template:`tasks/task.html`
     '''
 
     task = Task.objects.get(id=task_id)
@@ -124,9 +153,17 @@ def complete_task(request, task_id):
 
 def undo_complete_task(request, task_id):
     '''
-    Marks task as 'Uncomplete' (undo complete) by user. Gets task ID,
-    confirm user, changes its complete field to False and saves on DB.
-    Then redirects to tasks.html.
+    Marks a task as 'Uncomplete' (undo complete) by the user. Retrieves the
+    task with the given ID, confirms that the user is the owner of the task,
+    sets its `completed` field to False, and saves it in the database.
+    **Parameters:**
+    ``task_id``
+        The ID of the task to be marked as uncomplete.
+    **Context:**
+    ``task``
+        The task instance with the given ID, marked as uncomplete.
+    **Template:**
+    :template:`tasks/task.html`
     '''
 
     task = Task.objects.get(id=task_id)
@@ -142,8 +179,16 @@ def undo_complete_task(request, task_id):
 
 def delete_task(request, task_id):
     '''
-    Deletes existing task. Gets task ID, deletes it from
-    DB and redirects to tasks.html.
+    Deletes an existing task. Retrieves the task with the given ID,
+    confirms that the user is the owner of the task, deletes it from
+    the database, and redirects to the tasks page.
+    **Parameters:**
+    ``task_id``
+        The ID of the task to be deleted.
+    **Context:**
+    None.
+    **Template:**
+    :template:`tasks/task.html`
     '''
 
     task = Task.objects.get(id=task_id)
@@ -157,9 +202,17 @@ def delete_task(request, task_id):
 
 def display_categories(request):
     '''
-    Displays list of categories associated with logged-in user.
-    Gets all categories associated with logged-in user and renders
-    template displaying all categories.
+    Displays a list of categories associated with the logged-in user.
+    Retrieves all categories associated with the logged-in user, including
+    the count of tasks for each category, and renders the template displaying
+    all categories.
+    **Context:**
+    ``categories``
+        A queryset of categories associated with the logged-in user.
+        Each category includes an additional field ``task_count`` representing
+        the count of tasks for that category.
+    **Template:**
+    :template:`tasks/category.html`
     '''
 
     if not request.user.is_authenticated:
@@ -182,13 +235,28 @@ def display_categories(request):
 def category_detail(request, category_id):
     '''
     Uses method .date() to pass date without HH:MM to run
-    taks expired feature on front end.
-    Displays details of a category associated with logged-in user.
-    Checks if category ID and associated tasks exists and if they
-    belong to logged-in user (to prevent error when user enters category
-    object ID manually on url) displaying alert message and redirecting to
-    category-list.
-    Then renders category_detail template with associated tasks.
+    tasks expired feature on the front end.
+    Displays details of a category associated with the logged-in user.
+    Checks if the category ID and associated tasks exist and if they
+    belong to the logged-in user (to prevent an error when the user enters
+    the category object ID manually in the URL), displaying an alert message
+    and redirecting to the category list.
+    Then renders the category_detail template with associated tasks.
+    **Parameters:**
+    ``category_id``
+        The ID of the category to be displayed in detail.
+    **Context:**
+    ``category``
+        The category instance with the given ID.
+    ``tasks``
+        A queryset of tasks associated with the specified category.
+    ``task_count``
+        The count of tasks associated with the specified category.
+    ``now``
+        The current date without the time component (HH:MM), used for the
+        front-end tasks expired feature.
+    **Template:**
+    :template:`tasks/category_detail.html`
     '''
 
     now = timezone.now()
@@ -220,10 +288,18 @@ def category_detail(request, category_id):
 
 def create_category(request):
     '''
-    Creates new categories alongside CategoryForm. Renders form to
-    create new category (GET) and process submitted form with
-    data to create category (POST). After submission, redirects
+    Creates new categories alongside the CategoryForm. Renders the form to
+    create a new category (GET) and processes the submitted form with
+    data to create a category (POST). After submission, redirects
     to display_categories.
+    **Context:**
+    ``form``
+        An instance of :class:`tasks.forms.CategoryForm` for creating a new
+        category.
+    **Redirects:**
+    :url:`categories`
+    **Template:**
+    :template:`tasks/category_form.html`
     '''
 
     if request.method == 'POST':
@@ -247,12 +323,22 @@ def create_category(request):
 
 def edit_category(request, category_id):
     '''
-    Edits current categories working with CategoryForm. Checks if object
-    exists and if logged-in user is owner of category (to prevent error when
-    user enters object ID manually on url) displaying alert messages and
-    redirects to display_categories.
-    Then renders CategoryForm (GET) and process submitted form data to update
-    category in DB (POST). After submission, redirects to display_categories.
+    Edits current categories working with the CategoryForm. Checks if the
+    object exists and if the logged-in user is the owner of the category (to
+    prevent an error when the user enters the object ID manually in the URL),
+    displaying alert messages and redirecting to display_categories.
+    Then renders the CategoryForm (GET) and processes submitted form data to
+    update the category in the database (POST). After submission, redirects to
+    display_categories.
+    **Parameters:**
+    ``category_id``
+        The ID of the category to be edited.
+    **Context:**
+    ``form``
+        An instance of :class:`tasks.forms.CategoryForm` for editing the
+        category.
+    **Template:**
+    :template:`tasks/category_form.html`
     '''
 
     try:
@@ -287,8 +373,14 @@ def edit_category(request, category_id):
 
 def delete_category(request, category_id):
     '''
-    Deletes existing category. Gets category ID, deletes it from DB and
-    redirects to display_categories.
+    Deletes an existing category. Retrieves the category with the given ID,
+    confirms that the user is the owner of the category, deletes it from
+    the database, and redirects to display_categories.
+    **Parameters:**
+    ``category_id``
+        The ID of the category to be deleted.
+    **Template:**
+    :template:`tasks/category.html`
     '''
 
     category = Category.objects.get(id=category_id)
