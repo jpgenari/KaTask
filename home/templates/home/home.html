@@ -23,19 +23,19 @@
         <!-- Features Section -->
         <h1 class="text-center mb-4 main-format-text main-text-red">Key Features</h1>
         <div class="row align-items-start">
-        {% for feature in features %}
-            <div class="col-xl-4 text-center">
-                <div class="feature-item d-grid">
-                    <i class="{{ feature.icon }} mb-4"></i>
-                    <div class="mb-4">
-                        <h3>{{ feature.title }}</h3>
-                    </div>
-                    <div class="flex-grow-1">
-                        <p>{{ feature.content }}</p>
+            {% for feature in features %}
+                <div class="col-xl-4 text-center">
+                    <div class="feature-item d-grid">
+                        <i class="{{ feature.icon }} mb-4"></i>
+                        <div class="mb-4">
+                            <h3>{{ feature.title }}</h3>
+                        </div>
+                        <div class="flex-grow-1">
+                            <p>{{ feature.content }}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
         </div>
         <br>
         
@@ -52,7 +52,8 @@
                         <div class="flex-grow-1">
                             <p>{{ instruction.content }}</p>
                         </div>
-                    </div>                    </div>
+                    </div>
+                </div>    
             {% endfor %}
         </div>
     </div>
@@ -63,14 +64,14 @@
     <div class="container">
         <h2 class="text-center mb-4 main-format-text main-text-red">What Our Users Say</h2>
         <div class="row">
-        {% for feedback in feedbacks %}
-            <div class="col-md-6 offset-md-3">
-                <div class="testimonial">
-                    <p>{{ feedback.content }}</p>
-                    <p class="author">{{ feedback.author }}</p>
+            {% for feedback in feedbacks %}
+                <div class="col-md-6 offset-md-3">
+                    <div class="testimonial">
+                        <p>{{ feedback.content }}</p>
+                        <p class="author">{{ feedback.author }}</p>
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
         </div>
     </div>
 </div>
