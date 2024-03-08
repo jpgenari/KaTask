@@ -93,13 +93,13 @@ The Register Page also welcomes new users, suggesting login for existing account
 
 After successful registration, users are directed to the Version 2 Home Page. A modal message accompanies this, confirming their successful sign-in.
 
-  ![Logged-in](/docs/readme_images/sign-in-success.png)
+  ![screenshot showing success message after login](/docs/readme_images/sign-in-success.png)
 
 #### Tasks
 
 The Tasks Page offers a clean layout for easy task tracking. If no tasks are present, a prompt encourages users to kickstart by adding their first task via the "Add Task" button.
 
-  ![Tasks-1](/docs/readme_images/tasks-1.png)
+  ![screenshot of tasks section without any tasks](/docs/readme_images/tasks-1.png)
 
 For existing tasks, each card displays the task name prominently, followed by a concise block with details like description, due date, category, and priority. Tasks are intelligently ordered:
 
@@ -111,7 +111,7 @@ For existing tasks, each card displays the task name prominently, followed by a 
   
 **4. Creation Date:** Older tasks appear first, encouraging the completion of older items before newer ones.
 
-  ![Tasks-2](/docs/readme_images/tasks-2.png)
+  ![screenshot of tasks section populated](/docs/readme_images/tasks-2.png)
   
 Task cards also feature two buttons:
 
@@ -120,27 +120,27 @@ Task cards also feature two buttons:
 
 Effortless task management with a focus on simplicity and user control, ensuring users can prioritize and organize their tasks efficiently.
 
-  ![Tasks-Delete](/docs/readme_images/task-delete.png)
+  ![screenshot of delete modal](/docs/readme_images/task-delete.png)
 
 #### New Task
 
 When clicking on "The New", users are directed to new task form to input task details, including title and description, select a category (with the option to add a new one via the Categories Page), specify a due date, set priority, and save. After saving, users are redirected to the main Tasks Page, ensuring a quick and straightforward task entry process.
 
-  ![New-Task](/docs/readme_images/new-task.png)
+  ![screenshot of new task form](/docs/readme_images/new-task.png)
 
 #### Categories
 
 The Categories Page mirrors the user-friendly design of the Tasks Page, featuring a "New Category" button to add fresh categories. In the absence of categories, a motivating message prompts users to begin categorizing their tasks.
 
-  ![Categories-1](/docs/readme_images/categories-1.png)
+  ![categories page screenshot blank - no categories](/docs/readme_images/categories-1.png)
 
 With existing categories, users encounter a neatly organized list in alphabetical order, each displaying the number of tasks assigned. Clicking on a category name directs users to detailed category information (covered in the next section).
 
-  ![Categories-2](/docs/readme_images/categories-2.png)
+  ![categories page screenshot displaying categories](/docs/readme_images/categories-2.png)
 
 For added convenience, an "Edit" button allows users to modify category details, while a "Delete" button triggers a modal confirmation message. This ensures intentional actions and informs users that deleting a category does not remove associated tasks; instead, they become uncategorized. This thoughtful design promotes efficient category management while maintaining task integrity.
 
-  ![Category-Delete](/docs/readme_images/category-delete.png)
+  ![screenshot of delete modal](/docs/readme_images/category-delete.png)
 
 #### Category Details
 
