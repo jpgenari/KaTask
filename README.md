@@ -69,9 +69,6 @@ The flowchart has proven to be an invaluable tool for strategic planning, provid
 
   ![flowchart screenshot](/docs/readme_images/katask.drawio.png)
 
-<details>
-  <summary>Features</summary>
-
 ### Features
 
 #### Landing page
@@ -183,8 +180,6 @@ Clicking logout confirms sign-out and redirects to the home page.
 
 [Back to top](#KaTask "Back to top")
 
-</details>                     
-
 ## USER STORIES AND AGILE
 
 ### Admin Management
@@ -229,9 +224,6 @@ The Entity Relationship Diagram (ERD) for the Django project's created apps was 
 
 ### Validator
 
-<details>
-  <summary>HTML - W3C Validator</summary>
-
 #### HTML - W3C Validator
 
 No errors flagged by [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Fkatask-9e69d33c7144.herokuapp.com%2Fhome).
@@ -253,8 +245,6 @@ New Task Page|text input|![new task page validation screenshot](/docs/readme_ima
 Categories Page|text input|![categories page validation screenshot](/docs/readme_images/w3c-category.png)
 Category Details Page|text input|![category details validation screenshot](/docs/readme_images/w3c-category-details.png)
 Create Category Page|text input|![create category validation screenshot](/docs/readme_images/w3c-category-form.png)
-</details>
-
 
 #### CSS - Jigsaw W3C Validator
 
@@ -268,9 +258,6 @@ No errors flagged on [JS Hint](https://jshint.com/)
 
   - The absence of an explicit definition for the bootstrap variable is not an issue because Bootstrap is imported directly in the HTML.
   - There are ten warnings highlight the use of ES6 features like 'const,' 'let,' 'for of,' 'arrow functions,' and 'template literals.' which are not critical issues but reminders to set your ESLint configuration to ES6 ('esversion: 6').
-
-<details>
-  <summary>HTML - W3C Validator</summary>
 
 #### Python and Django - CI Python Linter
 
@@ -288,11 +275,6 @@ tasks/forms.py|![tasks forms.py validation screenshot](/docs/readme_images/plint
 tasks/models.py|![tasks models.py validation screenshot](/docs/readme_images/plinter-tasks-models.png)
 tasks/urls.py|![tasks urls.py validation screenshot](/docs/readme_images/plinter-tasks-urls.png)
 tasks/views.py|![tasks views.py validation screenshot](/docs/readme_images/plinter-tasks-views.png)
-
-</details>
-
-<details>
-  <summary>Performance - Google Lighthouse</summary>
 
 #### Performance - Google Lighthouse
 
@@ -318,11 +300,6 @@ No performance issues flagged when running Google Chrome Lighthouse.
 [Signin Page](https://katask-9e69d33c7144.herokuapp.com/accounts/login/)|Desktop|![signin page lighthouse screenshot](/docs/readme_images/lighthouse-signin.png)
 [Signup Page](https://katask-9e69d33c7144.herokuapp.com/accounts/signup/)|Mobile|![signup page lighthouse screenshot](/docs/readme_images/lighthouse-signup-mobile.png)
 [Signup Page](https://katask-9e69d33c7144.herokuapp.com/accounts/signup/)|Desktop|![signup page lighthouse screenshot](/docs/readme_images/lighthouse-signup.png)
-
-</details>
-
-<details>
-<summary>Manual Testing</summary>
 
 ### Manual Testing
 
@@ -389,8 +366,6 @@ Admin Tasks|site admin user able to add, edit and delete any category in the dat
 ||site admin user able to add, edit and delete any task in the data base|passed
 
 [Back to top](#KaTask "Back to top")
-
-</details>
 
 ## BUGS
 
