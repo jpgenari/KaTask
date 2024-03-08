@@ -1,12 +1,14 @@
+/* sets body text font family */
 body {
     font-family: Montserrat, sans-serif;
-    /* color: #2F4858; */
 }
 
+/* overrides Bootstrap class margin-top */
 .mt-5 {
     margin-top: 1.2rem !important;
 }
 
+/* sets brand font details, applied to logo */
 .brand {
     font-family: Lato, sans-serif;
     font-size: 2.5rem;
@@ -14,21 +16,24 @@ body {
     text-decoration: none
 }
 
+/* sets the overall main text styling */
 .main-format-text {
     font-family: Lato, sans-serif;
     font-size: 1.9rem;
     font-weight: 900;
-    /* text-decoration: none; */
 }
 
+/* sets main red color across application ui */
 .main-text-red {
     color: #743600 !important;
 }
 
+/* sets main green color across application ui */
 .main-text-green {
     color: #2F4858;
 }
 
+/* overrides Bootstrap button adding customization to main buttons */
 .main-button-green {
     background-color: #2F4858;
     border: #2F4858;
@@ -36,52 +41,62 @@ body {
     font-weight: 600;
 }
 
+/* sets alert color to expired tasks on ui */
 .task-expired {
     background-color: #ff666633;
 }
 
+/* sets faded out color to completed tasks on ui */
 .completed-task {
     opacity: 0.4;
 }
 
+/* sets taks title styling */
 .task-title {
     font-size: 1.5rem;
     font-weight: 700;
     font-weight: bold;
 }
 
+/* customizes margin for tasks elements */
 .tasks-margin {
     margin-top: 5px;
     margin-bottom: 3px;
 }
 
+/* sets styling of describing elements inside tasks eg. DESCRIPTION */
 .label-text {
     color: #010900;
     font-size: 14px;
     font-weight: 600;
 }
 
+/* sets styling of content elements inside tasks eg. description itself */
 .label-content {
     color: #2F4858;
     font-size: 18px;
     font-weight: bold;
 }
 
+/* set styling for complete task and edit category buttons, overrides bootstrap */
 .button-green {
     background-color: #2F4858;
     border: #2F4858;
 }
 
+/* sets styling for delete task category buttons, overrides bootstrap */
 .button-red {
     background-color: #743600;
     border: #743600;
 }
 
+/* sets styling of undo complete button, overrides bootstrap */
 .button-yellow {
     background-color: #FFF7D6;
     border: #FFF7D6;
 }
 
+/* sets styling of low priority label */
 .label-low {
     color: white;
     border: 2px solid #2F4858;
@@ -90,6 +105,7 @@ body {
     padding: 2px 2px 2px 8px;
 }
 
+/* sets styling of medium priority label */
 .label-medium {
     border: 2px solid #FFF7D6;
     background-color: #FFF7D6;
@@ -97,6 +113,7 @@ body {
     padding: 2px 2px 2px 8px;
 }
 
+/* sets styling of high priority label */
 .label-high {
     color: white;
     border: 2px solid #743600;
@@ -105,6 +122,7 @@ body {
     padding: 2px 2px 2px 8px;
 }
 
+/* sets footer elements size */
 .footer-size {
     font-size: 1.3rem;
 }

@@ -31,26 +31,18 @@ View it on [Am I responsive?](https://ui.dev/amiresponsive?url=https://katask-9e
     - [JavaScript - JS Hint](#javascript-js-hint "JavaScript - JS Hint")
     - [Python and Django - CI Python Linter](#python-and-django-ci-python-linter "Python and Django - CI Python Linter")
     - [Performance - Google Lighthouse](#performance-google-lighthouse "Performance - Google Lighthouse")
-
-    
-
-
-
-
   + [Manual Testing](#manual-testing "Manual Testing")
 + [BUGS](#bugs "BUGS")
   + [Solved Bugs](#solved-bugs "Solved Bugs")
   + [Unfixed Bugs](#unfixed-bugs "Unfixed Bugs")
-
-+ [TOOLS AND TECHNOLOGIES](#tools-and-technologies "TOOLS AND TECHNOLOGIES")
-  + [Languages](#languages "Languages")
-  + [Python Libraries and Modules](#python-libraries-and-modules "Python Libraries and Modules")
-  + [Tools](#tools "Tools")
-  + [Database](#database "Database")
-+ [DEVELOPMENT AND DEPLOYMENT](#development-and-deployment "DEVELOPMENT AND DEPLOYMENT")
-  + [Local](#local "Local")
-  + [Google Sheets with Python](#google-sheets-with-python "Google Sheets with Python")
-  + [Heroku](#heroku "Heroku")
++ [TECHNOLOGIES](#technologies "TECHNOLOGIES")
++ [DEPLOYMENT](#Deployment "DEPLOYMENT")
+  + [ElephantSQL Database](#elephantsql-database "ElephantSQL Database")
+  + [Cloudinary API](#cloudinary-api "Cloudinary API")
+  + [Heroku Deployment](#heroku-deployment "Heroku Deployment")
+  + [Local Deployment](#local-deployment "Local Deployment")
+  + [Cloning](#cloning "Cloning")
+  + [Forking](#forking "Forking")
 + [CREDITS](#credits "CREDITS")
   + [Content](#content "Content")
   + [Acknowledgement](#acknowledgement "Acknowledgement")
@@ -65,7 +57,7 @@ KaTask | Manager aims to transform your traditional task notebook into a digital
 
 The flowchart has proven to be an invaluable tool for strategic planning, providing insightful guidance into the construction of the application by mapping out every step taken by users. This detailed chart was crafted using [Draw.io](https://www.drawio.com/).
 
-  ![FlowChart](/docs/readme_images/katask.drawio.png)
+  ![flowchart screenshot](/docs/readme_images/katask.drawio.png)
 
 ### Features
 
@@ -75,13 +67,13 @@ The flowchart has proven to be an invaluable tool for strategic planning, provid
 
 Upon your initial visit or when not logged in, Version 1 of our landing page welcomes you with a dynamic interface. The app's name takes center stage at the top, accompanied by a menu presenting options such as 'Register' and 'Login.' To encourage interaction, a prominent 'Get Started' button directs users seamlessly to the login process. The page then unfolds with key features, a user-friendly guide, feedback from users, and a persistent footer offering insights into the app's nature and links to our social media presence. The header, menu, and footer remain visible at all times, ensuring a seamless user experience.
   
-  ![Landing-v1](/docs/readme_images/landing-page-v1.png)
+  ![landing page version 1 user not authenticated screenshot](/docs/readme_images/landing-page-v1.png)
 
 ##### Landing Page: Version 2
 
 For users already logged in, Version 2 of our landing page provides a tailored experience. The app's name and a menu featuring 'Home,' 'Tasks,' 'Categories,' and 'Logout' greet users. A personalized message beneath the menu confirms their logged-in status, displaying the username. Clicking on the header takes users directly to their tasks—the heart of the app—while the 'Home' option stays accessible for checking instructions or navigating back to the main page. This version ensures efficiency for users immersed in the app's functionalities. As always, the header, menu, and footer remain fixed for easy navigation.
 
-  ![Landing-v2](/docs/readme_images/landing-page-v2.png)
+  ![landing page version 2 user authenticated screenshot](/docs/readme_images/landing-page-v2.png)
 
 These two versions cater to different stages of user interaction, offering a seamless transition from exploration to engagement based on the user's status within the app.
 
@@ -91,13 +83,13 @@ These two versions cater to different stages of user interaction, offering a sea
 
 The Login Page invites users, prompting them to log in for task access. New users are encouraged to sign up first. Login requires a username and password, ensuring a secure and simple entry.
   
-  ![Login](/docs/readme_images/sign-in.png)
+  ![login page sceenshot](/docs/readme_images/sign-in.png)
 
 ##### Register Page
 
 The Register Page also welcomes new users, suggesting login for existing accounts. For registration, users provide a username, optional email, and a secure password, guided by clear instructions.
 
-  ![Register](/docs/readme_images/sign-up.png)
+  ![register page screenshot](/docs/readme_images/sign-up.png)
 
 After successful registration, users are directed to the Version 2 Home Page. A modal message accompanies this, confirming their successful sign-in.
 
@@ -295,42 +287,67 @@ No performance issues flagged when running Google Chrome Lighthouse.
 
 ### Manual Testing
 
-**TEST**|**ACTION**|**EXPECTED**|**RESULT**
-----------|----------|----------|----------
-Enter 1 to view instructions and 2 to skip them:|User inputs integer 1 + press Enter|Moves to instructions screen|Works as expected
-||User inputs integer 2 + press Enter|Skips instructions and moves to select level|Works as expected
-||User inputs anything other than integer + press Enter|Displays message: "Numbers only!"|Works as expected
-||User inputs any integer other than 1 or 2 + press Enter|Displays message: "Number outside the allowed range > 1-2"|Works as expected
-Press ENTER to play:|User press Enter|Moves to select level|Works as expected
-||User inputs anything + press Enter|Moves to select level|Works as expected
-Enter 1 for easy, 2  medium or, if you dare, 3 for hard level:|User inputs integer 1 + press Enter|Starts the game with easy level selected|Works as expected
-||User inputs integer 2 + press Enter|Starts the game with medium level selected|Works as expected
-||User inputs integer 3 + press Enter|Starts the game with hard level selected|Works as expected
-||User inputs anything other than integer + press Enter|Displays message: "Numbers only!"|Works as expected
-||User inputs any integer other than 1, 2 or 3 + press Enter|Displays message: "Number outside the allowed range > 1-3"|Works as expected
-Guess a number between 1 and 30:|User inputs integer between 1 and 30 + press Enter|If input = generated number:|
-|||displays generated number + communicates WIN result to user + prompts user to enter a name or nickname|Works as expected
-|||If input $\neq$ generated number and remaining guesses = 0:|
-|||displays generated number + communicates LOSE result to user + prompts option to start again or exit|Works as expected
-|||If input $\neq$ generated number and remaining guesses > 0 and not inside tried numbers: []:|
-|||adds input to tried numbers: [],|
-|||subtracts 1 guess from remaining guessed,|
-|||displays tried numbers: [] + hint + remaining guesses|Works as expected
-|||If input $\neq$ generated number and remaining guesses > 0 and inside tried numbers: []:|
-|||displays "You have tried this number already! Try again.",|
-|||ignores input|Works as expected
-||User inputs anything other than integer + press Enter|Displays message: "Numbers only!"|Works as expected
-||User inputs any integer not between 1 and game level range + press Enter|Displays message: "{integer} is outside the allowed range > 1-{game level range}"|Works as expected
-Please enter your name or nickname:|User inputs anything between 2 and 12 characters length (including blank spaces) + press Enter|Moves to display results screen|Works as expected
-||User inputs anything outside range between 2 and 12 characters length + press Enter|Moves to display results screen|Works as expected
-Press 1, if you want to start again or 2 to exit:|User inputs integer 1 + press Enter|Restarts the game|Works as expected
-||User inputs integer 2 + press Enter|Exits the game + displays message "You've left the game. Thank you for playing!"|Works as expected
-||User inputs anything other than integer + press Enter|Displays message: "Numbers only!"|Works as expected
-||User inputs any integer other than 1 or 2 + press Enter|Displays message: "Number outside the allowed range > 1-2"|Works as expected
+Manual testing following user stories and fully reproducing site user and site admin journey throughout application use. Tests carried over on Google Chrome, Mozilla Firefox, Safari on MacOS system, and mobile testing carried over throughout Google Chrome inspect tool.
 
-Application did not break not matter inputs added and correct errors were displayed.
-
-####
+**TEST**|**EXPECTED**|**RESULT**
+----------|----------|----------
+Home|user able to click Register and to sign up page|passed
+||user able to click Login and to sign in page|passed
+||user able to click 'Get Started' and to sign in page|passed
+Register|user able to enter username|passed
+||user able to enter email|passed
+||user able to enter password|passed
+||user able to enter password confirmation|passed
+||user able to click 'Sign Up' and confirm registration|passed
+Login|user able to enter username|passed
+||user able to enter password|passed
+||user able to click 'Sign In' and confirm login|passed
+Navigation|user able to click 'Home' and go to home page|passed
+||user able to click 'Tasks' and go to tasks page|passed
+||user able to click 'Categories' and go to categories page|passed
+||user able to click 'Logout' and go to logout page|passed
+Tasks|user able to view all created tasks|passed
+||user able to click 'New Task' and go to new task page|passed
+||user able to click on task name, 'DESCRIPTION', 'DUE', 'CATEGORY' and 'PRIORITY' and go to edit task page|passed
+||user able to click on 'Complete' and mark task as completed|passed
+||user able to click on 'Undo Complete' and mark task as not completed|passed
+||user able to click on 'Delete', view deletion confirmation, upon confirmation, task is deleted and return to tasks page and d task as completed|passed
+New Task|user able to enter task title|passed
+||user able to enter task description|passed
+||user able to assign an existing category to the task|passed
+||user able to enter due at date for the task|passed
+||user able to pick between 'Low', 'Medium' and 'High' priority for the task|passed
+||user able to click on 'Save', confirm task creation and return to tasks page|passed
+||user able to click on menu items, cancel task creation and go to selected page|passed
+Edit Task|user able to update task title|passed
+||user able to update task description|passed
+||user able to update task category|passed
+||user able to update task due at date|passed
+||user able to update task priority|passed
+||user able to click on 'Save', confirm task update and return to tasks page|passed
+||user able to click on menu items, cancel task update and go to selected page|passed
+Categories|user able to view all created categories and number os tasks related|passed
+||user able to click on 'New Category' and go to new category page|passed
+||user able to click on category name and go to category details page|passed
+||user able to click on 'Edit' and go to edit category page|passed
+||user able to click on 'Delete', view deletion confirmation, upon confirmation, category is deleted and return to tasks page|passed
+New Category|user able to enter category name|passed
+||user able to click on 'Save', confirm category creation and return to tasks page|passed
+||user able to click on menu items, cancel category creation and go to selected page|passed
+Edit Category|user able to update category name|passed
+||user able to click on 'Save', confirm category update and return to tasks page|passed
+||user able to click on menu items, cancel category update and go to selected page|passed
+Category Details|user able to view all tasks assigned to the category and manipulate tasks, create new task, edit, mark as complete / undo complete and delete|passed
+Logout|user able to click 'Sign Out and logout'|passed
+Admin|site admin user able to login to Django Admin Panel|passed
+||site admin user able to login to Django Admin Panel and view site administration|passed
+||site admin user able to click on 'HOME' and access home administration|passed
+||site admin user able to click on 'TASKS' and access tasks administration|passed
+Admin Home|site admin user able to add, edit and delete features|passed
+||site admin user able to add, edit and delete instructions/how to use|passed
+||site admin user able to add, edit and delete user feedback/testimonials to use|passed
+Admin Tasks|site admin user able to add, edit and delete any category in the data base|passed
+||site admin user able to add, edit and delete any task in the data base|passed
 
 ## BUGS
 
@@ -389,44 +406,166 @@ Application did not break not matter inputs added and correct errors were displa
 
 There are no unfixed bugs.
 
+## TECHNOLOGIES
+
+- [Django](https://www.djangoproject.com/) is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.
+- [Python](https://www.python.org/) is an interpreted, high-level and general-purpose programming language.
+- [HTML](https://html.spec.whatwg.org/) is the standard markup language for documents designed to be displayed in a web browser.
+- [Cascading Style Sheets (CSS)](https://www.w3.org/Style/CSS/Overview.en.html) is a stylesheet language used to describe the presentation of a document written in HTML or XML.
+- [JavaScript](https://www.javascript.com/) is a programming language that adds interactivity to your website.
+- [PostgreSQL](https://www.postgresql.org/) is a powerful, open source object-relational database system.
+- [Cloudinary](https://cloudinary.com/) is a cloud service that offers a solution to a web application's entire image management pipeline - Cloudinary is installed in the project for future features.
+- [Heroku](https://www.heroku.com/) is a platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud.
+
+## DEPLOYMENT
+
+The live deployed application can be found at [https://katask-9e69d33c7144.herokuapp.com/](https://katask-9e69d33c7144.herokuapp.com/), hosted on **Heroku**. Steps to deploy to **Heroku** provided below.
+
+### ElephantSQL Database
+
+The project uses [ElephantSQL](https://www.elephantsql.com) as its PostgreSQL Database provider. Although ElephantSQL previously offered the TinyTurtle plan, it is currently being deprecated. To use it, you'll need to create an account and select this plan; however, the subsequent steps will remain the same.
+
+To obtain your own Postgres Database, sign-up with your GitHub account, then follow these steps:
+
+- Click **Create New Instance** to start a new database.
+- Provide a name (this is commonly the name of the project, e.g. `stackportfolio`).
+- Select the **Tiny Turtle (Free)** plan.
+- You can leave the **Tags** blank.
+- Select the **Region** and **Data Center** closest to you.
+- Once created, click on the new database name, where you can view the database URL and Password.
 
 
+### Cloudinary API
+
+This project has [Cloudinary API](https://cloudinary.com) installed for online storage of media assets, as Heroku does not persist this type of data. It is currently not in use, reserved for future features
+
+To obtain your Cloudinary API key, create an account and log in.
+
+- For _Primary interest_, you can choose _Programmable Media for image and video API_.
+- Optional: _edit your assigned cloud name to something more memorable_.
+- On your Cloudinary Dashboard, you can copy your **API Environment Variable**.
+- Be sure to remove the `CLOUDINARY_URL=` as part of the API **value**; this is the **key**.
 
 
+### Heroku Deployment
 
-## Steps taken
+- Go to [Heroku](https://heroku.com/) and sign in to the account or create a free an account if necessary.
+- From Heroku's dashboard > click on dropdown button "New" and select "Create new app".
+- Provide a unique name for your project, and then choose a region closest to you (EU or USA).
+- Click on **Create App**"** to proceed.
+- Heroku will create the app and take you to the deploy tab.
+- From the new app **Settings**, click **Reveal Config Vars**, and set your environment variables:
 
-1. Create repository;
-2. Install Django package;
+| Key                     | Value                                                                |
+| ----------------------- | -------------------------------------------------------------------- |
+| `CLOUDINARY_URL`        | insert your own Cloudinary API key here                              |
+| `DATABASE_URL`          | insert your own ElephantSQL database URL here                        |
+| `DISABLE_COLLECTSTATIC` | 1 (_this is temporary, and can be removed for the final deployment_) |
+| `SECRET_KEY`            | this can be any random secret key         
 
-    ```pip3 install Django~=4.2.1```
-3. Create and add requirements to requirements doc;
-    ```pip3 freeze --local > requirements.txt````
-4. Create Django project;
+- Heroku needs two additional files in order to deploy properly(add in your code).
 
-    ```django-admin startproject katask .```
-5. Create a Django app inside the project;
+  - requirements.txt
+  - Procfile
 
-    ```python3 manage.py startapp tasks```
-6. Create views in tasks/views.py (Example from [CI Django Project](https://github.com/jpgenari/CI-django_project?tab=readme-ov-file#creating-views]));
-7. Add app in [settings.py](https://github.com/jpgenari/CI-django_project?tab=readme-ov-file#creating-views);
-8. Deploy to [Heroku](https://github.com/jpgenari/CI-django_project?tab=readme-ov-file#deploying-to-heroku);
-9. Create the database with PostgreSWL - in this case using [ElephantSQL.com](https://code-institute-students.github.io/deployment-docs/02-elephantsql/elephantsql-01-sign-up) and connect to the code;
-10. Connect DataBase to Heroku and deploy;
-11. Create model code to handle data;
-12. Create and make migrations;
-13. Build homepage with Django generic views;
-    
-    A. Create **url.py** inside tasks directory;
-    
-    B. Update **katask/urls.py**;
+You can install this project's **requirements** (where applicable) using:
 
-    C. Create a **templates** directory in the **tasks** app with another directory nested inside, named 'tasks';
+- `pip3 install -r requirements.txt`
 
-    D. Create a **tasks_list.htmnl** file and add HTML to it;
+If you have your own packages that have been installed, then the requirements file needs updated using:
+
+- `pip3 freeze --local > requirements.txt`
+
+The **Procfile** can be created with the following command:
+
+- `web: gunicorn app_name.wsgi > Procfile`
+- _replace **app_name** with the name of your primary Django app name; the folder where settings.py is located_. In this case, that is `stackportfolio`.
+
+For Heroku deployment, follow these steps to connect your GitHub repository to the newly created app:
+
+Either:
+
+- Select **Deploy Branch** from the Heroku app when deploying a specific build - **Enable Automatic Deploys" will make Heroku deploy automatically when a new commit is made.
+
+Or:
+
+- In the Terminal/CLI, connect to Heroku using this command: `heroku login -i`
+- Set the remote for Heroku: `heroku git:remote -a app_name` (replace _app_name_ with your app name)
+- After performing the standard Git `add`, `commit`, and `push` to GitHub, you can now type:
+  - `git push heroku main`
 
 
+### Local Deployment
 
-Fixed bug where users were able to view all categories when creating a task: https://copyprogramming.com/howto/django-forms-filter-field-by-user-id-3
+This project can be cloned or forked in order to make a local copy on your system. For either method, you will need to install any applicable packages found within the _requirements.txt_ file.
 
-Reference: https://medium.com/@sarahisdevs/creating-a-task-manager-to-do-list-application-using-python-django-1afe8b33df65
+- `pip3 install -r requirements.txt`.
+
+You will need to create a new file called `env.py` at the root-level,
+and include the same environment variables listed above from the Heroku deployment steps.
+
+Sample `env.py` file:
+
+```python
+import os
+
+os.environ.setdefault("CLOUDINARY_URL", "insert your Cloudinary API key here")
+os.environ.setdefault("DATABASE_URL", "insert your ElephantSQL database URL here")
+os.environ.setdefault("SECRET_KEY", "this can be any random secret key")
+
+# local environment only (do not include these in production/deployment!)
+os.environ.setdefault("DEBUG", "True")
+```
+
+Once the project is cloned or forked, in order to run it locally, you'll need to follow these steps:
+
+- Start the Django app: `python3 manage.py runserver`
+- Stop the app once it's loaded: `CTRL+C`
+- Make any necessary migrations: `python3 manage.py makemigrations`
+- Migrate the data to the database: `python3 manage.py migrate`
+- Create a superuser: `python3 manage.py createsuperuser`
+- Load fixtures (if applicable): `python3 manage.py loaddata file-name.json` (repeat for each file)
+- Everything should be ready now, so run the Django app again: `python3 manage.py runserver`
+
+### Cloning
+
+Repository can be cloned by following these steps:
+
+1. Go to the [GitHub repository](https://github.com/stephendawsondev/stackportfolio)
+2. Locate the Code button above the list of files and click it
+3. Select if you prefer to clone using HTTPS, SSH, or GitHub CLI and click the copy button to copy the URL to your clipboard
+4. Open Git Bash or Terminal
+5. Change the current working directory to the one where you want the cloned directory
+6. In your IDE Terminal, type the following command to clone my repository:
+
+- `git clone https://github.com/jpgenari/KaTask.git`
+
+7. Press Enter to create your local clone.
+
+### Forking
+
+By forking the GitHub Repository, we make a copy of the original repository on our GitHub account to view and/or make changes without affecting the original owner's repository.
+Repository can be forked by using the following steps:
+
+1. Log in to GitHub and locate the [GitHub Repository](https://github.com/stephendawsondev/stackportfolio)
+2. At the top of the Repository (not top of page) just above the "Settings" Button on the menu, locate the "Fork" Button.
+3. Once clicked, you should now have a copy of the original repository in your own GitHub account!
+
+## CREDITS
+
+### Content
+
+  - Core App structure and code inspired/taken from [Creating a Task Manager/To-Do List Application using Python Django](https://medium.com/@sarahisdevs/creating-a-task-manager-to-do-list-application-using-python-django-1afe8b33df65) - [Medium](https://medium.com/) subscription required for full reading.
+  - App code structure inspired/taken from walkthrough project [Codestar Blog](https://github.com/Code-Institute-Solutions/blog/tree/main), especially Javascript code and modal structure for alerts.
+  - READme  structure and content inspired/taken from [Stackportfol.io](Stackportfol.io) and [Rock in Class](https://github.com/Bruna-Andelieri/rock-in-class/blob/main/README.md).
+  - [Bootstrap](https://getbootstrap.com/) used for majority of front end - HTML structure and styling.
+  - Solution to fix incorrect category filtering when creating tasks found at [Filtering Django Forms Field Based on User ID 3
+](https://copyprogramming.com/howto/django-forms-filter-field-by-user-id-3) post.
+  - Debugging and refactoring performed with support of [ChatGPT](https://chat.openai.com/).
+
+
+### Acknowledgement
+
+- A special thanks to my mentor, [Chris Quin](https://github.com/10xOXR), for his outstanding support and patience during the development process. Chris, your encouragement kept me going, and your guidance was crucial to the project's success. I appreciate your unwavering commitment and expertise.
+
+ - A big thank you to my wife, Ana, for her unwavering support and understanding. She, along with Chris, has been instrumental in keeping me motivated and preventing me from giving up, despite the long hours spent coding. Grateful for her constant presence and encouragement.
