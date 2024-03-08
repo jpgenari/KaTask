@@ -14,7 +14,7 @@ View it on [Am I responsive?](https://ui.dev/amiresponsive?url=https://katask-9e
   + [FlowChart](#flowchart "FlowChart")
   + [Features](#features "Features")
     - [Landing page](#landing-page "Landing page")
-    - [Login & Register](#login-and-register "Login & Register")
+    - [Login & Register](#login-&-register "Login & Register")
     - [Tasks](#tasks "Tasks")
     - [New Task](#new-task "New Task")
     - [Categories](#categories "Categories")
@@ -456,7 +456,6 @@ To obtain your own Postgres Database, sign-up with your GitHub account, then fol
 - Select the **Region** and **Data Center** closest to you.
 - Once created, click on the new database name, where you can view the database URL and Password.
 
-
 ### Cloudinary API
 
 This project has [Cloudinary API](https://cloudinary.com) installed for online storage of media assets, as Heroku does not persist this type of data. It is currently not in use, reserved for future features
@@ -467,7 +466,6 @@ To obtain your Cloudinary API key, create an account and log in.
 - Optional: _edit your assigned cloud name to something more memorable_.
 - On your Cloudinary Dashboard, you can copy your **API Environment Variable**.
 - Be sure to remove the `CLOUDINARY_URL=` as part of the API **value**; this is the **key**.
-
 
 ### Heroku Deployment
 
@@ -515,7 +513,6 @@ Or:
 - Set the remote for Heroku: `heroku git:remote -a app_name` (replace _app_name_ with your app name)
 - After performing the standard Git `add`, `commit`, and `push` to GitHub, you can now type:
   - `git push heroku main`
-
 
 ### Local Deployment
 
