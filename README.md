@@ -53,11 +53,24 @@ View it on [Am I responsive?](https://ui.dev/amiresponsive?url=https://katask-9e
 
 KaTask | Manager aims to transform your traditional task notebook into a digital format. We won't inundate you with distracting alerts. Instead, we encourage you to check your daily tasks in our minimalist user interface and then get them done—keeping it simple and focused.
 
+### Wireframes
+
+The project wireframes were drawn by hand, emphasizing a minimalist design for a task management notebook. This analog approach ensures a seamless user experience, with each element crafted for efficiency. As the foundational blueprint, these hand-drawn sketches uniquely blend traditional craftsmanship with modern design principles, promising a user-friendly and aesthetically refined final product.
+
+### Colors
+
+The focus of the color scheme is to achieve a minimalist design with high contrast, ensuring the application's accessibility. The color FF6633 has been shaded in order to not break layout harmony, it is used ro display expired tasks, in a subtle way - minimalist.
+
+  ![color scheme screenshot](/docs/readme_images/colors.png)
+
 ### FlowChart
 
 The flowchart has proven to be an invaluable tool for strategic planning, providing insightful guidance into the construction of the application by mapping out every step taken by users. This detailed chart was crafted using [Draw.io](https://www.drawio.com/).
 
   ![flowchart screenshot](/docs/readme_images/katask.drawio.png)
+
+<details>
+  <summary>Features</summary>
 
 ### Features
 
@@ -99,7 +112,7 @@ After successful registration, users are directed to the Version 2 Home Page. A 
 
 The Tasks Page offers a clean layout for easy task tracking. If no tasks are present, a prompt encourages users to kickstart by adding their first task via the "Add Task" button.
 
-  ![screenshot of tasks section without any tasks](/docs/readme_images/tasks-1.png)
+  ![screenshot of tasks section empty](/docs/readme_images/tasks-1.png)
 
 For existing tasks, each card displays the task name prominently, followed by a concise block with details like description, due date, category, and priority. Tasks are intelligently ordered:
 
@@ -132,11 +145,11 @@ When clicking on "The New", users are directed to new task form to input task de
 
 The Categories Page mirrors the user-friendly design of the Tasks Page, featuring a "New Category" button to add fresh categories. In the absence of categories, a motivating message prompts users to begin categorizing their tasks.
 
-  ![categories page screenshot blank - no categories](/docs/readme_images/categories-1.png)
+  ![empty categories page screenshot](/docs/readme_images/categories-1.png)
 
 With existing categories, users encounter a neatly organized list in alphabetical order, each displaying the number of tasks assigned. Clicking on a category name directs users to detailed category information (covered in the next section).
 
-  ![categories page screenshot displaying categories](/docs/readme_images/categories-2.png)
+  ![filled with categories page screenshot](/docs/readme_images/categories-2.png)
 
 For added convenience, an "Edit" button allows users to modify category details, while a "Delete" button triggers a modal confirmation message. This ensures intentional actions and informs users that deleting a category does not remove associated tasks; instead, they become uncategorized. This thoughtful design promotes efficient category management while maintaining task integrity.
 
@@ -146,15 +159,15 @@ For added convenience, an "Edit" button allows users to modify category details,
 
 Selecting a category opens the Category Details Page, showcasing the number of assigned tasks. Users can swiftly add a new task with the "New Task" button and view the task list for that category. If no tasks are assigned, a message encourages users to add a task, ensuring a proactive approach to task management within the selected category.
 
-  ![Category-Detail-1](/docs/readme_images/category-detail-1.png)
+  ![empty category details page screenshot](/docs/readme_images/category-detail-1.png)
 
-  ![Category-Detail-2](/docs/readme_images/category-detail-2.png)
+  ![category details page with tasks assigned screenshot](/docs/readme_images/category-detail-2.png)
 
 #### Logout
 
 Clicking logout confirms sign-out and redirects to the home page.
 
-  ![Logout](/docs/readme_images/sign-out.png)
+  ![sign out page screenshot](/docs/readme_images/sign-out.png)
 
 #### Features Left to Implement or Future Features
 
@@ -167,6 +180,10 @@ Clicking logout confirms sign-out and redirects to the home page.
 * **Future Future** grant secure task review access through templates, ensuring a smoother user interface and reducing the risk of disruptions. This also facilitates easier access for additional users if needed. At the moment, this is restricted superusers, a shortcut has been added to menu for superusers.
 
 * **Future Future** integrate a user-friendly filtering option into the UI, enabling efficient task searches as more tasks accumulate. This enhancement aims to streamline user navigation and improve the overall user experience.
+
+[Back to top](#KaTask "Back to top")
+
+</details>                     
 
 ## USER STORIES AND AGILE
 
@@ -198,15 +215,22 @@ Project launched on GitHub Projects to systematically organize tasks, categorizi
 
 Kanban board available [here](https://github.com/users/jpgenari/projects/6/views/1?layout=board).
 
+[Back to top](#KaTask "Back to top")
+
 ## ENTITY RELATIONSHIP DIAGRAM
 
 The Entity Relationship Diagram (ERD) for the Django project's created apps was generated using Graphviz. This visualization specifically represents the relationships and entities within the defined apps, providing a comprehensive overview of the data structure in the project.
 
   ![entity relationship diagram screenshot generated by Graphviz](/docs/readme_images/my_project_erd.png)
 
+[Back to top](#KaTask "Back to top")
+
 ## VALIDATING AND TESTING
 
 ### Validator
+
+<details>
+  <summary>HTML - W3C Validator</summary>
 
 #### HTML - W3C Validator
 
@@ -229,6 +253,8 @@ New Task Page|text input|![new task page validation screenshot](/docs/readme_ima
 Categories Page|text input|![categories page validation screenshot](/docs/readme_images/w3c-category.png)
 Category Details Page|text input|![category details validation screenshot](/docs/readme_images/w3c-category-details.png)
 Create Category Page|text input|![create category validation screenshot](/docs/readme_images/w3c-category-form.png)
+</details>
+
 
 #### CSS - Jigsaw W3C Validator
 
@@ -242,6 +268,9 @@ No errors flagged on [JS Hint](https://jshint.com/)
 
   - The absence of an explicit definition for the bootstrap variable is not an issue because Bootstrap is imported directly in the HTML.
   - There are ten warnings highlight the use of ES6 features like 'const,' 'let,' 'for of,' 'arrow functions,' and 'template literals.' which are not critical issues but reminders to set your ESLint configuration to ES6 ('esversion: 6').
+
+<details>
+  <summary>HTML - W3C Validator</summary>
 
 #### Python and Django - CI Python Linter
 
@@ -259,6 +288,11 @@ tasks/forms.py|![tasks forms.py validation screenshot](/docs/readme_images/plint
 tasks/models.py|![tasks models.py validation screenshot](/docs/readme_images/plinter-tasks-models.png)
 tasks/urls.py|![tasks urls.py validation screenshot](/docs/readme_images/plinter-tasks-urls.png)
 tasks/views.py|![tasks views.py validation screenshot](/docs/readme_images/plinter-tasks-views.png)
+
+</details>
+
+<details>
+  <summary>Performance - Google Lighthouse</summary>
 
 #### Performance - Google Lighthouse
 
@@ -284,6 +318,11 @@ No performance issues flagged when running Google Chrome Lighthouse.
 [Signin Page](https://katask-9e69d33c7144.herokuapp.com/accounts/login/)|Desktop|![signin page lighthouse screenshot](/docs/readme_images/lighthouse-signin.png)
 [Signup Page](https://katask-9e69d33c7144.herokuapp.com/accounts/signup/)|Mobile|![signup page lighthouse screenshot](/docs/readme_images/lighthouse-signup-mobile.png)
 [Signup Page](https://katask-9e69d33c7144.herokuapp.com/accounts/signup/)|Desktop|![signup page lighthouse screenshot](/docs/readme_images/lighthouse-signup.png)
+
+</details>
+
+<details>
+<summary>Manual Testing</summary>
 
 ### Manual Testing
 
@@ -349,6 +388,10 @@ Admin Home|site admin user able to add, edit and delete features|passed
 Admin Tasks|site admin user able to add, edit and delete any category in the data base|passed
 ||site admin user able to add, edit and delete any task in the data base|passed
 
+[Back to top](#KaTask "Back to top")
+
+</details>
+
 ## BUGS
 
 ### Solved Bugs
@@ -406,6 +449,8 @@ Admin Tasks|site admin user able to add, edit and delete any category in the dat
 
 There are no unfixed bugs.
 
+[Back to top](#KaTask "Back to top")
+
 ## TECHNOLOGIES
 
 - [Django](https://www.djangoproject.com/) is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.
@@ -416,6 +461,8 @@ There are no unfixed bugs.
 - [PostgreSQL](https://www.postgresql.org/) is a powerful, open source object-relational database system.
 - [Cloudinary](https://cloudinary.com/) is a cloud service that offers a solution to a web application's entire image management pipeline - Cloudinary is installed in the project for future features.
 - [Heroku](https://www.heroku.com/) is a platform as a service (PaaS) that enables developers to build, run, and operate applications entirely in the cloud.
+
+[Back to top](#KaTask "Back to top")
 
 ## DEPLOYMENT
 
@@ -551,6 +598,8 @@ Repository can be forked by using the following steps:
 2. At the top of the Repository (not top of page) just above the "Settings" Button on the menu, locate the "Fork" Button.
 3. Once clicked, you should now have a copy of the original repository in your own GitHub account!
 
+[Back to top](#KaTask "Back to top")
+
 ## CREDITS
 
 ### Content
@@ -563,9 +612,10 @@ Repository can be forked by using the following steps:
 ](https://copyprogramming.com/howto/django-forms-filter-field-by-user-id-3) post.
   - Debugging and refactoring performed with support of [ChatGPT](https://chat.openai.com/).
 
-
 ### Acknowledgement
 
 - A special thanks to my mentor, [Chris Quin](https://github.com/10xOXR), for his outstanding support and patience during the development process. Chris, your encouragement kept me going, and your guidance was crucial to the project's success. I appreciate your unwavering commitment and expertise.
 
  - A big thank you to my wife, Ana, for her unwavering support and understanding. She, along with Chris, has been instrumental in keeping me motivated and preventing me from giving up, despite the long hours spent coding. Grateful for her constant presence and encouragement.
+
+[Back to top](#KaTask "Back to top")
